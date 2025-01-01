@@ -13,8 +13,8 @@ This space is dedicated to exploring how we can better integrate business strate
 ---
 
 ## **About Me**
-👔 **Hi, I’m Jason Abed.**  
-![Professional Headshot](../_site/about/headshot.jpeg)
+<img src="../_site/about/headshot.jpeg" alt="Jason Abed Headshot" style="width: 75px; height: 75px; border-radius: 50%; float: left; margin-right: 10px;" /> 👔 **Hi, I’m Jason Abed.**  
+
 I’ve spent the past 15 years working in **big tech** (Microsoft) and **consulting**, where I’ve had the opportunity to collaborate with clients across industries like **retail, financial services, professional services**, and the **public sector** (government, education, and nonprofit). Most recently, I partnered with **The Met Museum** in New York on a transformative project.
 
 While my educational background in **finance and strategy** initially prepared me for the business world, I always expected my career at Microsoft to revolve around technical skills. Interestingly, it was my **business knowledge and acumen** that first accelerated my career, enabling me to thrive in roles at the intersection of strategy and technology.
