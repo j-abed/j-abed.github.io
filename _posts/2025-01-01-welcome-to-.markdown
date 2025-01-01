@@ -13,7 +13,8 @@ This space is dedicated to exploring how we can better integrate business strate
 ---
 
 ## **About Me**
-<img src="../_site/about/headshot.jpeg" alt="Jason Abed Headshot" style="width: 75px; height: 75px; border-radius: 50%; float: left; margin-right: 10px;" /> 👔 **Hi, I’m Jason Abed.**  
+<img src="../_site/about/headshot.jpeg" alt="Jason Abed Headshot" style="width: 75px; height: 75px; border-radius: 50%; float: left; margin-right: 10px;" /> 
+👔 **Hi, I’m Jason Abed.**  
 
 I’ve spent the past 15 years working in **big tech** (Microsoft) and **consulting**, where I’ve had the opportunity to collaborate with clients across industries like **retail, financial services, professional services**, and the **public sector** (government, education, and nonprofit). Most recently, I partnered with **The Met Museum** in New York on a transformative project.
 
