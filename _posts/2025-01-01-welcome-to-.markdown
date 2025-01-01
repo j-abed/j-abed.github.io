@@ -40,11 +40,11 @@ I realized that the gap between **strategy** and **execution** is a common chall
 ### **2. Practical How-To’s**
 🛠️ **Actionable Guides**  
 This January, join me for **"7 Projects in 7 Days"**, where we’ll tackle hands-on tasks to kickstart the year with productivity and innovation. Together, we’ll:
-- Build simple automations to save time.
-- Set up data dashboards for informed decision-making.
-- Explore beginner-friendly tech tools for business efficiency.
+- Explore beginner-friendly tech tools
+- Cover several technologies at an entry level
+- Create some fun/intersting projects for the New Year
 
-Stay tuned for project details in upcoming posts!
+Stay tuned for details in upcoming posts!
 
 ### **3. Industry Insights**
 🏢 **Real-World Lessons**  
@@ -81,8 +81,8 @@ Let’s start a conversation about how we can bridge the gap between strategy an
 ## **One Last Thought**
 
 🚀 **A Quote to Inspire Action**  
-"Great ideas are nothing without execution. It's better to launch with what you have today than to wait for perfection tomorrow."
+"Great ideas are nothing without execution. It's better to move with what you have today than to wait for perfection tomorrow."
 
-In the fast-paced world of business and technology, action is everything. Let’s start building.
+In the fast-paced world of business and technology, action is everything. Let’s start building. Happy 2025!
 
 ---
