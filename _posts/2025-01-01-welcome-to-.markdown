@@ -14,7 +14,6 @@ This space is dedicated to exploring how we can better integrate business strate
 
 ## **About Me**
 👔 **Hi, I’m Jason Abed.**  
-![Professional Headshot](_site/about/headshot.jpeg)
 I’ve spent the past 15 years working in **big tech** (Microsoft) and **consulting**, where I’ve had the opportunity to collaborate with clients across industries like **retail, financial services, professional services**, and the **public sector** (government, education, and nonprofit). Most recently, I partnered with **The Met Museum** in New York on a transformative project.
 
 While my educational background in **finance and strategy** initially prepared me for the business world, I always expected my career at Microsoft to revolve around technical skills. Interestingly, it was my **business knowledge and acumen** that first accelerated my career, enabling me to thrive in roles at the intersection of strategy and technology.
@@ -41,11 +40,11 @@ I realized that the gap between **strategy** and **execution** is a common chall
 ### **2. Practical How-To’s**
 🛠️ **Actionable Guides**  
 This January, join me for **"7 Projects in 7 Days"**, where we’ll tackle hands-on tasks to kickstart the year with productivity and innovation. Together, we’ll:
-- Build simple automations to save time.
-- Set up data dashboards for informed decision-making.
-- Explore beginner-friendly tech tools for business efficiency.
+- Explore beginner-friendly tech tools
+- Cover several technologies at an entry level
+- Create some fun/intersting projects for the New Year
 
-Stay tuned for project details in upcoming posts!
+Stay tuned for details in upcoming posts!
 
 ### **3. Industry Insights**
 🏢 **Real-World Lessons**  
@@ -82,8 +81,8 @@ Let’s start a conversation about how we can bridge the gap between strategy an
 ## **One Last Thought**
 
 🚀 **A Quote to Inspire Action**  
-"Great ideas are nothing without execution. It's better to launch with what you have today than to wait for perfection tomorrow."
+"Great ideas are nothing without execution. It's better to move with what you have today than to wait for perfection tomorrow."
 
-In the fast-paced world of business and technology, action is everything. Let’s start building.
+In the fast-paced world of business and technology, action is everything. Let’s start building. Happy 2025!
 
 ---
