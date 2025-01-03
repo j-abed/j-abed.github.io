@@ -43,6 +43,8 @@ Today, we’re going to do something **more interesting**: create a small game c
    ```
    You should see `Python 3.x.x`.
 
+   ** note: newer versions of macOS have deployed System Integrity Protection (SIP) to protect the default install of Python, that Apple users for the system. This is usually out of date. See our guide on best practices for a clean python install on macOS: https://j-abed.github.io/python/macos/dev/2025/01/01/simplifying-python-setup.html
+
 ### Windows
 
 1. Go to <https://www.python.org/downloads/> and download the official installer.  
