@@ -1,3 +1,10 @@
+---
+layout: post
+title: "Day 3 - Build a New Years Resolution App"
+date: 2025-01-04 10:00:00 +0000
+categories: [python, streamlit, intro, dev, webapp, fundamentals]
+---
+
 
 # Day 3 - Building a Resolution Spinner: Combining Python, Web Technologies, and Databases
 
