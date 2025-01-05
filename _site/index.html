@@ -1,77 +1,366 @@
 <!DOCTYPE html>
-<html lang="en"><head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.8.0 -->
-<title>Your awesome title | Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.</title>
-<meta name="generator" content="Jekyll v4.3.4" />
-<meta property="og:title" content="Your awesome title" />
-<meta property="og:locale" content="en_US" />
-<meta name="description" content="Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description." />
-<meta property="og:description" content="Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description." />
-<link rel="canonical" href="http://localhost:4000/" />
-<meta property="og:url" content="http://localhost:4000/" />
-<meta property="og:site_name" content="Your awesome title" />
-<meta property="og:type" content="website" />
-<meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="Your awesome title" />
-<script type="application/ld+json">
-{"@context":"https://schema.org","@type":"WebSite","description":"Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.","headline":"Your awesome title","name":"Your awesome title","url":"http://localhost:4000/"}</script>
-<!-- End Jekyll SEO tag -->
-<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="Your awesome title" /></head>
-<body><header class="site-header" role="banner">
+<html lang="en-us">
 
-  <div class="wrapper"><a class="site-title" rel="author" href="/">Your awesome title</a><nav class="site-nav">
-        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
-        <label for="nav-trigger">
-          <span class="menu-icon">
-            <svg viewBox="0 0 18 15" width="18px" height="15px">
-              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
-            </svg>
-          </span>
-        </label>
+  <head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
 
-        <div class="trigger"><a class="page-link" href="/about/">About</a></div>
-      </nav></div>
-</header>
-<main class="page-content" aria-label="Content">
-      <div class="wrapper">
-        <div class="home">
-<h2 class="post-list-heading">Posts</h2>
-    <ul class="post-list"><li><span class="post-meta">Jan 1, 2025</span>
-        <h3>
-          <a class="post-link" href="/jekyll/update/2025/01/01/welcome-to-jekyll.html">
-            Welcome to Jekyll!
-          </a>
-        </h3></li></ul>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
 
-    <p class="rss-subscribe">subscribe <a href="/feed.xml">via RSS</a></p></div>
+  <title>
+    
+      Jason Abed &middot; GitHub Pages Blog
+    
+  </title>
 
-      </div>
-    </main><footer class="site-footer h-card">
-  <data class="u-url" href="/"></data>
+  
+  <link rel="canonical" href="http://localhost:4000/">
+  
 
-  <div class="wrapper">
+  <link rel="stylesheet" href="http://localhost:4000/public/css/poole.css">
+  <link rel="stylesheet" href="http://localhost:4000/public/css/syntax.css">
+  <link rel="stylesheet" href="http://localhost:4000/public/css/lanyon.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Serif:400,400italic,700%7CPT+Sans:400">
 
-    <h2 class="footer-heading">Your awesome title</h2>
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="http://localhost:4000/public/apple-touch-icon-precomposed.png">
+  <link rel="shortcut icon" href="http://localhost:4000/public/favicon.ico">
 
-    <div class="footer-col-wrapper">
-      <div class="footer-col footer-col-1">
-        <ul class="contact-list">
-          <li class="p-name">Your awesome title</li><li><a class="u-email" href="mailto:your-email@example.com">your-email@example.com</a></li></ul>
-      </div>
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="http://localhost:4000/atom.xml">
 
-      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/jekyll"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg> <span class="username">jekyll</span></a></li><li><a href="https://www.twitter.com/jekyllrb"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#twitter"></use></svg> <span class="username">jekyllrb</span></a></li></ul>
+  
+</head>
+
+
+  <body class="theme-base-08">
+
+    <!-- Target for toggling the sidebar `.sidebar-checkbox` is for regular
+     styles, `#sidebar-checkbox` for behavior. -->
+<input type="checkbox" class="sidebar-checkbox" id="sidebar-checkbox">
+
+<!-- Toggleable sidebar -->
+<div class="sidebar" id="sidebar">
+  <div class="sidebar-item">
+    <p>Combining technology and creativity to make the world a better place.</p>
+  </div>
+
+  <nav class="sidebar-nav">
+    <a class="sidebar-nav-item active" href="http://localhost:4000/">Home</a>
+
+    
+
+    
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+          <a class="sidebar-nav-item" href="http://localhost:4000/about/">About Jason</a>
+        
+      
+    
+      
+    
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+
+    <!-- <a class="sidebar-nav-item" href="https://github.com/j-abed//archive/v1.1.0.zip">Download</a> -->
+    <a class="sidebar-nav-item" href="https://github.com/j-abed/">GitHub Repos</a>
+    <span class="sidebar-nav-item">Currently v1.1.0</span>
+  </nav>
+
+  <div class="sidebar-item">
+    <p>
+      &copy; 2025. All rights reserved.
+    </p>
+  </div>
 </div>
 
-      <div class="footer-col footer-col-3">
-        <!-- <p>Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.</p> -->
+
+    <!-- Wrap is the content to shift when toggling the sidebar. We wrap the
+         content to avoid any CSS collisions with our real content. -->
+    <div class="wrap">
+      <div class="masthead">
+        <div class="container">
+          <h3 class="masthead-title">
+            <a href="/" title="Home">Jason Abed</a>
+            |
+            <small>GitHub Pages Blog</small>
+          </h3>
+        </div>
+      </div>
+
+      <div class="container content">
+        <div class="posts">
+  
+  <div class="post">
+    <h1 class="post-title">
+      <a href="http://localhost:4000/day-3/">
+        Day 3 - Build a New Years Resolution App
+      </a>
+    </h1>
+
+    <span class="post-date">04 Jan 2025</span>
+
+    <h2 id="day-3---building-a-resolution-spinner-combining-python-web-technologies-and-databases">Day 3 - Building a Resolution Spinner: Combining Python, Web Technologies, and Databases</h2>
+
+<p>Welcome to Day 3 of our “7 Days of Projects for the New Year” series! Today, we’re combining Python with web technologies and databases to create a <strong>Resolution Spinner</strong> app. This project not only demonstrates Python’s versatility but also showcases how to build a modern, interactive application by integrating multiple technologies.</p>
+
+<hr />
+
+<h2 id="building-on-day-1-and-day-2">Building on Day 1 and Day 2</h2>
+
+<p>Before we dive in, let’s quickly reflect on what we’ve learned so far:</p>
+<ul>
+  <li><strong>Day 1</strong>: We covered introductory Python by building a <strong>Guess the Number</strong> game. This introduced core concepts like loops, conditional logic, user input, and randomization—all of which we’ll use today.</li>
+  <li><strong>Day 2</strong>: We built a <strong>Goals Tracker</strong> using HTML, CSS, and JavaScript. This taught us how to design and style a webpage and add interactivity manually.</li>
+</ul>
+
+<h3 id="taking-the-next-step">Taking the Next Step</h3>
+<p>In today’s project, we combine these skills to create a more sophisticated app. The <strong>Resolution Spinner</strong> integrates:</p>
+<ol>
+  <li><strong>Backend Logic</strong>: Python processes user inputs and implements the spinner’s random selection.</li>
+  <li><strong>Frontend Interface</strong>: Instead of writing HTML/CSS/JS like in Day 2, we use <strong>Streamlit</strong>, a Python library that abstracts much of the complexity of traditional web development.</li>
+  <li><strong>Persistent Storage</strong>: Using <strong>SQLite3</strong>, we ensure that user resolutions are stored securely and retrievable across sessions.</li>
+</ol>
+
+<hr />
+
+<h2 id="what-is-streamlit-and-why-use-it">What is Streamlit, and Why Use It?</h2>
+
+<p>In Day 2, we manually created a web app using HTML, CSS, and JavaScript. While this approach gives full control over design and interactivity, it also requires substantial effort to build and maintain (as you may have noticed if you completed Day 2’s project). Streamlit simplifies this process by allowing us to build modern web apps using just Python.</p>
+
+<p>Here’s why Streamlit is a game-changer:</p>
+<ol>
+  <li><strong>Abstraction</strong>: It abstracts away the need for manual HTML, CSS, and JavaScript. Widgets like text inputs and buttons are created with single Python function calls, and the layout is automatically styled for a professional look.</li>
+  <li><strong>Single Language</strong>: No need to switch between Python for backend and JavaScript for frontend. Everything is done in Python.</li>
+  <li><strong>Live Feedback</strong>: Streamlit’s development server instantly reflects any changes made to the code, speeding up iteration and debugging.</li>
+  <li><strong>Data Visualization</strong>: With built-in support for visualizations and interactive widgets, Streamlit is perfect for creating intuitive apps.</li>
+</ol>
+
+<hr />
+
+<h2 id="why-not-use-flask-or-django">Why Not Use Flask (or Django)?</h2>
+
+<p>Flask (or Django) is another popular Python framework for web development, and it’s a great choice for building more complex, production-grade applications. However, Streamlit has several advantages for projects like ours:</p>
+<ul>
+  <li><strong>Ease of Use</strong>: Streamlit is designed to be beginner-friendly and eliminates the need to write separate HTML templates or manage complex routing, which Flask requires.</li>
+  <li><strong>Rapid Prototyping</strong>: While Flask is powerful, it demands more setup and boilerplate code. Streamlit allows us to focus on app logic and functionality, making it perfect for smaller projects and prototypes.</li>
+  <li><strong>Built-in Frontend</strong>: Flask typically requires additional tools or libraries (like Jinja2 for templating) to create the frontend. Streamlit includes everything needed for a professional UI out of the box.</li>
+</ul>
+
+<p>For this tutorial, we chose Streamlit because it’s faster to set up, easier to work with, and ideal for interactive projects like the <strong>Resolution Spinner</strong>.</p>
+
+<hr />
+
+<h2 id="handling-python-version-issues">Handling Python Version Issues</h2>
+
+<p>Before starting, remember that Python versioning issues can arise, especially on macOS. If you encounter problems, refer to my earlier blog post, <a href="https://j-abed.github.io/python/macos/dev/2025/01/01/simplifying-python-setup.html">Simplifying Python Setup on macOS</a>, for detailed steps on managing Python installations and ensuring compatibility.</p>
+
+<hr />
+
+<h2 id="project-overview">Project Overview</h2>
+
+<p>The <strong>Resolution Spinner</strong> app lets users:</p>
+<ol>
+  <li>Add resolutions to a database.</li>
+  <li>Spin a virtual wheel to randomly select one.</li>
+  <li>Store resolutions persistently using <strong>SQLite3</strong>.</li>
+</ol>
+
+<hr />
+
+<h2 id="step-by-step-guide">Step-by-Step Guide</h2>
+
+<h3 id="1-set-up-the-project">1. <strong>Set Up the Project</strong></h3>
+
+<p>Clone the repository to your local machine:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git clone https://github.com/j-abed/Resolution-Spinner.git
+<span class="nb">cd </span>Resolution-Spinner
+</code></pre></div></div>
+
+<p>Ensure your project structure matches the repository:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Resolution-Spinner/
+├── app.py               # Main application logic
+├── requirements.txt     # Project dependencies
+├── resolutions.db       # SQLite3 database (auto-generated)
+</code></pre></div></div>
+
+<p><strong>Install dependencies:</strong></p>
+
+<p>It’s good practice to create a virtual environment:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python <span class="nt">-m</span> venv venv
+<span class="nb">source </span>venv/bin/activate  <span class="c"># On Windows: venv\Scripts\activate</span>
+</code></pre></div></div>
+
+<p>Then, install the required packages:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pip <span class="nb">install</span> <span class="nt">-r</span> requirements.txt
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="2-design-the-user-interface">2. <strong>Design the User Interface</strong></h3>
+
+<p>In <code class="language-plaintext highlighter-rouge">app.py</code>, set up the Streamlit interface:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">streamlit</span> <span class="k">as</span> <span class="n">st</span>
+
+<span class="n">st</span><span class="p">.</span><span class="n">title</span><span class="p">(</span><span class="s">"🎯 Resolution Spinner"</span><span class="p">)</span>
+<span class="n">st</span><span class="p">.</span><span class="n">markdown</span><span class="p">(</span><span class="s">"Add your resolutions below and let the spinner decide!"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="3-set-up-the-database">3. <strong>Set Up the Database</strong></h3>
+
+<p>Initialize the SQLite3 database within <code class="language-plaintext highlighter-rouge">app.py</code>. The database file (<code class="language-plaintext highlighter-rouge">resolutions.db</code>) will be created automatically when you run the app:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">sqlite3</span>
+
+<span class="c1"># Initialize the database
+</span><span class="n">conn</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="p">.</span><span class="n">connect</span><span class="p">(</span><span class="s">'resolutions.db'</span><span class="p">)</span>
+<span class="n">cursor</span> <span class="o">=</span> <span class="n">conn</span><span class="p">.</span><span class="n">cursor</span><span class="p">()</span>
+
+<span class="c1"># Create the resolutions table if it doesn't exist
+</span><span class="n">cursor</span><span class="p">.</span><span class="n">execute</span><span class="p">(</span><span class="s">'''
+    CREATE TABLE IF NOT EXISTS resolutions (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        resolution TEXT NOT NULL
+    )
+'''</span><span class="p">)</span>
+<span class="n">conn</span><span class="p">.</span><span class="n">commit</span><span class="p">()</span>
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="4-add-resolutions">4. <strong>Add Resolutions</strong></h3>
+
+<p>Allow users to input new resolutions:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Input for new resolution
+</span><span class="n">new_resolution</span> <span class="o">=</span> <span class="n">st</span><span class="p">.</span><span class="n">text_input</span><span class="p">(</span><span class="s">"Enter a new resolution:"</span><span class="p">)</span>
+
+<span class="c1"># Button to add the resolution
+</span><span class="k">if</span> <span class="n">st</span><span class="p">.</span><span class="n">button</span><span class="p">(</span><span class="s">"Add Resolution"</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">new_resolution</span><span class="p">.</span><span class="n">strip</span><span class="p">():</span>
+        <span class="n">cursor</span><span class="p">.</span><span class="n">execute</span><span class="p">(</span><span class="s">"INSERT INTO resolutions (resolution) VALUES (?)"</span><span class="p">,</span> <span class="p">(</span><span class="n">new_resolution</span><span class="p">.</span><span class="n">strip</span><span class="p">(),))</span>
+        <span class="n">conn</span><span class="p">.</span><span class="n">commit</span><span class="p">()</span>
+        <span class="n">st</span><span class="p">.</span><span class="n">success</span><span class="p">(</span><span class="sa">f</span><span class="s">"Resolution '</span><span class="si">{</span><span class="n">new_resolution</span><span class="si">}</span><span class="s">' added successfully!"</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">st</span><span class="p">.</span><span class="n">error</span><span class="p">(</span><span class="s">"Please enter a non-empty resolution."</span><span class="p">)</span>
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="5-view-resolutions">5. <strong>View Resolutions</strong></h3>
+
+<p>Display the list of stored resolutions:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Display stored resolutions
+</span><span class="n">st</span><span class="p">.</span><span class="n">header</span><span class="p">(</span><span class="s">"Your Resolutions"</span><span class="p">)</span>
+<span class="n">resolutions</span> <span class="o">=</span> <span class="n">cursor</span><span class="p">.</span><span class="n">execute</span><span class="p">(</span><span class="s">"SELECT id, resolution FROM resolutions"</span><span class="p">).</span><span class="n">fetchall</span><span class="p">()</span>
+
+<span class="k">if</span> <span class="n">resolutions</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">res_id</span><span class="p">,</span> <span class="n">res_text</span> <span class="ow">in</span> <span class="n">resolutions</span><span class="p">:</span>
+        <span class="n">st</span><span class="p">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s">"</span><span class="si">{</span><span class="n">res_id</span><span class="si">}</span><span class="s">. </span><span class="si">{</span><span class="n">res_text</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">st</span><span class="p">.</span><span class="n">write</span><span class="p">(</span><span class="s">"No resolutions added yet."</span><span class="p">)</span>
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="6-implement-the-spinner-logic">6. <strong>Implement the Spinner Logic</strong></h3>
+
+<p>Add functionality to randomly select a resolution:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">random</span>
+
+<span class="c1"># Button to spin the wheel
+</span><span class="k">if</span> <span class="n">st</span><span class="p">.</span><span class="n">button</span><span class="p">(</span><span class="s">"Spin the Wheel"</span><span class="p">):</span>
+    <span class="n">resolutions</span> <span class="o">=</span> <span class="n">cursor</span><span class="p">.</span><span class="n">execute</span><span class="p">(</span><span class="s">"SELECT resolution FROM resolutions"</span><span class="p">).</span><span class="n">fetchall</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">resolutions</span><span class="p">:</span>
+        <span class="n">selected</span> <span class="o">=</span> <span class="n">random</span><span class="p">.</span><span class="n">choice</span><span class="p">(</span><span class="n">resolutions</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">st</span><span class="p">.</span><span class="n">success</span><span class="p">(</span><span class="sa">f</span><span class="s">"Your resolution is: </span><span class="si">{</span><span class="n">selected</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">st</span><span class="p">.</span><span class="n">warning</span><span class="p">(</span><span class="s">"No resolutions to choose from! Add some first."</span><span class="p">)</span>
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="7-run-the-application">7. <strong>Run the Application</strong></h3>
+
+<p>To see your app in action, run the following command in your terminal from the project directory:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>streamlit run app.py
+</code></pre></div></div>
+
+<p>This will launch the Streamlit development server and open your app in your default web browser. If it doesn’t open automatically, you can navigate to the URL provided in the terminal (usually <code class="language-plaintext highlighter-rouge">http://localhost:8501</code>).</p>
+
+<hr />
+
+<h2 id="whats-next">What’s Next?</h2>
+
+<p>Here are some ideas to expand this project further:</p>
+<ol>
+  <li><strong>Categories for Resolutions</strong>: Allow users to organize their resolutions into categories (e.g., Health, Career, Personal).</li>
+  <li><strong>Completion Tracking</strong>: Add a feature to mark resolutions as completed.</li>
+  <li><strong>Export Resolutions</strong>: Enable users to export their resolutions as a CSV file for sharing or backup.</li>
+  <li><strong>Deployment</strong>: Host your app on <strong>Streamlit Cloud</strong> or another platform to make it accessible to others.</li>
+</ol>
+
+<hr />
+
+<h2 id="conclusion">Conclusion</h2>
+
+<p>Congratulations! You’ve built a fully functional <strong>Resolution Spinner</strong> app that combines the foundational Python skills from Day 1, the web development concepts from Day 2, and the added complexity of persistent data storage with SQLite3. Using <strong>Streamlit</strong>, you’ve created a modern, interactive app without needing to write HTML, CSS, or JavaScript.</p>
+
+<p>While frameworks like Flask are excellent for more complex, production-ready applications, Streamlit is ideal for rapid prototyping and small-scale projects like this one.</p>
+
+<p>If you enjoyed this tutorial, stay tuned for <strong>Day 4</strong>, where we’ll tackle another exciting project that builds on what you’ve learned so far!</p>
+
+  </div>
+  
+</div>
+
+<div class="pagination">
+  
+    <a class="pagination-item older" href="http://localhost:4000/page2">Older</a>
+  
+  
+    <span class="pagination-item newer">Newer</span>
+  
+</div>
+
       </div>
     </div>
 
-  </div>
+    <label for="sidebar-checkbox" class="sidebar-toggle"></label>
 
-</footer>
-</body>
-
+    <script src='/public/js/script.js'></script>
+  </body>
 </html>

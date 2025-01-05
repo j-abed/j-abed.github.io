@@ -3,10 +3,11 @@ layout: post
 title: "Day 3 - Build a New Years Resolution App"
 date: 2025-01-04 10:00:00 +0000
 categories: [python, streamlit, intro, dev, webapp, fundamentals]
+permalink: /day-3/
 ---
 
 
-# Day 3 - Building a Resolution Spinner: Combining Python, Web Technologies, and Databases
+## Day 3 - Building a Resolution Spinner: Combining Python, Web Technologies, and Databases
 
 Welcome to Day 3 of our "7 Days of Projects for the New Year" series! Today, we’re combining Python with web technologies and databases to create a **Resolution Spinner** app. This project not only demonstrates Python’s versatility but also showcases how to build a modern, interactive application by integrating multiple technologies.
 

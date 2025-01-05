@@ -3,6 +3,7 @@ layout: post
 title: "Day 2 - Build a 2025 Goal Tracker"
 date: 2025-01-03 10:00:00 +0000
 categories: [HTML, CSS, intro, dev, webdev, fundamentals]
+permalink: /day-2/
 ---
 
 # Day 2: Build a 2025 Goals Tracker
@@ -674,6 +675,6 @@ By the end of the **7 Days of Projects**, you will have built a variety of apps,
 
 Take a moment to celebrate your success! 🎉 You've completed the **2025 Goals Tracker** and learned the fundamental building blocks of web development. Whether you want to continue improving this app or start a new project, you're well on your way to becoming a proficient web developer.
 
-
+- [Next: Day 3]({{ '/day-3/' | relative_url }})
 
 

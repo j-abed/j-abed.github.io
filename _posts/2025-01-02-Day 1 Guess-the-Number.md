@@ -3,6 +3,7 @@ layout: post
 title: "Day 1 - Guess the Number App"
 date: 2025-01-02 10:00:00 +0000
 categories: [Python, dev, intro, fundamentals]
+permalink: /day-1/
 ---
 
 # Day 1: Build a “Guess the Number” Game in Python
@@ -227,6 +228,8 @@ while True:
 Take a moment to celebrate your progress! Stay tuned for **Day 2**, where we’ll tackle another exciting Python project—step by step, just like today.
 
 **Until then, happy coding!**
+
+- [Next: Day 2]({{ '/day-2/' | relative_url }})
 
 Full code can be found in a repo on github:
 https://github.com/j-abed/Number-Guess

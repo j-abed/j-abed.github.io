@@ -45,6 +45,10 @@ This January, join me for **"7 Projects in 7 Days"**, where we’ll tackle hands
 - Create some fun/intersting projects for the New Year
 
 Stay tuned for details in upcoming posts!
+Days 1-3 are now live!
+- [Day 1: Our First App]({{ '/day-1/' | relative_url }})
+- [Day 2: 2025 New Years Goals]({{ '/day-2/' | relative_url }})
+- [Day 3: New Years Resolution Tracking]({{ '/day-3/' | relative_url }})
 
 ### **3. Industry Insights**
 🏢 **Real-World Lessons**  
@@ -86,3 +90,4 @@ Let’s start a conversation about how we can bridge the gap between strategy an
 In the fast-paced world of business and technology, action is everything. Let’s start building. Happy 2025!
 
 ---
+- [Next: Day 1]({{ '/day-1/' | relative_url }})
