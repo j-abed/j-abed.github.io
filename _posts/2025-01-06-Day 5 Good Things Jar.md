@@ -258,7 +258,7 @@ While this version is a functional MVP, there are several features I plan to add
 
 ### Ashley Sumner’s Substack
 
-Before wrapping up, I’d like to highlight Ashley Sumner’s Substack, *The Liminalist*, which is a fantastic read on wellbeing: [https://ashleyjsumner.substack.com/](https://ashleyjsumner.substack.com/).
+Before wrapping up, I’d like to highlight Ashley Sumner’s Substack, *In Tune with Ashley*, which is a fantastic read on wellbeing: [https://ashleyjsumner.substack.com/](https://ashleyjsumner.substack.com/).
 
 ### Recap
 
