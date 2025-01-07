@@ -1,6 +1,6 @@
 # Setup
 title:               Jason Abed
-tagline:             'GitHub Pages Blog'
+tagline:             'GitHub Pages'
 description:         'Combining technology and creativity to make the world a better place.'
 url:                 https://j-abed.github.io
 baseurl:             ''
@@ -19,7 +19,7 @@ plugins:
 
 # Custom vars
 version:             1.1.0
-google_analytics_id: #UA-XXXX-Y
+google_analytics_id: G-34SMXHK93B
 
 github:
   repo: https://github.com/j-abed/
