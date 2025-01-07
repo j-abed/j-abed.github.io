@@ -9,7 +9,7 @@ permalink: /day-5/
 
 # Day 5: Building a Good Things Jar App
 
-Welcome back to Day 5 of our seven-day project series! Today, I’m thrilled to dive into a project that’s both personal and inspiring: the **Good Things Jar App**. This app is rooted in a beautiful idea shared by my friend Ashley Sumner, and it’s become a project that I deeply enjoy. The app takes the timeless practice of gratitude journaling and gives it a digital twist.
+Welcome back to Day 5 of our seven-day project series! Today, I’m thrilled to dive into a project that’s both personal and inspiring: the **Good Things Jar App**. This app is rooted in a beautiful idea shared by a friend: Ashley Sumner, and it’s become a project that I enjoy working on. The app takes the timeless practice of gratitude journaling and gives it a digital twist.
 
 The idea is simple: Start the year with an empty jar and add a note each week celebrating something good that happened. By New Year’s Eve, you’ll have a collection of memories to reflect on and cherish. I’ve built a version of this in ReactJS and deployed it via Netlify—you can check it out here: [https://voluble-malasada-268018.netlify.app/](https://voluble-malasada-268018.netlify.app/). The GitHub repository with the code is also available: [https://github.com/j-abed/good-things-jar](https://github.com/j-abed/good-things-jar).
 
@@ -19,7 +19,7 @@ While I’m sharing the code on GitHub, this tutorial is designed to help you bu
 
 ### Inspiration and Skills Recap
 
-Ashley Sumner’s quote perfectly captures the spirit of this project:
+The quote Ashley shared perfectly captures the spirit of this project:
 
 > **This January, start the year with an empty jar. Every week you add a note with a good thing that happened. On New Year’s Eve, empty the jar and read about the amazing year you had.**
 
