@@ -193,4 +193,5 @@ With this app, you’ve built a fully functional Wordle solver that combines Pyt
 
 ---
 
+- [Next: Day 5]({{ '/day-5/' | relative_url }})
 
