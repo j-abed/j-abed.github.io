@@ -224,3 +224,5 @@ Congratulations! You’ve built a fully functional **Resolution Spinner** app th
 While frameworks like Flask are excellent for more complex, production-ready applications, Streamlit is ideal for rapid prototyping and small-scale projects like this one.
 
 If you enjoyed this tutorial, stay tuned for **Day 4**, where we’ll tackle another exciting project that builds on what you’ve learned so far!
+
+- [Next: Day 4]({{ '/day-4/' | relative_url }})
