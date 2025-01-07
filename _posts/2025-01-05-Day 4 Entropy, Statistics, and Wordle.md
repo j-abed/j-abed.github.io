@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Day 4 - Entropy, Statistics, and Wordle?"
-date: 2025-01-04 10:00:00 +0000
+date: 2025-01-05 10:00:00 +0000
 categories: [python, dev, statistics, entropy, data science, fundamentals]
 permalink: /day-4/
 ---
