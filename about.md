@@ -4,13 +4,11 @@ title: About Jason
 permalink: /about/
 ---
 
-## About Me
-
-Welcome to **Jason's Blog**, a space where I share my thoughts, experiences, and insights about technology, software development, and beyond.
+Welcome to my GitHub Pages, a space where I share my thoughts, experiences, and insights about technology, software development, and beyond.
 
 ### Who Am I?
 
-I'm Jason, a passionate technologist and lifelong learner based in NYC. With a background in technology, digital strategy, and product development, I aim to empower others through innovative solutions and insightful discussions. I've worked in big tech & consulting for more than 10 years now, and have an (Master's level) educational background with both an MBA(Fin & Strategy) from NYU and a BSBA from Boston in Finance, Information Systems, and Computer Science
+I'm Jason, a lifelong learner based in NYC with a passion for technology. Educationally, and now through my career as a consultant, I have a background in technology, digital strategy, and product development, I aim to empower others through innovative solutions and insightful discussions. I've worked in big tech & consulting for more than 10 years now - working with some of the largest companies, and governments, in the world. I have a (Master's level) educational background with both an MBA(Fin & Strategy) from NYU and a BSBA from Boston in Finance, Information Systems, and Computer Science
 
 ### What You'll Find Here
 
@@ -22,7 +20,7 @@ This blog covers a wide range of topics, including:
 
 ### Why I Spend Time on This
 
-I believe in the power of sharing knowledge, and have a passion for education. Through this blog, I hope to inspire, educate, and connect with like-minded individuals who share a passion for technology and growth.
+I believe in the power of sharing knowledge, and have a passion for education. Through this blog, I hope to inspire, educate, and connect with like-minded individuals who share a passion for technology and growth. My goal is to always be able to share this information for free. There are sometimes costs associated with tools/products, hosting, etc. in order to keep this up. If you find this content helpful, and you're able, please consider buying me a coffee as a way of saying thanks :)
 
 ### Get in Touch
 
