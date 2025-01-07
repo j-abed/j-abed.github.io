@@ -32,8 +32,27 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   
   
-  <div id="bmc-wbtn" align="right" style="padding: 0px 25px 10px 0px;">
-    <script type="text/javascript" src="https://cdnjs.buymeacoffee.com/1.0.0/button.prod.min.js" data-name="bmc-button" data-slug="jasonabed" data-color="#FF5F5F" data-emoji=""  data-font="Cookie" data-text="Buy me a coffee" data-outline-color="#000000" data-font-color="#ffffff" data-coffee-color="#FFDD00"></script>
+  <style>
+    #bmc-wbtn {
+      display: flex;
+      justify-content: flex-end;
+      padding: 5px 25px;
+    }
+  </style>
+  <div id="bmc-wbtn">
+    <script type="text/javascript" 
+            src="https://cdnjs.buymeacoffee.com/1.0.0/button.prod.min.js" 
+            data-name="bmc-button" 
+            data-slug="jasonabed" 
+            data-color="#FF5F5F" 
+            data-emoji=""  
+            data-font="Cookie" 
+            data-font-size="12"   
+            data-text="Buy me a coffee" 
+            data-outline-color="#000000" 
+            data-font-color="#ffffff" 
+            data-coffee-color="#FFDD00">
+    </script>
   </div>
 </head>
 
@@ -91,6 +110,10 @@
         
       
     
+      
+        
+      
+    
 
     <!-- <a class="sidebar-nav-item" href="https://github.com/j-abed//archive/v1.1.0.zip">Download</a> -->
     <a class="sidebar-nav-item" href="https://github.com/j-abed/">GitHub Repos</a>
@@ -123,232 +146,213 @@
   
   <div class="post">
     <h1 class="post-title">
-      <a href="http://localhost:4000/day-3/">
-        Day 3 - Build a New Years Resolution App
+      <a href="http://localhost:4000/day-4/">
+        Day 4 - Entropy, Statistics, and Wordle?
       </a>
     </h1>
 
-    <span class="post-date">04 Jan 2025</span>
+    <span class="post-date">05 Jan 2025</span>
 
-    <h2 id="day-3---building-a-resolution-spinner-combining-python-web-technologies-and-databases">Day 3 - Building a Resolution Spinner: Combining Python, Web Technologies, and Databases</h2>
+    <h1 id="building-a-wordle-analysis-tool">Building a Wordle Analysis Tool</h1>
 
-<p>Welcome to Day 3 of our “7 Days of Projects for the New Year” series! Today, we’re combining Python with web technologies and databases to create a <strong>Resolution Spinner</strong> app. This project not only demonstrates Python’s versatility but also showcases how to build a modern, interactive application by integrating multiple technologies.</p>
+<h2 id="introduction">Introduction</h2>
+<p>Yesterday, we explored using Python and Streamlit to create a simple web application. Today, we’re taking it further by combining web development with data science principles to solve a fun and popular challenge: Wordle!</p>
+
+<p>Wordle is an excellent playground for applying basic statistics and data science. It’s simple, relatable, and offers plenty of opportunities to explore probability, entropy, and decision-making. To make things even better, I’ve built and deployed a Wordle Solver app using Python and Streamlit. You can try it out <a href="https://wordle-solver.streamlit.app">here</a>, or explore the code on <a href="https://github.com/j-abed/wordle-solver">GitHub</a>.</p>
 
 <hr />
 
-<h2 id="building-on-day-1-and-day-2">Building on Day 1 and Day 2</h2>
+<h2 id="part-1-why-wordle-makes-for-a-great-data-science-playground">Part 1: Why Wordle Makes for a Great Data Science Playground</h2>
+<ol>
+  <li>
+    <p><strong>Popularity and Familiarity</strong><br />
+Wordle is a household name, with its straightforward rules and universal appeal. This makes it an ideal starting point for demonstrating data-driven decision-making.</p>
+  </li>
+  <li>
+    <p><strong>Data/Stats in Action</strong><br />
+Each guess in Wordle provides valuable feedback, narrowing the list of possible solutions. By analyzing this feedback, we can make smarter guesses.</p>
+  </li>
+  <li>
+    <p><strong>Simple, Yet Complex</strong><br />
+Wordle combines simplicity with strategic depth, making it a fantastic problem for exploring probability, statistics, and entropy.</p>
+  </li>
+</ol>
 
-<p>Before we dive in, let’s quickly reflect on what we’ve learned so far:</p>
+<p><strong>Visualization:</strong> Here’s a chart showing the frequency of letters in the Wordle dictionary. Notice how vowels like <code class="language-plaintext highlighter-rouge">E</code> dominate while less common letters like <code class="language-plaintext highlighter-rouge">Z</code> barely register.</p>
+
+<p><img src="../public/day4/letter_freq.png" alt="Letter Frequency" /></p>
+
+<p><strong>Most and Least Frequent Letters:</strong> Below are the 5 most and 5 least frequent letters in Wordle.</p>
+
+<p><img src="../public/day4/most_least_frequent_letters.png" alt="Most and Least Frequent Letters" /></p>
+
+<h3 id="why-letter-frequency-analysis-matters">Why Letter Frequency Analysis Matters</h3>
+<p>In Wordle, the first guess is critical—it sets the stage for everything that follows. A good first guess uses common letters, increasing the likelihood of a match.</p>
+
+<p>For example:</p>
 <ul>
-  <li><strong>Day 1</strong>: We covered introductory Python by building a <strong>Guess the Number</strong> game. This introduced core concepts like loops, conditional logic, user input, and randomization—all of which we’ll use today.</li>
-  <li><strong>Day 2</strong>: We built a <strong>Goals Tracker</strong> using HTML, CSS, and JavaScript. This taught us how to design and style a webpage and add interactivity manually.</li>
+  <li>Words like <strong>CRANE</strong> or <strong>SLATE</strong> maximize the use of frequent letters (<code class="language-plaintext highlighter-rouge">E</code>, <code class="language-plaintext highlighter-rouge">A</code>, <code class="language-plaintext highlighter-rouge">T</code>).</li>
+  <li>Conversely, words with rare letters, like <strong>QUIZ</strong> or <strong>JUMPY</strong>, are less effective at the start.</li>
 </ul>
 
-<h3 id="taking-the-next-step">Taking the Next Step</h3>
-<p>In today’s project, we combine these skills to create a more sophisticated app. The <strong>Resolution Spinner</strong> integrates:</p>
-<ol>
-  <li><strong>Backend Logic</strong>: Python processes user inputs and implements the spinner’s random selection.</li>
-  <li><strong>Frontend Interface</strong>: Instead of writing HTML/CSS/JS like in Day 2, we use <strong>Streamlit</strong>, a Python library that abstracts much of the complexity of traditional web development.</li>
-  <li><strong>Persistent Storage</strong>: Using <strong>SQLite3</strong>, we ensure that user resolutions are stored securely and retrievable across sessions.</li>
-</ol>
-
 <hr />
 
-<h2 id="what-is-streamlit-and-why-use-it">What is Streamlit, and Why Use It?</h2>
+<h2 id="part-2-what-is-entropy-and-why-does-it-matter">Part 2: What is Entropy (and Why Does It Matter)?</h2>
+<h3 id="entropy-in-information-theory">Entropy in Information Theory</h3>
+<p>Entropy is a measure of uncertainty. In Wordle, entropy helps us determine which guess provides the most “information gain.” A good guess splits the remaining word list into evenly distributed subsets based on possible feedback patterns.</p>
 
-<p>In Day 2, we manually created a web app using HTML, CSS, and JavaScript. While this approach gives full control over design and interactivity, it also requires substantial effort to build and maintain (as you may have noticed if you completed Day 2’s project). Streamlit simplifies this process by allowing us to build modern web apps using just Python.</p>
-
-<p>Here’s why Streamlit is a game-changer:</p>
-<ol>
-  <li><strong>Abstraction</strong>: It abstracts away the need for manual HTML, CSS, and JavaScript. Widgets like text inputs and buttons are created with single Python function calls, and the layout is automatically styled for a professional look.</li>
-  <li><strong>Single Language</strong>: No need to switch between Python for backend and JavaScript for frontend. Everything is done in Python.</li>
-  <li><strong>Live Feedback</strong>: Streamlit’s development server instantly reflects any changes made to the code, speeding up iteration and debugging.</li>
-  <li><strong>Data Visualization</strong>: With built-in support for visualizations and interactive widgets, Streamlit is perfect for creating intuitive apps.</li>
-</ol>
-
-<hr />
-
-<h2 id="why-not-use-flask-or-django">Why Not Use Flask (or Django)?</h2>
-
-<p>Flask (or Django) is another popular Python framework for web development, and it’s a great choice for building more complex, production-grade applications. However, Streamlit has several advantages for projects like ours:</p>
+<h3 id="why-high-entropy-is-better">Why High Entropy is Better</h3>
+<p>A high-entropy guess:</p>
 <ul>
-  <li><strong>Ease of Use</strong>: Streamlit is designed to be beginner-friendly and eliminates the need to write separate HTML templates or manage complex routing, which Flask requires.</li>
-  <li><strong>Rapid Prototyping</strong>: While Flask is powerful, it demands more setup and boilerplate code. Streamlit allows us to focus on app logic and functionality, making it perfect for smaller projects and prototypes.</li>
-  <li><strong>Built-in Frontend</strong>: Flask typically requires additional tools or libraries (like Jinja2 for templating) to create the frontend. Streamlit includes everything needed for a professional UI out of the box.</li>
+  <li>Reduces the solution space more effectively.</li>
+  <li>Ensures you don’t leave too many possibilities after one guess.</li>
 </ul>
 
-<p>For this tutorial, we chose Streamlit because it’s faster to set up, easier to work with, and ideal for interactive projects like the <strong>Resolution Spinner</strong>.</p>
+<p><strong>Example:</strong></p>
+<ul>
+  <li>A <strong>good guess</strong> splits 100 possible solutions into groups of 25, 25, 25, and 25 (high entropy).</li>
+  <li>A <strong>bad guess</strong> leaves one group with 90 solutions and another with 10 (low entropy).</li>
+</ul>
 
-<hr />
+<h3 id="visualization-good-vs-bad-guesses">Visualization: Good vs. Bad Guesses</h3>
+<p>Below are examples of how good and bad guesses partition the solution space:</p>
 
-<h2 id="handling-python-version-issues">Handling Python Version Issues</h2>
+<p><img src="../public/day4/guess_pie_charts.png" alt="Good vs. Bad Guesses" /></p>
 
-<p>Before starting, remember that Python versioning issues can arise, especially on macOS. If you encounter problems, refer to my earlier blog post, <a href="https://j-abed.github.io/python/macos/dev/2025/01/01/simplifying-python-setup.html">Simplifying Python Setup on macOS</a>, for detailed steps on managing Python installations and ensuring compatibility.</p>
+<h2><img src="../public/day4/entropy_heatmap.png" alt="Entropy Scoring for Words" /></h2>
 
-<hr />
-
-<h2 id="project-overview">Project Overview</h2>
-
-<p>The <strong>Resolution Spinner</strong> app lets users:</p>
+<h2 id="part-3-step-by-step-instructions-to-build-the-wordle-solver-app">Part 3: Step-by-Step Instructions to Build the Wordle Solver App</h2>
+<h3 id="prerequisites">Prerequisites:</h3>
 <ol>
-  <li>Add resolutions to a database.</li>
-  <li>Spin a virtual wheel to randomly select one.</li>
-  <li>Store resolutions persistently using <strong>SQLite3</strong>.</li>
+  <li>Install Python (3.7 or later).</li>
+  <li>Install Streamlit:
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pip <span class="nb">install </span>streamlit
+</code></pre></div>    </div>
+  </li>
+  <li>Download the word lists: <a href="#">words_alpha.txt</a> and <a href="#">words_enable.txt</a> from GitHib (https://github.com/j-abed/wordle-solver)</li>
 </ol>
 
 <hr />
 
-<h2 id="step-by-step-guide">Step-by-Step Guide</h2>
+<h3 id="step-1-create-the-mvp-minimal-viable-product">Step 1: Create the MVP (Minimal Viable Product)</h3>
+<p><strong>File:</strong> <code class="language-plaintext highlighter-rouge">wordle_solver.py</code></p>
 
-<h3 id="1-set-up-the-project">1. <strong>Set Up the Project</strong></h3>
-
-<p>Clone the repository to your local machine:</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git clone https://github.com/j-abed/Resolution-Spinner.git
-<span class="nb">cd </span>Resolution-Spinner
-</code></pre></div></div>
-
-<p>Ensure your project structure matches the repository:</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Resolution-Spinner/
-├── app.py               # Main application logic
-├── requirements.txt     # Project dependencies
-├── resolutions.db       # SQLite3 database (auto-generated)
-</code></pre></div></div>
-
-<p><strong>Install dependencies:</strong></p>
-
-<p>It’s good practice to create a virtual environment:</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python <span class="nt">-m</span> venv venv
-<span class="nb">source </span>venv/bin/activate  <span class="c"># On Windows: venv\Scripts\activate</span>
-</code></pre></div></div>
-
-<p>Then, install the required packages:</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pip <span class="nb">install</span> <span class="nt">-r</span> requirements.txt
-</code></pre></div></div>
-
-<hr />
-
-<h3 id="2-design-the-user-interface">2. <strong>Design the User Interface</strong></h3>
-
-<p>In <code class="language-plaintext highlighter-rouge">app.py</code>, set up the Streamlit interface:</p>
-
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">streamlit</span> <span class="k">as</span> <span class="n">st</span>
-
-<span class="n">st</span><span class="p">.</span><span class="n">title</span><span class="p">(</span><span class="s">"🎯 Resolution Spinner"</span><span class="p">)</span>
-<span class="n">st</span><span class="p">.</span><span class="n">markdown</span><span class="p">(</span><span class="s">"Add your resolutions below and let the spinner decide!"</span><span class="p">)</span>
-</code></pre></div></div>
-
-<hr />
-
-<h3 id="3-set-up-the-database">3. <strong>Set Up the Database</strong></h3>
-
-<p>Initialize the SQLite3 database within <code class="language-plaintext highlighter-rouge">app.py</code>. The database file (<code class="language-plaintext highlighter-rouge">resolutions.db</code>) will be created automatically when you run the app:</p>
-
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">sqlite3</span>
-
-<span class="c1"># Initialize the database
-</span><span class="n">conn</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="p">.</span><span class="n">connect</span><span class="p">(</span><span class="s">'resolutions.db'</span><span class="p">)</span>
-<span class="n">cursor</span> <span class="o">=</span> <span class="n">conn</span><span class="p">.</span><span class="n">cursor</span><span class="p">()</span>
-
-<span class="c1"># Create the resolutions table if it doesn't exist
-</span><span class="n">cursor</span><span class="p">.</span><span class="n">execute</span><span class="p">(</span><span class="s">'''
-    CREATE TABLE IF NOT EXISTS resolutions (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        resolution TEXT NOT NULL
-    )
-'''</span><span class="p">)</span>
-<span class="n">conn</span><span class="p">.</span><span class="n">commit</span><span class="p">()</span>
-</code></pre></div></div>
-
-<hr />
-
-<h3 id="4-add-resolutions">4. <strong>Add Resolutions</strong></h3>
-
-<p>Allow users to input new resolutions:</p>
-
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Input for new resolution
-</span><span class="n">new_resolution</span> <span class="o">=</span> <span class="n">st</span><span class="p">.</span><span class="n">text_input</span><span class="p">(</span><span class="s">"Enter a new resolution:"</span><span class="p">)</span>
-
-<span class="c1"># Button to add the resolution
-</span><span class="k">if</span> <span class="n">st</span><span class="p">.</span><span class="n">button</span><span class="p">(</span><span class="s">"Add Resolution"</span><span class="p">):</span>
-    <span class="k">if</span> <span class="n">new_resolution</span><span class="p">.</span><span class="n">strip</span><span class="p">():</span>
-        <span class="n">cursor</span><span class="p">.</span><span class="n">execute</span><span class="p">(</span><span class="s">"INSERT INTO resolutions (resolution) VALUES (?)"</span><span class="p">,</span> <span class="p">(</span><span class="n">new_resolution</span><span class="p">.</span><span class="n">strip</span><span class="p">(),))</span>
-        <span class="n">conn</span><span class="p">.</span><span class="n">commit</span><span class="p">()</span>
-        <span class="n">st</span><span class="p">.</span><span class="n">success</span><span class="p">(</span><span class="sa">f</span><span class="s">"Resolution '</span><span class="si">{</span><span class="n">new_resolution</span><span class="si">}</span><span class="s">' added successfully!"</span><span class="p">)</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="n">st</span><span class="p">.</span><span class="n">error</span><span class="p">(</span><span class="s">"Please enter a non-empty resolution."</span><span class="p">)</span>
-</code></pre></div></div>
-
-<hr />
-
-<h3 id="5-view-resolutions">5. <strong>View Resolutions</strong></h3>
-
-<p>Display the list of stored resolutions:</p>
-
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Display stored resolutions
-</span><span class="n">st</span><span class="p">.</span><span class="n">header</span><span class="p">(</span><span class="s">"Your Resolutions"</span><span class="p">)</span>
-<span class="n">resolutions</span> <span class="o">=</span> <span class="n">cursor</span><span class="p">.</span><span class="n">execute</span><span class="p">(</span><span class="s">"SELECT id, resolution FROM resolutions"</span><span class="p">).</span><span class="n">fetchall</span><span class="p">()</span>
-
-<span class="k">if</span> <span class="n">resolutions</span><span class="p">:</span>
-    <span class="k">for</span> <span class="n">res_id</span><span class="p">,</span> <span class="n">res_text</span> <span class="ow">in</span> <span class="n">resolutions</span><span class="p">:</span>
-        <span class="n">st</span><span class="p">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s">"</span><span class="si">{</span><span class="n">res_id</span><span class="si">}</span><span class="s">. </span><span class="si">{</span><span class="n">res_text</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
-<span class="k">else</span><span class="p">:</span>
-    <span class="n">st</span><span class="p">.</span><span class="n">write</span><span class="p">(</span><span class="s">"No resolutions added yet."</span><span class="p">)</span>
-</code></pre></div></div>
-
-<hr />
-
-<h3 id="6-implement-the-spinner-logic">6. <strong>Implement the Spinner Logic</strong></h3>
-
-<p>Add functionality to randomly select a resolution:</p>
-
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">random</span>
-
-<span class="c1"># Button to spin the wheel
-</span><span class="k">if</span> <span class="n">st</span><span class="p">.</span><span class="n">button</span><span class="p">(</span><span class="s">"Spin the Wheel"</span><span class="p">):</span>
-    <span class="n">resolutions</span> <span class="o">=</span> <span class="n">cursor</span><span class="p">.</span><span class="n">execute</span><span class="p">(</span><span class="s">"SELECT resolution FROM resolutions"</span><span class="p">).</span><span class="n">fetchall</span><span class="p">()</span>
-    <span class="k">if</span> <span class="n">resolutions</span><span class="p">:</span>
-        <span class="n">selected</span> <span class="o">=</span> <span class="n">random</span><span class="p">.</span><span class="n">choice</span><span class="p">(</span><span class="n">resolutions</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
-        <span class="n">st</span><span class="p">.</span><span class="n">success</span><span class="p">(</span><span class="sa">f</span><span class="s">"Your resolution is: </span><span class="si">{</span><span class="n">selected</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="n">st</span><span class="p">.</span><span class="n">warning</span><span class="p">(</span><span class="s">"No resolutions to choose from! Add some first."</span><span class="p">)</span>
-</code></pre></div></div>
-
-<hr />
-
-<h3 id="7-run-the-application">7. <strong>Run the Application</strong></h3>
-
-<p>To see your app in action, run the following command in your terminal from the project directory:</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>streamlit run app.py
-</code></pre></div></div>
-
-<p>This will launch the Streamlit development server and open your app in your default web browser. If it doesn’t open automatically, you can navigate to the URL provided in the terminal (usually <code class="language-plaintext highlighter-rouge">http://localhost:8501</code>).</p>
-
-<hr />
-
-<h2 id="whats-next">What’s Next?</h2>
-
-<p>Here are some ideas to expand this project further:</p>
 <ol>
-  <li><strong>Categories for Resolutions</strong>: Allow users to organize their resolutions into categories (e.g., Health, Career, Personal).</li>
-  <li><strong>Completion Tracking</strong>: Add a feature to mark resolutions as completed.</li>
-  <li><strong>Export Resolutions</strong>: Enable users to export their resolutions as a CSV file for sharing or backup.</li>
-  <li><strong>Deployment</strong>: Host your app on <strong>Streamlit Cloud</strong> or another platform to make it accessible to others.</li>
+  <li><strong>Set up the environment</strong>: Create a new Python file <code class="language-plaintext highlighter-rouge">wordle_solver.py</code>.</li>
+  <li><strong>Load the Wordle word list</strong>:
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">load_words</span><span class="p">(</span><span class="n">file_path</span><span class="p">):</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">file_path</span><span class="p">,</span> <span class="s">'r'</span><span class="p">)</span> <span class="k">as</span> <span class="nb">file</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">[</span><span class="n">line</span><span class="p">.</span><span class="n">strip</span><span class="p">()</span> <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="nb">file</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">line</span><span class="p">.</span><span class="n">strip</span><span class="p">())</span> <span class="o">==</span> <span class="mi">5</span><span class="p">]</span>
+<span class="n">word_list</span> <span class="o">=</span> <span class="n">load_words</span><span class="p">(</span><span class="s">'words_alpha.txt'</span><span class="p">)</span>
+</code></pre></div>    </div>
+  </li>
+  <li><strong>Filter words based on feedback</strong>:
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">filter_words</span><span class="p">(</span><span class="n">word_list</span><span class="p">,</span> <span class="n">guess</span><span class="p">,</span> <span class="n">feedback</span><span class="p">):</span>
+    <span class="n">filtered</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">word_list</span><span class="p">:</span>
+        <span class="n">valid</span> <span class="o">=</span> <span class="bp">True</span>
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">guess</span><span class="p">,</span> <span class="n">feedback</span><span class="p">)):</span>
+            <span class="k">if</span> <span class="n">f</span> <span class="o">==</span> <span class="s">'g'</span> <span class="ow">and</span> <span class="n">word</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">!=</span> <span class="n">g</span><span class="p">:</span>  <span class="c1"># Green
+</span>                <span class="n">valid</span> <span class="o">=</span> <span class="bp">False</span>
+            <span class="k">elif</span> <span class="n">f</span> <span class="o">==</span> <span class="s">'y'</span> <span class="ow">and</span> <span class="p">(</span><span class="n">g</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">word</span> <span class="ow">or</span> <span class="n">word</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="n">g</span><span class="p">):</span>  <span class="c1"># Yellow
+</span>                <span class="n">valid</span> <span class="o">=</span> <span class="bp">False</span>
+            <span class="k">elif</span> <span class="n">f</span> <span class="o">==</span> <span class="s">'b'</span> <span class="ow">and</span> <span class="n">g</span> <span class="ow">in</span> <span class="n">word</span><span class="p">:</span>  <span class="c1"># Black
+</span>                <span class="n">valid</span> <span class="o">=</span> <span class="bp">False</span>
+        <span class="k">if</span> <span class="n">valid</span><span class="p">:</span>
+            <span class="n">filtered</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">word</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">filtered</span>
+</code></pre></div>    </div>
+  </li>
+  <li><strong>Add Streamlit UI</strong>:
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">streamlit</span> <span class="k">as</span> <span class="n">st</span>
+
+<span class="n">st</span><span class="p">.</span><span class="n">title</span><span class="p">(</span><span class="s">"Wordle Solver (MVP)"</span><span class="p">)</span>
+
+<span class="n">guess</span> <span class="o">=</span> <span class="n">st</span><span class="p">.</span><span class="n">text_input</span><span class="p">(</span><span class="s">"Enter your guess:"</span><span class="p">)</span>
+<span class="n">feedback</span> <span class="o">=</span> <span class="n">st</span><span class="p">.</span><span class="n">text_input</span><span class="p">(</span><span class="s">"Enter feedback (e.g., G for green, Y for yellow, _ for gray):"</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="n">st</span><span class="p">.</span><span class="n">button</span><span class="p">(</span><span class="s">"Filter Words"</span><span class="p">):</span>
+    <span class="n">filtered_words</span> <span class="o">=</span> <span class="n">filter_words</span><span class="p">(</span><span class="n">word_list</span><span class="p">,</span> <span class="n">guess</span><span class="p">,</span> <span class="n">feedback</span><span class="p">)</span>
+    <span class="n">st</span><span class="p">.</span><span class="n">write</span><span class="p">(</span><span class="s">"Remaining possible words:"</span><span class="p">,</span> <span class="n">filtered_words</span><span class="p">)</span>
+</code></pre></div>    </div>
+  </li>
+  <li><strong>Run the MVP app</strong>:
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>streamlit run wordle_solver.py
+</code></pre></div>    </div>
+  </li>
 </ol>
 
 <hr />
 
-<h2 id="conclusion">Conclusion</h2>
+<h3 id="step-2-add-entropy-based-enhancement">Step 2: Add Entropy-Based Enhancement</h3>
+<p><strong>File:</strong> <code class="language-plaintext highlighter-rouge">enhanced_wordle_solver.py</code></p>
 
-<p>Congratulations! You’ve built a fully functional <strong>Resolution Spinner</strong> app that combines the foundational Python skills from Day 1, the web development concepts from Day 2, and the added complexity of persistent data storage with SQLite3. Using <strong>Streamlit</strong>, you’ve created a modern, interactive app without needing to write HTML, CSS, or JavaScript.</p>
+<ol>
+  <li><strong>Simulate feedback for all guesses</strong>:
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">evaluate_guess</span><span class="p">(</span><span class="n">solution</span><span class="p">,</span> <span class="n">guess</span><span class="p">):</span>
+    <span class="n">feedback</span> <span class="o">=</span> <span class="p">[</span><span class="s">'b'</span><span class="p">]</span> <span class="o">*</span> <span class="mi">5</span>  <span class="c1"># Default to black (incorrect)
+</span>    <span class="n">solution_chars</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">solution</span><span class="p">)</span>
 
-<p>While frameworks like Flask are excellent for more complex, production-ready applications, Streamlit is ideal for rapid prototyping and small-scale projects like this one.</p>
+    <span class="c1"># Green matches
+</span>    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">g</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">solution</span><span class="p">,</span> <span class="n">guess</span><span class="p">)):</span>
+        <span class="k">if</span> <span class="n">s</span> <span class="o">==</span> <span class="n">g</span><span class="p">:</span>
+            <span class="n">feedback</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="s">'g'</span>
+            <span class="n">solution_chars</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="bp">None</span>
 
-<p>If you enjoyed this tutorial, stay tuned for <strong>Day 4</strong>, where we’ll tackle another exciting project that builds on what you’ve learned so far!</p>
+    <span class="c1"># Yellow matches
+</span>    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">g</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">guess</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">feedback</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="s">'b'</span> <span class="ow">and</span> <span class="n">g</span> <span class="ow">in</span> <span class="n">solution_chars</span><span class="p">:</span>
+            <span class="n">feedback</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="s">'y'</span>
+            <span class="n">solution_chars</span><span class="p">[</span><span class="n">solution_chars</span><span class="p">.</span><span class="n">index</span><span class="p">(</span><span class="n">g</span><span class="p">)]</span> <span class="o">=</span> <span class="bp">None</span>
+
+    <span class="k">return</span> <span class="s">''</span><span class="p">.</span><span class="n">join</span><span class="p">(</span><span class="n">feedback</span><span class="p">)</span>
+</code></pre></div>    </div>
+  </li>
+  <li><strong>Calculate entropy for each word</strong>:
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">math</span>
+
+<span class="k">def</span> <span class="nf">calculate_entropy</span><span class="p">(</span><span class="n">guess</span><span class="p">,</span> <span class="n">possible_words</span><span class="p">):</span>
+    <span class="n">feedback_buckets</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">possible_words</span><span class="p">:</span>
+        <span class="n">feedback</span> <span class="o">=</span> <span class="n">evaluate_guess</span><span class="p">(</span><span class="n">guess</span><span class="p">,</span> <span class="n">word</span><span class="p">)</span>
+        <span class="n">feedback_buckets</span><span class="p">[</span><span class="n">feedback</span><span class="p">]</span> <span class="o">=</span> <span class="n">feedback_buckets</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="n">feedback</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>
+
+    <span class="n">total</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">feedback_buckets</span><span class="p">.</span><span class="n">values</span><span class="p">())</span>
+    <span class="n">entropy</span> <span class="o">=</span> <span class="o">-</span><span class="nb">sum</span><span class="p">(</span>
+        <span class="p">(</span><span class="n">count</span> <span class="o">/</span> <span class="n">total</span><span class="p">)</span> <span class="o">*</span> <span class="n">math</span><span class="p">.</span><span class="n">log2</span><span class="p">(</span><span class="n">count</span> <span class="o">/</span> <span class="n">total</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">count</span> <span class="ow">in</span> <span class="n">feedback_buckets</span><span class="p">.</span><span class="n">values</span><span class="p">()</span>
+    <span class="p">)</span>
+    <span class="k">return</span> <span class="n">entropy</span>
+</code></pre></div>    </div>
+  </li>
+  <li><strong>Enhance the Streamlit UI</strong>:
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">if</span> <span class="n">st</span><span class="p">.</span><span class="n">button</span><span class="p">(</span><span class="s">"Get Best Guess"</span><span class="p">):</span>
+    <span class="n">entropy_scores</span> <span class="o">=</span> <span class="p">{</span><span class="n">word</span><span class="p">:</span> <span class="n">calculate_entropy</span><span class="p">(</span><span class="n">word</span><span class="p">,</span> <span class="n">word_list</span><span class="p">)</span> <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">word_list</span><span class="p">}</span>
+    <span class="n">best_guess</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">entropy_scores</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="n">entropy_scores</span><span class="p">.</span><span class="n">get</span><span class="p">)</span>
+    <span class="n">st</span><span class="p">.</span><span class="n">write</span><span class="p">(</span><span class="s">"Best next guess:"</span><span class="p">,</span> <span class="n">best_guess</span><span class="p">)</span>
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<hr />
+
+<h2 id="part-4-experiment-with-the-colab-notebook">Part 4: Experiment with the Colab Notebook</h2>
+<p>Want to try your own experiments with Wordle strategies? I’ve created a <a href="../public/day4/wordle_entropy_colab.ipynb">Colab Notebook</a> where you can:</p>
+<ul>
+  <li>Load the Wordle word list.</li>
+  <li>Simulate guesses and calculate entropy.</li>
+  <li>Explore which guesses work best for narrowing down possibilities.</li>
+</ul>
+
+<hr />
+
+<h2 id="part-5-conclusion">Part 5: Conclusion</h2>
+<p>With this app, you’ve built a fully functional Wordle solver that combines Python, Streamlit, and basic data science principles. Whether you’re playing Wordle or exploring applied statistics, this project demonstrates the power of data-driven decision-making.</p>
+
+<p><strong>Next Steps:</strong> How can these concepts extend to other games or real-world problems? Stay tuned for Day 5!</p>
+
+<hr />
+
 
   </div>
   
