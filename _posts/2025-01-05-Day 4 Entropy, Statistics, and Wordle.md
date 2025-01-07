@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Day 4 - Entropy, Statistics, and Wordle?
+title: "Day 4 - Entropy, Statistics, and Wordle?"
 date: 2025-01-04 10:00:00 +0000
 categories: [python, dev, statistics, entropy, data science, fundamentals]
 permalink: /day-4/
@@ -8,7 +8,7 @@ permalink: /day-4/
 
 
 
-## Building a Wordle Analysis Tool
+# Building a Wordle Analysis Tool
 
 ## Introduction
 Yesterday, we explored using Python and Streamlit to create a simple web application. Today, we’re taking it further by combining web development with data science principles to solve a fun and popular challenge: Wordle!
@@ -62,6 +62,7 @@ Below are examples of how good and bad guesses partition the solution space:
 
 ![Good vs. Bad Guesses](../public/day4/guess_pie_charts.png)
 
+![Entropy Scoring for Words](../public/day4/entropy_heatmap.png)
 ---
 
 ## Part 3: Step-by-Step Instructions to Build the Wordle Solver App
@@ -178,7 +179,7 @@ Below are examples of how good and bad guesses partition the solution space:
 ---
 
 ## Part 4: Experiment with the Colab Notebook
-Want to try your own experiments with Wordle strategies? I’ve created a [Colab Notebook](../public/day4/wordle_entropy_colab.ipynbwordle_entropy_colab.ipynb) where you can:
+Want to try your own experiments with Wordle strategies? I’ve created a [Colab Notebook](../public/day4/wordle_entropy_colab.ipynb) where you can:
 - Load the Wordle word list.
 - Simulate guesses and calculate entropy.
 - Explore which guesses work best for narrowing down possibilities.
