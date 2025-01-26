@@ -9,12 +9,10 @@
 
   <title>
     
-      Jason Abed &middot; GitHub Pages Blog
+      Jason Abed &middot; GitHub Pages
     
   </title>
 
-  
-  <link rel="canonical" href="http://localhost:4000/">
   
 
 
@@ -30,6 +28,17 @@
   <link rel="alternate" type="application/rss+xml" title="RSS" href="http://localhost:4000/atom.xml">
   
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  
+  
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-34SMXHK93B"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-34SMXHK93B');
+  </script>
   
   
   <style>
@@ -114,6 +123,14 @@
         
       
     
+      
+        
+      
+    
+      
+        
+      
+    
 
     <!-- <a class="sidebar-nav-item" href="https://github.com/j-abed//archive/v1.1.0.zip">Download</a> -->
     <a class="sidebar-nav-item" href="https://github.com/j-abed/">GitHub Repos</a>
@@ -136,7 +153,7 @@
           <h3 class="masthead-title">
             <a href="/" title="Home">Jason Abed</a>
             |
-            <small>GitHub Pages Blog</small>
+            <small>GitHub Pages</small>
           </h3>
         </div>
       </div>
@@ -146,213 +163,267 @@
   
   <div class="post">
     <h1 class="post-title">
-      <a href="http://localhost:4000/day-4/">
-        Day 4 - Entropy, Statistics, and Wordle?
+      <a href="http://localhost:4000/day-6/">
+        Day 6 - Cracking NYT’s Spelling Bee with a GUI-Powered Solver
       </a>
     </h1>
 
-    <span class="post-date">05 Jan 2025</span>
+    <span class="post-date">07 Jan 2025</span>
 
-    <h1 id="building-a-wordle-analysis-tool">Building a Wordle Analysis Tool</h1>
+    <h2 id="introduction">Introduction</h2>
 
-<h2 id="introduction">Introduction</h2>
-<p>Yesterday, we explored using Python and Streamlit to create a simple web application. Today, we’re taking it further by combining web development with data science principles to solve a fun and popular challenge: Wordle!</p>
+<p>Welcome back to Day 6 of our “7 Apps in 7 Days” challenge! It seems people really enjoyed Wordle solver post earlier in the series,so in this post we’re returning to another fan-favorite New York Times word game: Spelling Bee. Today, we’ll build a solver that predicts the most likely words using statistical techniques such as bimodal and trimodal distributions. Up until now we’ve focused on web application, so in this article we’ll also introduce you to building a desktop application with a graphical user interface (GUI) using Python’s Tkinter library.</p>
 
-<p>Wordle is an excellent playground for applying basic statistics and data science. It’s simple, relatable, and offers plenty of opportunities to explore probability, entropy, and decision-making. To make things even better, I’ve built and deployed a Wordle Solver app using Python and Streamlit. You can try it out <a href="https://wordle-solver.streamlit.app">here</a>, or explore the code on <a href="https://github.com/j-abed/wordle-solver">GitHub</a>.</p>
+<p>This article focuses on two main topics:</p>
+
+<ol>
+  <li>How bimodal and trimodal distributions work conceptually and how we use them to predict high-scoring words.</li>
+  <li>Step-by-step instructions to build the desktop GUI application, complete with the Python logic required to make it functional.</li>
+</ol>
 
 <hr />
 
-<h2 id="part-1-why-wordle-makes-for-a-great-data-science-playground">Part 1: Why Wordle Makes for a Great Data Science Playground</h2>
+<h2 id="part-1-understanding-bimodal-and-trimodal-distributions">Part 1: Understanding Bimodal and Trimodal Distributions</h2>
+
+<p>Before diving into Spelling Bee predictions, let’s explore the concepts of bimodal and trimodal distributions. These statistical methods analyze how data clusters around specific values or groups.</p>
+
+<ul>
+  <li><strong>Bimodal Distribution:</strong>
+    <ul>
+      <li>Represents data with two distinct peaks or clusters.</li>
+      <li>For example, in word games, one peak might correspond to vowels, which are essential for most words, and the other to common consonants like T, R, and S.</li>
+    </ul>
+  </li>
+  <li><strong>Trimodal Distribution:</strong>
+    <ul>
+      <li>Extends this concept by adding a third cluster.</li>
+      <li>For Spelling Bee, this cluster could represent rare letters like J, Q, X, and Z. These letters are less frequent but can contribute significantly to scoring potential.</li>
+    </ul>
+  </li>
+</ul>
+
+<p>By analyzing these patterns, we can identify which words balance these clusters effectively and are more likely to score well.</p>
+
+<hr />
+
+<h2 id="part-2-using-distributions-to-predict-the-best-words">Part 2: Using Distributions to Predict the Best Words</h2>
+
+<p>The New York Times’ Spelling Bee challenges players to form words using seven given letters, with the center letter being mandatory. Points are awarded based on word length, with a special bonus for pangrams (words that use all seven letters). Our solver focuses on ranking words using bimodal and trimodal distributions to predict which are most likely to be valuable in the game.</p>
+
+<h3 id="how-we-use-bimodal-and-trimodal-distributions-in-word-ranking">How We Use Bimodal and Trimodal Distributions in Word Ranking</h3>
+
+<p>The solver ranks words using the following steps:</p>
+
 <ol>
+  <li><strong>Calculate Ratios for Each Cluster:</strong>
+    <ul>
+      <li><strong>Vowel Ratio:</strong> Proportion of vowels in the word.</li>
+      <li><strong>Common Consonant Ratio:</strong> Proportion of frequently used consonants.</li>
+      <li><strong>Rare Letter Ratio:</strong> Proportion of rare letters like J, Q, X, or Z.</li>
+    </ul>
+  </li>
   <li>
-    <p><strong>Popularity and Familiarity</strong><br />
-Wordle is a household name, with its straightforward rules and universal appeal. This makes it an ideal starting point for demonstrating data-driven decision-making.</p>
+    <p><strong>Apply Weighted Scores:</strong>
+Using weights ( ( w_1, w_2, w_3 ) ) for each cluster, the solver calculates:</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Trimodal Score = w_1 · Vowel Ratio + w_2 · Common Consonant Ratio + w_3 · Rare Letter Ratio
+</code></pre></div>    </div>
   </li>
   <li>
-    <p><strong>Data/Stats in Action</strong><br />
-Each guess in Wordle provides valuable feedback, narrowing the list of possible solutions. By analyzing this feedback, we can make smarter guesses.</p>
+    <p><strong>Combine with Other Factors:</strong>
+The final score for a word includes its length, pangram bonus, and trimodal score:</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Final Score = Length + Trimodal Score + Pangram Bonus
+</code></pre></div>    </div>
   </li>
   <li>
-    <p><strong>Simple, Yet Complex</strong><br />
-Wordle combines simplicity with strategic depth, making it a fantastic problem for exploring probability, statistics, and entropy.</p>
-  </li>
-</ol>
+    <p><strong>Normalize Scores to a 0–100 Range:</strong>
+To make the results more intuitive, scores are normalized:</p>
 
-<p><strong>Visualization:</strong> Here’s a chart showing the frequency of letters in the Wordle dictionary. Notice how vowels like <code class="language-plaintext highlighter-rouge">E</code> dominate while less common letters like <code class="language-plaintext highlighter-rouge">Z</code> barely register.</p>
-
-<p><img src="../public/day4/letter_freq.png" alt="Letter Frequency" /></p>
-
-<p><strong>Most and Least Frequent Letters:</strong> Below are the 5 most and 5 least frequent letters in Wordle.</p>
-
-<p><img src="../public/day4/most_least_frequent_letters.png" alt="Most and Least Frequent Letters" /></p>
-
-<h3 id="why-letter-frequency-analysis-matters">Why Letter Frequency Analysis Matters</h3>
-<p>In Wordle, the first guess is critical—it sets the stage for everything that follows. A good first guess uses common letters, increasing the likelihood of a match.</p>
-
-<p>For example:</p>
-<ul>
-  <li>Words like <strong>CRANE</strong> or <strong>SLATE</strong> maximize the use of frequent letters (<code class="language-plaintext highlighter-rouge">E</code>, <code class="language-plaintext highlighter-rouge">A</code>, <code class="language-plaintext highlighter-rouge">T</code>).</li>
-  <li>Conversely, words with rare letters, like <strong>QUIZ</strong> or <strong>JUMPY</strong>, are less effective at the start.</li>
-</ul>
-
-<hr />
-
-<h2 id="part-2-what-is-entropy-and-why-does-it-matter">Part 2: What is Entropy (and Why Does It Matter)?</h2>
-<h3 id="entropy-in-information-theory">Entropy in Information Theory</h3>
-<p>Entropy is a measure of uncertainty. In Wordle, entropy helps us determine which guess provides the most “information gain.” A good guess splits the remaining word list into evenly distributed subsets based on possible feedback patterns.</p>
-
-<h3 id="why-high-entropy-is-better">Why High Entropy is Better</h3>
-<p>A high-entropy guess:</p>
-<ul>
-  <li>Reduces the solution space more effectively.</li>
-  <li>Ensures you don’t leave too many possibilities after one guess.</li>
-</ul>
-
-<p><strong>Example:</strong></p>
-<ul>
-  <li>A <strong>good guess</strong> splits 100 possible solutions into groups of 25, 25, 25, and 25 (high entropy).</li>
-  <li>A <strong>bad guess</strong> leaves one group with 90 solutions and another with 10 (low entropy).</li>
-</ul>
-
-<h3 id="visualization-good-vs-bad-guesses">Visualization: Good vs. Bad Guesses</h3>
-<p>Below are examples of how good and bad guesses partition the solution space:</p>
-
-<p><img src="../public/day4/guess_pie_charts.png" alt="Good vs. Bad Guesses" /></p>
-
-<h2><img src="../public/day4/entropy_heatmap.png" alt="Entropy Scoring for Words" /></h2>
-
-<h2 id="part-3-step-by-step-instructions-to-build-the-wordle-solver-app">Part 3: Step-by-Step Instructions to Build the Wordle Solver App</h2>
-<h3 id="prerequisites">Prerequisites:</h3>
-<ol>
-  <li>Install Python (3.7 or later).</li>
-  <li>Install Streamlit:
-    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pip <span class="nb">install </span>streamlit
-</code></pre></div>    </div>
-  </li>
-  <li>Download the word lists: <a href="#">words_alpha.txt</a> and <a href="#">words_enable.txt</a> from GitHib (https://github.com/j-abed/wordle-solver)</li>
-</ol>
-
-<hr />
-
-<h3 id="step-1-create-the-mvp-minimal-viable-product">Step 1: Create the MVP (Minimal Viable Product)</h3>
-<p><strong>File:</strong> <code class="language-plaintext highlighter-rouge">wordle_solver.py</code></p>
-
-<ol>
-  <li><strong>Set up the environment</strong>: Create a new Python file <code class="language-plaintext highlighter-rouge">wordle_solver.py</code>.</li>
-  <li><strong>Load the Wordle word list</strong>:
-    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">load_words</span><span class="p">(</span><span class="n">file_path</span><span class="p">):</span>
-    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">file_path</span><span class="p">,</span> <span class="s">'r'</span><span class="p">)</span> <span class="k">as</span> <span class="nb">file</span><span class="p">:</span>
-        <span class="k">return</span> <span class="p">[</span><span class="n">line</span><span class="p">.</span><span class="n">strip</span><span class="p">()</span> <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="nb">file</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">line</span><span class="p">.</span><span class="n">strip</span><span class="p">())</span> <span class="o">==</span> <span class="mi">5</span><span class="p">]</span>
-<span class="n">word_list</span> <span class="o">=</span> <span class="n">load_words</span><span class="p">(</span><span class="s">'words_alpha.txt'</span><span class="p">)</span>
-</code></pre></div>    </div>
-  </li>
-  <li><strong>Filter words based on feedback</strong>:
-    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">filter_words</span><span class="p">(</span><span class="n">word_list</span><span class="p">,</span> <span class="n">guess</span><span class="p">,</span> <span class="n">feedback</span><span class="p">):</span>
-    <span class="n">filtered</span> <span class="o">=</span> <span class="p">[]</span>
-    <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">word_list</span><span class="p">:</span>
-        <span class="n">valid</span> <span class="o">=</span> <span class="bp">True</span>
-        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">guess</span><span class="p">,</span> <span class="n">feedback</span><span class="p">)):</span>
-            <span class="k">if</span> <span class="n">f</span> <span class="o">==</span> <span class="s">'g'</span> <span class="ow">and</span> <span class="n">word</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">!=</span> <span class="n">g</span><span class="p">:</span>  <span class="c1"># Green
-</span>                <span class="n">valid</span> <span class="o">=</span> <span class="bp">False</span>
-            <span class="k">elif</span> <span class="n">f</span> <span class="o">==</span> <span class="s">'y'</span> <span class="ow">and</span> <span class="p">(</span><span class="n">g</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">word</span> <span class="ow">or</span> <span class="n">word</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="n">g</span><span class="p">):</span>  <span class="c1"># Yellow
-</span>                <span class="n">valid</span> <span class="o">=</span> <span class="bp">False</span>
-            <span class="k">elif</span> <span class="n">f</span> <span class="o">==</span> <span class="s">'b'</span> <span class="ow">and</span> <span class="n">g</span> <span class="ow">in</span> <span class="n">word</span><span class="p">:</span>  <span class="c1"># Black
-</span>                <span class="n">valid</span> <span class="o">=</span> <span class="bp">False</span>
-        <span class="k">if</span> <span class="n">valid</span><span class="p">:</span>
-            <span class="n">filtered</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">word</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">filtered</span>
-</code></pre></div>    </div>
-  </li>
-  <li><strong>Add Streamlit UI</strong>:
-    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">streamlit</span> <span class="k">as</span> <span class="n">st</span>
-
-<span class="n">st</span><span class="p">.</span><span class="n">title</span><span class="p">(</span><span class="s">"Wordle Solver (MVP)"</span><span class="p">)</span>
-
-<span class="n">guess</span> <span class="o">=</span> <span class="n">st</span><span class="p">.</span><span class="n">text_input</span><span class="p">(</span><span class="s">"Enter your guess:"</span><span class="p">)</span>
-<span class="n">feedback</span> <span class="o">=</span> <span class="n">st</span><span class="p">.</span><span class="n">text_input</span><span class="p">(</span><span class="s">"Enter feedback (e.g., G for green, Y for yellow, _ for gray):"</span><span class="p">)</span>
-
-<span class="k">if</span> <span class="n">st</span><span class="p">.</span><span class="n">button</span><span class="p">(</span><span class="s">"Filter Words"</span><span class="p">):</span>
-    <span class="n">filtered_words</span> <span class="o">=</span> <span class="n">filter_words</span><span class="p">(</span><span class="n">word_list</span><span class="p">,</span> <span class="n">guess</span><span class="p">,</span> <span class="n">feedback</span><span class="p">)</span>
-    <span class="n">st</span><span class="p">.</span><span class="n">write</span><span class="p">(</span><span class="s">"Remaining possible words:"</span><span class="p">,</span> <span class="n">filtered_words</span><span class="p">)</span>
-</code></pre></div>    </div>
-  </li>
-  <li><strong>Run the MVP app</strong>:
-    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>streamlit run wordle_solver.py
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Normalized Score = ((Raw Score - Min Raw Score) / (Max Raw Score - Min Raw Score)) · 100
 </code></pre></div>    </div>
   </li>
 </ol>
 
-<hr />
+<h3 id="example-scoring-the-word-tattoo">Example: Scoring the Word “tattoo”</h3>
 
-<h3 id="step-2-add-entropy-based-enhancement">Step 2: Add Entropy-Based Enhancement</h3>
-<p><strong>File:</strong> <code class="language-plaintext highlighter-rouge">enhanced_wordle_solver.py</code></p>
+<p>Let’s break it down:</p>
 
-<ol>
-  <li><strong>Simulate feedback for all guesses</strong>:
-    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">evaluate_guess</span><span class="p">(</span><span class="n">solution</span><span class="p">,</span> <span class="n">guess</span><span class="p">):</span>
-    <span class="n">feedback</span> <span class="o">=</span> <span class="p">[</span><span class="s">'b'</span><span class="p">]</span> <span class="o">*</span> <span class="mi">5</span>  <span class="c1"># Default to black (incorrect)
-</span>    <span class="n">solution_chars</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">solution</span><span class="p">)</span>
-
-    <span class="c1"># Green matches
-</span>    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">g</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">solution</span><span class="p">,</span> <span class="n">guess</span><span class="p">)):</span>
-        <span class="k">if</span> <span class="n">s</span> <span class="o">==</span> <span class="n">g</span><span class="p">:</span>
-            <span class="n">feedback</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="s">'g'</span>
-            <span class="n">solution_chars</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="bp">None</span>
-
-    <span class="c1"># Yellow matches
-</span>    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">g</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">guess</span><span class="p">):</span>
-        <span class="k">if</span> <span class="n">feedback</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="s">'b'</span> <span class="ow">and</span> <span class="n">g</span> <span class="ow">in</span> <span class="n">solution_chars</span><span class="p">:</span>
-            <span class="n">feedback</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="s">'y'</span>
-            <span class="n">solution_chars</span><span class="p">[</span><span class="n">solution_chars</span><span class="p">.</span><span class="n">index</span><span class="p">(</span><span class="n">g</span><span class="p">)]</span> <span class="o">=</span> <span class="bp">None</span>
-
-    <span class="k">return</span> <span class="s">''</span><span class="p">.</span><span class="n">join</span><span class="p">(</span><span class="n">feedback</span><span class="p">)</span>
-</code></pre></div>    </div>
-  </li>
-  <li><strong>Calculate entropy for each word</strong>:
-    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">math</span>
-
-<span class="k">def</span> <span class="nf">calculate_entropy</span><span class="p">(</span><span class="n">guess</span><span class="p">,</span> <span class="n">possible_words</span><span class="p">):</span>
-    <span class="n">feedback_buckets</span> <span class="o">=</span> <span class="p">{}</span>
-    <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">possible_words</span><span class="p">:</span>
-        <span class="n">feedback</span> <span class="o">=</span> <span class="n">evaluate_guess</span><span class="p">(</span><span class="n">guess</span><span class="p">,</span> <span class="n">word</span><span class="p">)</span>
-        <span class="n">feedback_buckets</span><span class="p">[</span><span class="n">feedback</span><span class="p">]</span> <span class="o">=</span> <span class="n">feedback_buckets</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="n">feedback</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>
-
-    <span class="n">total</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">feedback_buckets</span><span class="p">.</span><span class="n">values</span><span class="p">())</span>
-    <span class="n">entropy</span> <span class="o">=</span> <span class="o">-</span><span class="nb">sum</span><span class="p">(</span>
-        <span class="p">(</span><span class="n">count</span> <span class="o">/</span> <span class="n">total</span><span class="p">)</span> <span class="o">*</span> <span class="n">math</span><span class="p">.</span><span class="n">log2</span><span class="p">(</span><span class="n">count</span> <span class="o">/</span> <span class="n">total</span><span class="p">)</span>
-        <span class="k">for</span> <span class="n">count</span> <span class="ow">in</span> <span class="n">feedback_buckets</span><span class="p">.</span><span class="n">values</span><span class="p">()</span>
-    <span class="p">)</span>
-    <span class="k">return</span> <span class="n">entropy</span>
-</code></pre></div>    </div>
-  </li>
-  <li><strong>Enhance the Streamlit UI</strong>:
-    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">if</span> <span class="n">st</span><span class="p">.</span><span class="n">button</span><span class="p">(</span><span class="s">"Get Best Guess"</span><span class="p">):</span>
-    <span class="n">entropy_scores</span> <span class="o">=</span> <span class="p">{</span><span class="n">word</span><span class="p">:</span> <span class="n">calculate_entropy</span><span class="p">(</span><span class="n">word</span><span class="p">,</span> <span class="n">word_list</span><span class="p">)</span> <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">word_list</span><span class="p">}</span>
-    <span class="n">best_guess</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">entropy_scores</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="n">entropy_scores</span><span class="p">.</span><span class="n">get</span><span class="p">)</span>
-    <span class="n">st</span><span class="p">.</span><span class="n">write</span><span class="p">(</span><span class="s">"Best next guess:"</span><span class="p">,</span> <span class="n">best_guess</span><span class="p">)</span>
-</code></pre></div>    </div>
-  </li>
-</ol>
-
-<hr />
-
-<h2 id="part-4-experiment-with-the-colab-notebook">Part 4: Experiment with the Colab Notebook</h2>
-<p>Want to try your own experiments with Wordle strategies? I’ve created a <a href="../public/day4/wordle_entropy_colab.ipynb">Colab Notebook</a> where you can:</p>
 <ul>
-  <li>Load the Wordle word list.</li>
-  <li>Simulate guesses and calculate entropy.</li>
-  <li>Explore which guesses work best for narrowing down possibilities.</li>
+  <li><strong>Length:</strong> 6</li>
+  <li><strong>Vowel Ratio:</strong> 2/6 = 0.33 (A and O)</li>
+  <li><strong>Common Consonant Ratio:</strong> 2/6 = 0.33 (T)</li>
+  <li><strong>Rare Letter Ratio:</strong> 0/6 = 0.0 (no rare letters)</li>
+  <li><strong>Weights:</strong> ( w_1 = 2, w_2 = 1, w_3 = 3 )</li>
 </ul>
 
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Trimodal Score = (2 · 0.33) + (1 · 0.33) + (3 · 0.0) = 0.99
+Final Raw Score = 6 + 0.99 + 0 = 6.99
+</code></pre></div></div>
+
+<p>If the raw scores in the dataset range from 5.0 to 10.0, the normalized score would be:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Normalized Score = ((6.99 - 5.0) / (10.0 - 5.0)) · 100 = 39.8
+</code></pre></div></div>
+
 <hr />
 
-<h2 id="part-5-conclusion">Part 5: Conclusion</h2>
-<p>With this app, you’ve built a fully functional Wordle solver that combines Python, Streamlit, and basic data science principles. Whether you’re playing Wordle or exploring applied statistics, this project demonstrates the power of data-driven decision-making.</p>
+<h2 id="part-3-step-by-step-guide-to-building-the-tkinter-app">Part 3: Step-by-Step Guide to Building the Tkinter App</h2>
 
-<p><strong>Next Steps:</strong> How can these concepts extend to other games or real-world problems? Stay tuned for Day 5!</p>
+<p>Now let’s build the desktop application step by step. The following code snippets will walk you through setting up Tkinter, building a graphical user interface (GUI), and  implementing the logic that powers the solver. The full implementation can also be found in the <a href="https://github.com/j-abed/spelling-bee/tree/main">GitHub repository</a>. Since the primary focus of this article is meant to be on the statistical scoring, and the GUI portions of the application - feel free to use this code for the rest of the functionality.</p>
 
 <hr />
 
+<h3 id="step-1-setting-up-tkinter">Step 1: Setting Up Tkinter</h3>
+
+<p>Tkinter comes pre-installed with Python, so you can start immediately. Create a new Python file and import the necessary libraries:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">tkinter</span> <span class="k">as</span> <span class="n">tk</span>
+<span class="kn">from</span> <span class="nn">tkinter</span> <span class="kn">import</span> <span class="n">filedialog</span>
+<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">Counter</span>
+<span class="kn">import</span> <span class="nn">csv</span>
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="step-2-designing-the-main-window">Step 2: Designing the Main Window</h3>
+
+<p>Create the main application window with a title and size:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">root</span> <span class="o">=</span> <span class="n">tk</span><span class="p">.</span><span class="n">Tk</span><span class="p">()</span>
+<span class="n">root</span><span class="p">.</span><span class="n">title</span><span class="p">(</span><span class="s">"Spelling Bee Solver"</span><span class="p">)</span>
+<span class="n">root</span><span class="p">.</span><span class="n">geometry</span><span class="p">(</span><span class="s">"500x600"</span><span class="p">)</span>
+<span class="n">root</span><span class="p">.</span><span class="n">configure</span><span class="p">(</span><span class="n">bg</span><span class="o">=</span><span class="s">"yellow"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="step-3-adding-input-fields">Step 3: Adding Input Fields</h3>
+
+<p>Add input fields for the dictionary file path, center letter, and other letters:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">tk</span><span class="p">.</span><span class="n">Label</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s">"Dictionary Path:"</span><span class="p">).</span><span class="n">pack</span><span class="p">()</span>
+<span class="n">dictionary_path</span> <span class="o">=</span> <span class="n">tk</span><span class="p">.</span><span class="n">Entry</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
+<span class="n">dictionary_path</span><span class="p">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s">"words_alpha.txt"</span><span class="p">)</span>
+<span class="n">dictionary_path</span><span class="p">.</span><span class="n">pack</span><span class="p">()</span>
+
+<span class="n">tk</span><span class="p">.</span><span class="n">Label</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s">"Center Letter:"</span><span class="p">).</span><span class="n">pack</span><span class="p">()</span>
+<span class="n">center_letter</span> <span class="o">=</span> <span class="n">tk</span><span class="p">.</span><span class="n">Entry</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">center_letter</span><span class="p">.</span><span class="n">pack</span><span class="p">()</span>
+
+<span class="n">tk</span><span class="p">.</span><span class="n">Label</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s">"Other Letters:"</span><span class="p">).</span><span class="n">pack</span><span class="p">()</span>
+<span class="n">other_letters</span> <span class="o">=</span> <span class="n">tk</span><span class="p">.</span><span class="n">Entry</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+<span class="n">other_letters</span><span class="p">.</span><span class="n">pack</span><span class="p">()</span>
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="step-4-adding-buttons">Step 4: Adding Buttons</h3>
+
+<p>Add buttons for checking words and exporting results:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">run_solver</span><span class="p">():</span>
+    <span class="n">results_box</span><span class="p">.</span><span class="n">delete</span><span class="p">(</span><span class="s">"1.0"</span><span class="p">,</span> <span class="n">tk</span><span class="p">.</span><span class="n">END</span><span class="p">)</span>  <span class="c1"># Clear the results box
+</span>    <span class="n">center</span> <span class="o">=</span> <span class="n">center_letter</span><span class="p">.</span><span class="n">get</span><span class="p">().</span><span class="n">strip</span><span class="p">().</span><span class="n">lower</span><span class="p">()</span>
+    <span class="n">others</span> <span class="o">=</span> <span class="n">other_letters</span><span class="p">.</span><span class="n">get</span><span class="p">().</span><span class="n">strip</span><span class="p">().</span><span class="n">lower</span><span class="p">()</span>
+    <span class="n">path</span> <span class="o">=</span> <span class="n">dictionary_path</span><span class="p">.</span><span class="n">get</span><span class="p">().</span><span class="n">strip</span><span class="p">()</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">center</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">others</span><span class="p">:</span>
+        <span class="n">results_box</span><span class="p">.</span><span class="n">insert</span><span class="p">(</span><span class="n">tk</span><span class="p">.</span><span class="n">END</span><span class="p">,</span> <span class="s">"Please provide the center letter and other letters."</span><span class="p">)</span>
+        <span class="k">return</span>
+
+    <span class="n">results</span> <span class="o">=</span> <span class="n">solve_spelling_bee</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">center</span><span class="p">,</span> <span class="n">others</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">word</span><span class="p">,</span> <span class="n">score</span> <span class="ow">in</span> <span class="n">results</span><span class="p">:</span>
+        <span class="n">results_box</span><span class="p">.</span><span class="n">insert</span><span class="p">(</span><span class="n">tk</span><span class="p">.</span><span class="n">END</span><span class="p">,</span> <span class="sa">f</span><span class="s">"</span><span class="si">{</span><span class="n">word</span><span class="si">}</span><span class="s"> (Score: </span><span class="si">{</span><span class="n">score</span><span class="si">:</span><span class="p">.</span><span class="mi">2</span><span class="n">f</span><span class="si">}</span><span class="s">)</span><span class="se">\n</span><span class="s">"</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">export_results</span><span class="p">():</span>
+    <span class="n">filepath</span> <span class="o">=</span> <span class="n">filedialog</span><span class="p">.</span><span class="n">asksaveasfilename</span><span class="p">(</span><span class="n">defaultextension</span><span class="o">=</span><span class="s">".csv"</span><span class="p">,</span>
+                                            <span class="n">filetypes</span><span class="o">=</span><span class="p">[(</span><span class="s">"CSV files"</span><span class="p">,</span> <span class="s">"*.csv"</span><span class="p">)])</span>
+    <span class="k">if</span> <span class="n">filepath</span><span class="p">:</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filepath</span><span class="p">,</span> <span class="s">"w"</span><span class="p">,</span> <span class="n">newline</span><span class="o">=</span><span class="s">""</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+            <span class="n">writer</span> <span class="o">=</span> <span class="n">csv</span><span class="p">.</span><span class="n">writer</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+            <span class="n">writer</span><span class="p">.</span><span class="n">writerow</span><span class="p">([</span><span class="s">"Word"</span><span class="p">,</span> <span class="s">"Score"</span><span class="p">])</span>
+            <span class="k">for</span> <span class="n">word</span><span class="p">,</span> <span class="n">score</span> <span class="ow">in</span> <span class="n">solve_spelling_bee</span><span class="p">(</span><span class="n">dictionary_path</span><span class="p">.</span><span class="n">get</span><span class="p">(),</span> <span class="n">center_letter</span><span class="p">.</span><span class="n">get</span><span class="p">(),</span> <span class="n">other_letters</span><span class="p">.</span><span class="n">get</span><span class="p">()):</span>
+                <span class="n">writer</span><span class="p">.</span><span class="n">writerow</span><span class="p">([</span><span class="n">word</span><span class="p">,</span> <span class="n">score</span><span class="p">])</span>
+
+<span class="n">tk</span><span class="p">.</span><span class="n">Button</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s">"Check Words"</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="n">run_solver</span><span class="p">).</span><span class="n">pack</span><span class="p">()</span>
+<span class="n">tk</span><span class="p">.</span><span class="n">Button</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s">"Export to File"</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="n">export_results</span><span class="p">).</span><span class="n">pack</span><span class="p">()</span>
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="step-5-adding-a-results-display">Step 5: Adding a Results Display</h3>
+
+<p>Use a <code class="language-plaintext highlighter-rouge">tk.Text</code> widget to display results dynamically:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">results_box</span> <span class="o">=</span> <span class="n">tk</span><span class="p">.</span><span class="n">Text</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
+<span class="n">results_box</span><span class="p">.</span><span class="n">pack</span><span class="p">()</span>
+<span class="n">results_box</span><span class="p">.</span><span class="n">insert</span><span class="p">(</span><span class="s">"1.0"</span><span class="p">,</span> <span class="s">"Results will appear here..."</span><span class="p">)</span>
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="step-6-implementing-the-solver-logic">Step 6: Implementing the Solver Logic</h3>
+
+<p>Here’s the Python logic for solving the Spelling Bee puzzle:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">solve_spelling_bee</span><span class="p">(</span><span class="n">dictionary_path</span><span class="p">,</span> <span class="n">center</span><span class="p">,</span> <span class="n">others</span><span class="p">):</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">dictionary_path</span><span class="p">,</span> <span class="s">"r"</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="n">words</span> <span class="o">=</span> <span class="n">f</span><span class="p">.</span><span class="n">read</span><span class="p">().</span><span class="n">splitlines</span><span class="p">()</span>
+
+    <span class="n">valid_words</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">words</span><span class="p">:</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">word</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">4</span> <span class="ow">or</span> <span class="n">center</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">word</span><span class="p">:</span>
+            <span class="k">continue</span>
+        <span class="k">if</span> <span class="nb">all</span><span class="p">(</span><span class="n">letter</span> <span class="ow">in</span> <span class="n">center</span> <span class="o">+</span> <span class="n">others</span> <span class="k">for</span> <span class="n">letter</span> <span class="ow">in</span> <span class="n">word</span><span class="p">):</span>
+            <span class="n">valid_words</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">word</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">calculate_score</span><span class="p">(</span><span class="n">word</span><span class="p">):</span>
+        <span class="n">length_score</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">word</span><span class="p">)</span>
+        <span class="n">pangram_bonus</span> <span class="o">=</span> <span class="mi">7</span> <span class="k">if</span> <span class="nb">set</span><span class="p">(</span><span class="n">word</span><span class="p">)</span> <span class="o">==</span> <span class="nb">set</span><span class="p">(</span><span class="n">center</span> <span class="o">+</span> <span class="n">others</span><span class="p">)</span> <span class="k">else</span> <span class="mi">0</span>
+        <span class="n">bimodal_score</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">Counter</span><span class="p">(</span><span class="n">word</span><span class="p">).</span><span class="n">get</span><span class="p">(</span><span class="n">letter</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="k">for</span> <span class="n">letter</span> <span class="ow">in</span> <span class="n">center</span> <span class="o">+</span> <span class="n">others</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">length_score</span> <span class="o">+</span> <span class="n">pangram_bonus</span> <span class="o">+</span> <span class="n">bimodal_score</span>
+
+    <span class="n">scored_words</span> <span class="o">=</span> <span class="p">[(</span><span class="n">word</span><span class="p">,</span> <span class="n">calculate_score</span><span class="p">(</span><span class="n">word</span><span class="p">))</span> <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">valid_words</span><span class="p">]</span>
+    <span class="n">scored_words</span><span class="p">.</span><span class="n">sort</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">reverse</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">scored_words</span>
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="step-7-running-the-app">Step 7: Running the App</h3>
+
+<p>Finally, start the Tkinter event loop to launch the app:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">root</span><span class="p">.</span><span class="n">mainloop</span><span class="p">()</span>
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="screenshot-of-the-console-application">Screenshot of the Console Application</h3>
+
+<p><img src="/assets/Screenshot%202025-01-25%20at%2021.48.21.png" alt="Console Version" /></p>
+
+<h3 id="screenshot-of-the-gui-application">Screenshot of the GUI Application</h3>
+
+<p><img src="/assets/Screenshot%202025-01-25%20at%2021.46.50.png" alt="GUI Version" /></p>
+
+<hr />
+
+<h2 id="closing-thoughts">Closing Thoughts</h2>
+
+<p>Today, we’ve built an application that tackles two major objectives: predicting high-scoring words in Spelling Bee using statistical methods and designing a desktop GUI application with Tkinter. We started by understanding the concepts of bimodal and trimodal distributions and how they guide the solver in ranking words based on vowel, consonant, and rare letter ratios. Then, we walked through the technical implementation, creating a functional GUI and connecting it with the solver logic.</p>
+
+<p>Looking ahead, there are several ways you could enhance this app further. For example, you could:</p>
+
+<ul>
+  <li><strong>Add Customizable Scoring Weights:</strong> Let users adjust the importance of vowels, consonants, and rare letters.</li>
+  <li><strong>Implement a Leaderboard:</strong> Display the highest-scoring words in a separate, sortable list.</li>
+  <li><strong>Allow Multiple Dictionaries:</strong> Support custom word lists or languages by letting users upload their own dictionaries.</li>
+</ul>
+
+<p>We’d love to hear your ideas and see how you improve upon this project! Share your feedback, questions, or enhancements in the comments or contribute directly via the <a href="https://github.com/j-abed/spelling-bee/tree/main">GitHub repository</a>.</p>
+
+<p>In our next article we’ll build our final python application, pulling from various learnings in days 1-6!</p>
 
   </div>
   

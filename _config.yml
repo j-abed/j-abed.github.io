@@ -3,7 +3,6 @@ title:               Jason Abed
 tagline:             'GitHub Pages'
 description:         'Combining technology and creativity to make the world a better place.'
 url:                 https://j-abed.github.io
-baseurl:             ''
 paginate:            1
 permalink:           pretty
 

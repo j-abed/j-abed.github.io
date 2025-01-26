@@ -2,7 +2,7 @@
 layout: post
 title: "Day 5 - Good Things Jar App"
 date: 2025-01-06 10:00:00 +0000
-categories: [wordle, python, statistics, react, data science, fundamentals]
+categories: [wordle, python, statistics, react, data science, fundamentals, dev]
 permalink: /day-5/
 ---
 
@@ -266,5 +266,5 @@ This app is more than just a coding exercise—it’s a way to cultivate positiv
 
 What features would make this app even better? I’d love to hear your ideas in the comments below. Let’s keep building something wonderful together!
 
-
+- [Next: Day 6]({{ '/day-6/' | relative_url }})
 
