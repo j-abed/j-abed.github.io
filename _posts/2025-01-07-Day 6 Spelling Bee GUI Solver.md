@@ -252,3 +252,5 @@ Looking ahead, there are several ways you could enhance this app further. For ex
 We’d love to hear your ideas and see how you improve upon this project! Share your feedback, questions, or enhancements in the comments or contribute directly via the [GitHub repository](https://github.com/j-abed/spelling-bee/tree/main).
 
 In our next article we'll build our final python application, pulling from various learnings in days 1-6!
+
+- [Next: ]({{ '/decision-making-frameworks/' | relative_url }})

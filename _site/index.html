@@ -131,6 +131,10 @@
         
       
     
+      
+        
+      
+    
 
     <!-- <a class="sidebar-nav-item" href="https://github.com/j-abed//archive/v1.1.0.zip">Download</a> -->
     <a class="sidebar-nav-item" href="https://github.com/j-abed/">GitHub Repos</a>
@@ -163,267 +167,233 @@
   
   <div class="post">
     <h1 class="post-title">
-      <a href="http://localhost:4000/day-6/">
-        Day 6 - Cracking NYT’s Spelling Bee with a GUI-Powered Solver
+      <a href="http://localhost:4000/decision-making-frameworks/">
+         Understanding Decision-Making Frameworks in AI/ML
       </a>
     </h1>
 
-    <span class="post-date">07 Jan 2025</span>
+    <span class="post-date">26 Jan 2025</span>
 
     <h2 id="introduction">Introduction</h2>
 
-<p>Welcome back to Day 6 of our “7 Apps in 7 Days” challenge! It seems people really enjoyed Wordle solver post earlier in the series,so in this post we’re returning to another fan-favorite New York Times word game: Spelling Bee. Today, we’ll build a solver that predicts the most likely words using statistical techniques such as bimodal and trimodal distributions. Up until now we’ve focused on web application, so in this article we’ll also introduce you to building a desktop application with a graphical user interface (GUI) using Python’s Tkinter library.</p>
+<p>In our daily lives, we constantly interact with systems and technologies that leverage certain deciion-making frameworks or logic paradigms. The frameworks can be categorized by three primary categories: deterministic, probabilistic, and non-probabilistic. Whether it’s a navigation app providing the fastest route, a streaming service recommending movies, or an autonomous vehicle making decisions in real-time, these paradigms are at play. Understanding how AI/ML systems use these decision-making frameworks not only enhances our appreciation for the technology but also helps us navigate their limitations and strengths.</p>
 
-<p>This article focuses on two main topics:</p>
+<p>For example:</p>
+<ul>
+  <li>A deterministic system like a calendar app always calculates dates and times predictably.</li>
+  <li>Probabilistic systems, such as weather forecasts, provide likelihoods instead of certainties.</li>
+  <li>Non-probabilistic systems like clustering algorithms group similar items without relying on randomness.</li>
+</ul>
+
+<p>By exploring these categories and their overlaps, we can better understand how AI and ML systems function and why certain approaches are more suited to specific tasks. In this blog post we will delve into these classifications, their theoretical foundations, and real-world applications.</p>
+
+<hr />
+
+<h2 id="theoretical-foundations">Theoretical Foundations</h2>
+
+<h3 id="deterministic-systems">Deterministic Systems</h3>
+
+<p>Deterministic systems guarantee the same output for a given input. They follow fixed rules or algorithms without randomness.</p>
+
+<ul>
+  <li>
+    <p><strong>Mathematical Basis:</strong>
+A deterministic system is often described by functions like:</p>
+
+    <p>Here, the output for a given input is always consistent.</p>
+  </li>
+  <li>
+    <p><strong>Applications in AI/ML:</strong></p>
+
+    <ul>
+      <li><strong>Rule-based Expert Systems:</strong> Systems with predefined rules, such as medical diagnostic tools.</li>
+      <li><strong>Classical Algorithms:</strong> Sorting algorithms like mergesort or quicksort.</li>
+    </ul>
+  </li>
+  <li>
+    <p><strong>Strengths and Weaknesses:</strong></p>
+
+    <ul>
+      <li>Strength: Predictable and explainable outcomes.</li>
+      <li>Weakness: Limited adaptability to dynamic environments.</li>
+    </ul>
+  </li>
+</ul>
+
+<hr />
+
+<h3 id="probabilistic-systems">Probabilistic Systems</h3>
+
+<p>Probabilistic systems incorporate uncertainty and randomness, producing outcomes based on likelihoods rather than fixed rules.</p>
+
+<ul>
+  <li>
+    <p><strong>Statistical Foundations:</strong>
+Probabilistic models use concepts such as Bayes’ theorem and probability distributions. For instance:</p>
+  </li>
+  <li>
+    <p><strong>Applications in AI/ML:</strong></p>
+
+    <ul>
+      <li><strong>Bayesian Networks:</strong> Models that estimate the likelihood of events.</li>
+      <li><strong>Generative Models:</strong> Variational Autoencoders (VAEs) and GANs for image synthesis.</li>
+      <li><strong>Probabilistic Classifiers:</strong> Logistic regression for predicting probabilities.</li>
+    </ul>
+  </li>
+  <li>
+    <p><strong>Strengths and Weaknesses:</strong></p>
+
+    <ul>
+      <li>Strength: Effective in handling uncertainty.</li>
+      <li>Weakness: Computationally intensive and data-hungry.</li>
+    </ul>
+  </li>
+</ul>
+
+<hr />
+
+<h3 id="non-probabilistic-systems">Non-Probabilistic Systems</h3>
+
+<p>Non-probabilistic systems do not involve randomness or probabilities, but they may allow multiple outcomes based on fixed rules.</p>
+
+<ul>
+  <li>
+    <p><strong>Mathematical Basis:</strong>
+These systems often employ iterative algorithms or heuristics.</p>
+  </li>
+  <li>
+    <p><strong>Applications in AI/ML:</strong></p>
+
+    <ul>
+      <li><strong>Support Vector Machines (SVMs):</strong> Models for deterministic classification.</li>
+      <li><strong>K-Means Clustering:</strong> Assigns points to clusters based on fixed criteria.</li>
+    </ul>
+  </li>
+  <li>
+    <p><strong>Strengths and Weaknesses:</strong></p>
+
+    <ul>
+      <li>Strength: Simpler to implement compared to probabilistic methods.</li>
+      <li>Weakness: Less robust in uncertain environments.</li>
+    </ul>
+  </li>
+</ul>
+
+<hr />
+
+<h2 id="visualizing-the-relationships">Visualizing the Relationships</h2>
+
+<p>To better understand the relationships, consider the following placeholder where a Venn diagram should be added:</p>
+
+<p><img src="/assets/ai_ml%20decision%20making%20vd.png" alt="AI Decision Making Venn-Diagram" /></p>
+
+<h3 id="explanation-of-the-diagram">Explanation of the Diagram:</h3>
+
+<ul>
+  <li><strong>Deterministic Only:</strong> Represents models like sorting algorithms and rule-based expert systems, where outcomes are predictable and fixed.</li>
+  <li><strong>Probabilistic Only:</strong> Highlights models like Bayesian networks and generative adversarial networks (GANs), which rely on probabilities for handling uncertainty.</li>
+  <li><strong>Non-Probabilistic Only:</strong> Focuses on approaches like support vector machines (SVMs) and K-means clustering, which follow fixed logical rules without randomness.</li>
+  <li><strong>Overlaps:</strong>
+    <ul>
+      <li>Deterministic &amp; Non-Probabilistic: Decision trees, which use fixed rules but may have non-deterministic paths.</li>
+      <li>Deterministic &amp; Probabilistic: Ensemble models that aggregate deterministic processes with probabilistic decision layers.</li>
+      <li>Probabilistic &amp; Non-Probabilistic: Hybrid approaches combining logical rules with probabilistic outcomes.</li>
+      <li>All Three: Rare, theoretical systems combining elements of all categories for niche applications.</li>
+    </ul>
+  </li>
+</ul>
+
+<hr />
+
+<h2 id="applications-in-aiml">Applications in AI/ML</h2>
+
+<h3 id="deterministic-applications">Deterministic Applications</h3>
+
+<ul>
+  <li><strong>Image Processing:</strong> Classical edge detection algorithms like Sobel filters.
+    <ul>
+      <li><strong>Example 1:</strong> Classical edge detection algorithms like Sobel filters use deterministic calculations to identify edges in images, always producing the same result for identical inputs.</li>
+      <li><strong>Example 2:</strong> Sorting algorithms, such as quicksort, ensure repeatable sorting order for the same dataset.</li>
+    </ul>
+  </li>
+  <li><strong>Search Algorithms:</strong> Pathfinding in deterministic environments (e.g., Dijkstra’s algorithm).
+    <ul>
+      <li><strong>Example 1:</strong> Pathfinding algorithms like Dijkstra’s use deterministic methods to find the shortest path in navigation systems.</li>
+      <li><strong>Example 2:</strong> Deterministic neural networks for specific optimization problems.</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="probabilistic-applications">Probabilistic Applications</h3>
+
+<ul>
+  <li><strong>Natural Language Processing (NLP):</strong> Language models like GPT use probabilistic methods to predict text.
+    <ul>
+      <li><strong>Example 1:</strong> ChatGPT generates responses based on statistical probabilities derived from training data, predicting the next word in a sentence given prior context.</li>
+      <li><strong>Example 2:</strong> Google’s BERT model predicts masked words in a sentence using probabilistic methods, improving search engine results and language understanding tasks.</li>
+    </ul>
+  </li>
+  <li><strong>Recommendation Systems:</strong> Collaborative filtering predicts user preferences based on probabilities.
+    <ul>
+      <li><strong>Example 1:</strong> Netflix’s recommendation engine uses user viewing history and similarities among users to probabilistically suggest movies.</li>
+      <li><strong>Example 2:</strong> Amazon’s product recommendations leverage probabilistic techniques to predict items a user is likely to purchase based on browsing and buying behaviors.</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="non-probabilistic-applications">Non-Probabilistic Applications</h3>
+
+<ul>
+  <li><strong>Feature Selection:</strong> SVMs and similar deterministic methods for selecting the best features in datasets.
+    <ul>
+      <li><strong>Example 1:</strong> In cancer diagnosis models, SVMs are used to classify whether a tumor is malignant or benign by selecting the most relevant biological features (e.g., size, density).</li>
+      <li><strong>Example 2:</strong> Facial recognition systems employ feature selection techniques to extract critical facial attributes like the distance between eyes or the shape of the jaw.</li>
+    </ul>
+  </li>
+  <li><strong>Clustering:</strong> Hard clustering methods for grouping data points.
+    <ul>
+      <li><strong>Example 1:</strong> Customer segmentation in marketing uses K-means clustering to group customers based on purchasing behavior.</li>
+      <li><strong>Example 2:</strong> Image segmentation tasks use clustering to partition an image into regions of interest, such as separating foreground objects from the background.</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="hybrid-applications">Hybrid Applications</h3>
+
+<ul>
+  <li><strong>Autonomous Vehicles:</strong> Combine deterministic path-planning with probabilistic decision-making for dynamic environments.
+    <ul>
+      <li><strong>Example 1:</strong> Tesla’s autopilot system uses deterministic algorithms for route navigation and probabilistic models for obstacle detection and risk assessment.</li>
+      <li><strong>Example 2:</strong> Waymo’s self-driving cars use probabilistic models to predict pedestrian behavior while relying on deterministic systems for adhering to traffic rules.</li>
+    </ul>
+  </li>
+  <li><strong>Financial Forecasting:</strong> Probabilistic models for uncertainty combined with deterministic algorithms for baseline predictions.
+    <ul>
+      <li><strong>Example 1:</strong> Stock market prediction systems use probabilistic models to estimate price fluctuations combined with deterministic trend analysis for long-term forecasting.</li>
+      <li><strong>Example 2:</strong> Risk management tools in banking combine deterministic rules for compliance checks with probabilistic methods to predict loan default probabilities.</li>
+    </ul>
+  </li>
+</ul>
+
+<hr />
+
+<h2 id="conclusion">Conclusion</h2>
+
+<p>Deterministic, probabilistic, and non-probabilistic models offer unique strengths and limitations. While deterministic systems provide predictability, probabilistic models handle uncertainty, and non-probabilistic systems balance simplicity with deterministic logic. Selecting the right approach depends on the application and its requirements. As AI/ML continues to evolve, hybrid systems leveraging these concepts will increasingly dominate.</p>
+
+<hr />
+
+<h2 id="further-reading">Further Reading</h2>
 
 <ol>
-  <li>How bimodal and trimodal distributions work conceptually and how we use them to predict high-scoring words.</li>
-  <li>Step-by-step instructions to build the desktop GUI application, complete with the Python logic required to make it functional.</li>
+  <li>Murphy, K. P. (2012). <strong>Machine Learning: A Probabilistic Perspective</strong>. MIT Press.</li>
+  <li>Bishop, C. M. (2006). <strong>Pattern Recognition and Machine Learning</strong>. Springer.</li>
+  <li>Goodfellow, I., Bengio, Y., &amp; Courville, A. (2016). <strong>Deep Learning</strong>. MIT Press.</li>
 </ol>
 
 <hr />
 
-<h2 id="part-1-understanding-bimodal-and-trimodal-distributions">Part 1: Understanding Bimodal and Trimodal Distributions</h2>
-
-<p>Before diving into Spelling Bee predictions, let’s explore the concepts of bimodal and trimodal distributions. These statistical methods analyze how data clusters around specific values or groups.</p>
-
-<ul>
-  <li><strong>Bimodal Distribution:</strong>
-    <ul>
-      <li>Represents data with two distinct peaks or clusters.</li>
-      <li>For example, in word games, one peak might correspond to vowels, which are essential for most words, and the other to common consonants like T, R, and S.</li>
-    </ul>
-  </li>
-  <li><strong>Trimodal Distribution:</strong>
-    <ul>
-      <li>Extends this concept by adding a third cluster.</li>
-      <li>For Spelling Bee, this cluster could represent rare letters like J, Q, X, and Z. These letters are less frequent but can contribute significantly to scoring potential.</li>
-    </ul>
-  </li>
-</ul>
-
-<p>By analyzing these patterns, we can identify which words balance these clusters effectively and are more likely to score well.</p>
-
-<hr />
-
-<h2 id="part-2-using-distributions-to-predict-the-best-words">Part 2: Using Distributions to Predict the Best Words</h2>
-
-<p>The New York Times’ Spelling Bee challenges players to form words using seven given letters, with the center letter being mandatory. Points are awarded based on word length, with a special bonus for pangrams (words that use all seven letters). Our solver focuses on ranking words using bimodal and trimodal distributions to predict which are most likely to be valuable in the game.</p>
-
-<h3 id="how-we-use-bimodal-and-trimodal-distributions-in-word-ranking">How We Use Bimodal and Trimodal Distributions in Word Ranking</h3>
-
-<p>The solver ranks words using the following steps:</p>
-
-<ol>
-  <li><strong>Calculate Ratios for Each Cluster:</strong>
-    <ul>
-      <li><strong>Vowel Ratio:</strong> Proportion of vowels in the word.</li>
-      <li><strong>Common Consonant Ratio:</strong> Proportion of frequently used consonants.</li>
-      <li><strong>Rare Letter Ratio:</strong> Proportion of rare letters like J, Q, X, or Z.</li>
-    </ul>
-  </li>
-  <li>
-    <p><strong>Apply Weighted Scores:</strong>
-Using weights ( ( w_1, w_2, w_3 ) ) for each cluster, the solver calculates:</p>
-
-    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Trimodal Score = w_1 · Vowel Ratio + w_2 · Common Consonant Ratio + w_3 · Rare Letter Ratio
-</code></pre></div>    </div>
-  </li>
-  <li>
-    <p><strong>Combine with Other Factors:</strong>
-The final score for a word includes its length, pangram bonus, and trimodal score:</p>
-
-    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Final Score = Length + Trimodal Score + Pangram Bonus
-</code></pre></div>    </div>
-  </li>
-  <li>
-    <p><strong>Normalize Scores to a 0–100 Range:</strong>
-To make the results more intuitive, scores are normalized:</p>
-
-    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Normalized Score = ((Raw Score - Min Raw Score) / (Max Raw Score - Min Raw Score)) · 100
-</code></pre></div>    </div>
-  </li>
-</ol>
-
-<h3 id="example-scoring-the-word-tattoo">Example: Scoring the Word “tattoo”</h3>
-
-<p>Let’s break it down:</p>
-
-<ul>
-  <li><strong>Length:</strong> 6</li>
-  <li><strong>Vowel Ratio:</strong> 2/6 = 0.33 (A and O)</li>
-  <li><strong>Common Consonant Ratio:</strong> 2/6 = 0.33 (T)</li>
-  <li><strong>Rare Letter Ratio:</strong> 0/6 = 0.0 (no rare letters)</li>
-  <li><strong>Weights:</strong> ( w_1 = 2, w_2 = 1, w_3 = 3 )</li>
-</ul>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Trimodal Score = (2 · 0.33) + (1 · 0.33) + (3 · 0.0) = 0.99
-Final Raw Score = 6 + 0.99 + 0 = 6.99
-</code></pre></div></div>
-
-<p>If the raw scores in the dataset range from 5.0 to 10.0, the normalized score would be:</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Normalized Score = ((6.99 - 5.0) / (10.0 - 5.0)) · 100 = 39.8
-</code></pre></div></div>
-
-<hr />
-
-<h2 id="part-3-step-by-step-guide-to-building-the-tkinter-app">Part 3: Step-by-Step Guide to Building the Tkinter App</h2>
-
-<p>Now let’s build the desktop application step by step. The following code snippets will walk you through setting up Tkinter, building a graphical user interface (GUI), and  implementing the logic that powers the solver. The full implementation can also be found in the <a href="https://github.com/j-abed/spelling-bee/tree/main">GitHub repository</a>. Since the primary focus of this article is meant to be on the statistical scoring, and the GUI portions of the application - feel free to use this code for the rest of the functionality.</p>
-
-<hr />
-
-<h3 id="step-1-setting-up-tkinter">Step 1: Setting Up Tkinter</h3>
-
-<p>Tkinter comes pre-installed with Python, so you can start immediately. Create a new Python file and import the necessary libraries:</p>
-
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">tkinter</span> <span class="k">as</span> <span class="n">tk</span>
-<span class="kn">from</span> <span class="nn">tkinter</span> <span class="kn">import</span> <span class="n">filedialog</span>
-<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">Counter</span>
-<span class="kn">import</span> <span class="nn">csv</span>
-</code></pre></div></div>
-
-<hr />
-
-<h3 id="step-2-designing-the-main-window">Step 2: Designing the Main Window</h3>
-
-<p>Create the main application window with a title and size:</p>
-
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">root</span> <span class="o">=</span> <span class="n">tk</span><span class="p">.</span><span class="n">Tk</span><span class="p">()</span>
-<span class="n">root</span><span class="p">.</span><span class="n">title</span><span class="p">(</span><span class="s">"Spelling Bee Solver"</span><span class="p">)</span>
-<span class="n">root</span><span class="p">.</span><span class="n">geometry</span><span class="p">(</span><span class="s">"500x600"</span><span class="p">)</span>
-<span class="n">root</span><span class="p">.</span><span class="n">configure</span><span class="p">(</span><span class="n">bg</span><span class="o">=</span><span class="s">"yellow"</span><span class="p">)</span>
-</code></pre></div></div>
-
-<hr />
-
-<h3 id="step-3-adding-input-fields">Step 3: Adding Input Fields</h3>
-
-<p>Add input fields for the dictionary file path, center letter, and other letters:</p>
-
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">tk</span><span class="p">.</span><span class="n">Label</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s">"Dictionary Path:"</span><span class="p">).</span><span class="n">pack</span><span class="p">()</span>
-<span class="n">dictionary_path</span> <span class="o">=</span> <span class="n">tk</span><span class="p">.</span><span class="n">Entry</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
-<span class="n">dictionary_path</span><span class="p">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s">"words_alpha.txt"</span><span class="p">)</span>
-<span class="n">dictionary_path</span><span class="p">.</span><span class="n">pack</span><span class="p">()</span>
-
-<span class="n">tk</span><span class="p">.</span><span class="n">Label</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s">"Center Letter:"</span><span class="p">).</span><span class="n">pack</span><span class="p">()</span>
-<span class="n">center_letter</span> <span class="o">=</span> <span class="n">tk</span><span class="p">.</span><span class="n">Entry</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
-<span class="n">center_letter</span><span class="p">.</span><span class="n">pack</span><span class="p">()</span>
-
-<span class="n">tk</span><span class="p">.</span><span class="n">Label</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s">"Other Letters:"</span><span class="p">).</span><span class="n">pack</span><span class="p">()</span>
-<span class="n">other_letters</span> <span class="o">=</span> <span class="n">tk</span><span class="p">.</span><span class="n">Entry</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
-<span class="n">other_letters</span><span class="p">.</span><span class="n">pack</span><span class="p">()</span>
-</code></pre></div></div>
-
-<hr />
-
-<h3 id="step-4-adding-buttons">Step 4: Adding Buttons</h3>
-
-<p>Add buttons for checking words and exporting results:</p>
-
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">run_solver</span><span class="p">():</span>
-    <span class="n">results_box</span><span class="p">.</span><span class="n">delete</span><span class="p">(</span><span class="s">"1.0"</span><span class="p">,</span> <span class="n">tk</span><span class="p">.</span><span class="n">END</span><span class="p">)</span>  <span class="c1"># Clear the results box
-</span>    <span class="n">center</span> <span class="o">=</span> <span class="n">center_letter</span><span class="p">.</span><span class="n">get</span><span class="p">().</span><span class="n">strip</span><span class="p">().</span><span class="n">lower</span><span class="p">()</span>
-    <span class="n">others</span> <span class="o">=</span> <span class="n">other_letters</span><span class="p">.</span><span class="n">get</span><span class="p">().</span><span class="n">strip</span><span class="p">().</span><span class="n">lower</span><span class="p">()</span>
-    <span class="n">path</span> <span class="o">=</span> <span class="n">dictionary_path</span><span class="p">.</span><span class="n">get</span><span class="p">().</span><span class="n">strip</span><span class="p">()</span>
-    <span class="k">if</span> <span class="ow">not</span> <span class="n">center</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">others</span><span class="p">:</span>
-        <span class="n">results_box</span><span class="p">.</span><span class="n">insert</span><span class="p">(</span><span class="n">tk</span><span class="p">.</span><span class="n">END</span><span class="p">,</span> <span class="s">"Please provide the center letter and other letters."</span><span class="p">)</span>
-        <span class="k">return</span>
-
-    <span class="n">results</span> <span class="o">=</span> <span class="n">solve_spelling_bee</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">center</span><span class="p">,</span> <span class="n">others</span><span class="p">)</span>
-    <span class="k">for</span> <span class="n">word</span><span class="p">,</span> <span class="n">score</span> <span class="ow">in</span> <span class="n">results</span><span class="p">:</span>
-        <span class="n">results_box</span><span class="p">.</span><span class="n">insert</span><span class="p">(</span><span class="n">tk</span><span class="p">.</span><span class="n">END</span><span class="p">,</span> <span class="sa">f</span><span class="s">"</span><span class="si">{</span><span class="n">word</span><span class="si">}</span><span class="s"> (Score: </span><span class="si">{</span><span class="n">score</span><span class="si">:</span><span class="p">.</span><span class="mi">2</span><span class="n">f</span><span class="si">}</span><span class="s">)</span><span class="se">\n</span><span class="s">"</span><span class="p">)</span>
-
-<span class="k">def</span> <span class="nf">export_results</span><span class="p">():</span>
-    <span class="n">filepath</span> <span class="o">=</span> <span class="n">filedialog</span><span class="p">.</span><span class="n">asksaveasfilename</span><span class="p">(</span><span class="n">defaultextension</span><span class="o">=</span><span class="s">".csv"</span><span class="p">,</span>
-                                            <span class="n">filetypes</span><span class="o">=</span><span class="p">[(</span><span class="s">"CSV files"</span><span class="p">,</span> <span class="s">"*.csv"</span><span class="p">)])</span>
-    <span class="k">if</span> <span class="n">filepath</span><span class="p">:</span>
-        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filepath</span><span class="p">,</span> <span class="s">"w"</span><span class="p">,</span> <span class="n">newline</span><span class="o">=</span><span class="s">""</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-            <span class="n">writer</span> <span class="o">=</span> <span class="n">csv</span><span class="p">.</span><span class="n">writer</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
-            <span class="n">writer</span><span class="p">.</span><span class="n">writerow</span><span class="p">([</span><span class="s">"Word"</span><span class="p">,</span> <span class="s">"Score"</span><span class="p">])</span>
-            <span class="k">for</span> <span class="n">word</span><span class="p">,</span> <span class="n">score</span> <span class="ow">in</span> <span class="n">solve_spelling_bee</span><span class="p">(</span><span class="n">dictionary_path</span><span class="p">.</span><span class="n">get</span><span class="p">(),</span> <span class="n">center_letter</span><span class="p">.</span><span class="n">get</span><span class="p">(),</span> <span class="n">other_letters</span><span class="p">.</span><span class="n">get</span><span class="p">()):</span>
-                <span class="n">writer</span><span class="p">.</span><span class="n">writerow</span><span class="p">([</span><span class="n">word</span><span class="p">,</span> <span class="n">score</span><span class="p">])</span>
-
-<span class="n">tk</span><span class="p">.</span><span class="n">Button</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s">"Check Words"</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="n">run_solver</span><span class="p">).</span><span class="n">pack</span><span class="p">()</span>
-<span class="n">tk</span><span class="p">.</span><span class="n">Button</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s">"Export to File"</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="n">export_results</span><span class="p">).</span><span class="n">pack</span><span class="p">()</span>
-</code></pre></div></div>
-
-<hr />
-
-<h3 id="step-5-adding-a-results-display">Step 5: Adding a Results Display</h3>
-
-<p>Use a <code class="language-plaintext highlighter-rouge">tk.Text</code> widget to display results dynamically:</p>
-
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">results_box</span> <span class="o">=</span> <span class="n">tk</span><span class="p">.</span><span class="n">Text</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
-<span class="n">results_box</span><span class="p">.</span><span class="n">pack</span><span class="p">()</span>
-<span class="n">results_box</span><span class="p">.</span><span class="n">insert</span><span class="p">(</span><span class="s">"1.0"</span><span class="p">,</span> <span class="s">"Results will appear here..."</span><span class="p">)</span>
-</code></pre></div></div>
-
-<hr />
-
-<h3 id="step-6-implementing-the-solver-logic">Step 6: Implementing the Solver Logic</h3>
-
-<p>Here’s the Python logic for solving the Spelling Bee puzzle:</p>
-
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">solve_spelling_bee</span><span class="p">(</span><span class="n">dictionary_path</span><span class="p">,</span> <span class="n">center</span><span class="p">,</span> <span class="n">others</span><span class="p">):</span>
-    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">dictionary_path</span><span class="p">,</span> <span class="s">"r"</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-        <span class="n">words</span> <span class="o">=</span> <span class="n">f</span><span class="p">.</span><span class="n">read</span><span class="p">().</span><span class="n">splitlines</span><span class="p">()</span>
-
-    <span class="n">valid_words</span> <span class="o">=</span> <span class="p">[]</span>
-    <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">words</span><span class="p">:</span>
-        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">word</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">4</span> <span class="ow">or</span> <span class="n">center</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">word</span><span class="p">:</span>
-            <span class="k">continue</span>
-        <span class="k">if</span> <span class="nb">all</span><span class="p">(</span><span class="n">letter</span> <span class="ow">in</span> <span class="n">center</span> <span class="o">+</span> <span class="n">others</span> <span class="k">for</span> <span class="n">letter</span> <span class="ow">in</span> <span class="n">word</span><span class="p">):</span>
-            <span class="n">valid_words</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">word</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">calculate_score</span><span class="p">(</span><span class="n">word</span><span class="p">):</span>
-        <span class="n">length_score</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">word</span><span class="p">)</span>
-        <span class="n">pangram_bonus</span> <span class="o">=</span> <span class="mi">7</span> <span class="k">if</span> <span class="nb">set</span><span class="p">(</span><span class="n">word</span><span class="p">)</span> <span class="o">==</span> <span class="nb">set</span><span class="p">(</span><span class="n">center</span> <span class="o">+</span> <span class="n">others</span><span class="p">)</span> <span class="k">else</span> <span class="mi">0</span>
-        <span class="n">bimodal_score</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">Counter</span><span class="p">(</span><span class="n">word</span><span class="p">).</span><span class="n">get</span><span class="p">(</span><span class="n">letter</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="k">for</span> <span class="n">letter</span> <span class="ow">in</span> <span class="n">center</span> <span class="o">+</span> <span class="n">others</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">length_score</span> <span class="o">+</span> <span class="n">pangram_bonus</span> <span class="o">+</span> <span class="n">bimodal_score</span>
-
-    <span class="n">scored_words</span> <span class="o">=</span> <span class="p">[(</span><span class="n">word</span><span class="p">,</span> <span class="n">calculate_score</span><span class="p">(</span><span class="n">word</span><span class="p">))</span> <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">valid_words</span><span class="p">]</span>
-    <span class="n">scored_words</span><span class="p">.</span><span class="n">sort</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">reverse</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">scored_words</span>
-</code></pre></div></div>
-
-<hr />
-
-<h3 id="step-7-running-the-app">Step 7: Running the App</h3>
-
-<p>Finally, start the Tkinter event loop to launch the app:</p>
-
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">root</span><span class="p">.</span><span class="n">mainloop</span><span class="p">()</span>
-</code></pre></div></div>
-
-<hr />
-
-<h3 id="screenshot-of-the-console-application">Screenshot of the Console Application</h3>
-
-<p><img src="/assets/Screenshot%202025-01-25%20at%2021.48.21.png" alt="Console Version" /></p>
-
-<h3 id="screenshot-of-the-gui-application">Screenshot of the GUI Application</h3>
-
-<p><img src="/assets/Screenshot%202025-01-25%20at%2021.46.50.png" alt="GUI Version" /></p>
-
-<hr />
-
-<h2 id="closing-thoughts">Closing Thoughts</h2>
-
-<p>Today, we’ve built an application that tackles two major objectives: predicting high-scoring words in Spelling Bee using statistical methods and designing a desktop GUI application with Tkinter. We started by understanding the concepts of bimodal and trimodal distributions and how they guide the solver in ranking words based on vowel, consonant, and rare letter ratios. Then, we walked through the technical implementation, creating a functional GUI and connecting it with the solver logic.</p>
-
-<p>Looking ahead, there are several ways you could enhance this app further. For example, you could:</p>
-
-<ul>
-  <li><strong>Add Customizable Scoring Weights:</strong> Let users adjust the importance of vowels, consonants, and rare letters.</li>
-  <li><strong>Implement a Leaderboard:</strong> Display the highest-scoring words in a separate, sortable list.</li>
-  <li><strong>Allow Multiple Dictionaries:</strong> Support custom word lists or languages by letting users upload their own dictionaries.</li>
-</ul>
-
-<p>We’d love to hear your ideas and see how you improve upon this project! Share your feedback, questions, or enhancements in the comments or contribute directly via the <a href="https://github.com/j-abed/spelling-bee/tree/main">GitHub repository</a>.</p>
-
-<p>In our next article we’ll build our final python application, pulling from various learnings in days 1-6!</p>
+<p>If you’d like a more interactive experience, explore our <a href="/assets/interactive_venn_ai_ml.html">interactive Venn diagram</a> to dive deeper into specific models and their use cases.</p>
 
   </div>
   
