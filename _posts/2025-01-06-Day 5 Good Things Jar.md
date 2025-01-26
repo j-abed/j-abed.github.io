@@ -11,7 +11,7 @@ permalink: /day-5/
 
 Welcome back to Day 5 of our seven-day project series! Today, I’m thrilled to dive into a project that’s both personal and inspiring: the **Good Things Jar App**. This app is rooted in a beautiful idea shared by a friend: Ashley Sumner, and it’s become a project that I enjoy working on. The app takes the timeless practice of gratitude journaling and gives it a digital twist.
 
-The idea is simple: Start the year with an empty jar and add a note each week celebrating something good that happened. By New Year’s Eve, you’ll have a collection of memories to reflect on and cherish. I’ve built a version of this in ReactJS and deployed it via Netlify—you can check it out here: [https://voluble-malasada-268018.netlify.app/](https://voluble-malasada-268018.netlify.app/). The GitHub repository with the code is also available: [https://github.com/j-abed/good-things-jar](https://github.com/j-abed/good-things-jar).
+The idea is simple: Start the year with an empty jar and add a note each week celebrating something good that happened. By New Year’s Eve, you’ll have a collection of memories to reflect on and cherish. I’ve built a version of this in ReactJS and deployed it via Netlify—you can check it out here: [https://good-things-jar.netlify.app/](https://good-things-jar.netlify.app/). The GitHub repository with the code is also available: [https://github.com/j-abed/good-things-jar](https://github.com/j-abed/good-things-jar).
 
 ### Why Build It Yourself?
 
@@ -258,7 +258,7 @@ While this version is a functional MVP, there are several features I plan to add
 
 ### Ashley Sumner’s Substack
 
-Before wrapping up, I’d like to highlight Ashley Sumner’s Substack, *The Liminalist*, which is a fantastic read on wellbeing: [https://ashleyjsumner.substack.com/](https://ashleyjsumner.substack.com/).
+Before wrapping up, I’d like to highlight Ashley Sumner’s Substack, *In Tune with Ashley*, which is a fantastic read on wellbeing: [https://ashleyjsumner.substack.com/](https://ashleyjsumner.substack.com/).
 
 ### Recap
 
