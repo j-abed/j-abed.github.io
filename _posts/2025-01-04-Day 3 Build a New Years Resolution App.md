@@ -7,7 +7,7 @@ permalink: /day-3/
 ---
 
 
-## Day 3 - Building a Resolution Spinner: Combining Python, Web Technologies, and Databases
+## Create a Resolution Spinner: Combining Python, Web Technologies, and Databases
 
 Welcome to Day 3 of our "7 Days of Projects for the New Year" series! Today, we’re combining Python with web technologies and databases to create a **Resolution Spinner** app. This project not only demonstrates Python’s versatility but also showcases how to build a modern, interactive application by integrating multiple technologies.
 

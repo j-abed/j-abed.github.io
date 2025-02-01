@@ -6,8 +6,6 @@ categories: [HTML, CSS, intro, dev, webdev, fundamentals]
 permalink: /day-2/
 ---
 
-# Day 2: Build a 2025 Goals Tracker
-
 ## Introduction
 
 Welcome to **Day 2 of 7 Days of Projects for the New Year**! 🎉 Today, we’ll create a simple yet interactive **2025 Goals Tracker** using **HTML**, **CSS**, and **JavaScript**. This project will teach you the fundamentals of how websites work and guide you step-by-step through building a functional web app.

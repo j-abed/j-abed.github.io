@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Welcome to My Blog: Bridging the Gap Between Business and Technology"
+title: Bridging the Gap Between Business and Technology"
 date: 2025-01-01 10:00:00 +0000
 categories: [Introduction, Business, Technology]
 ---

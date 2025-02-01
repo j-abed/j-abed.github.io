@@ -1,12 +1,10 @@
 ---
 layout: post
-title: "Day 1 - Guess the Number App"
+title: "Day 1 - Build a “Guess the Number” Game in Python"
 date: 2025-01-02 10:00:00 +0000
 categories: [Python, dev, intro, fundamentals]
 permalink: /day-1/
 ---
-
-# Day 1: Build a “Guess the Number” Game in Python
 
 **Welcome to Day 1 of our 7 Days of Programming series!** Usually, when people learn a new programming language, they start by writing a small program called **“Hello World.”** This program literally just prints the phrase `"Hello World"` to the screen. It’s a fun way to confirm that the language is installed and working correctly—but it’s not exactly exciting.
 
