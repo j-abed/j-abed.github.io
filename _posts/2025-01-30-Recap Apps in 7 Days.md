@@ -149,3 +149,4 @@ Which of these projects inspired you the most? Are you planning to start coding 
 
 #Coding #AI #Python #WebDevelopment #CareerGrowth
 
+- [Next: ]({{ '/What-Happened-to-Alpha/' | relative_url }})

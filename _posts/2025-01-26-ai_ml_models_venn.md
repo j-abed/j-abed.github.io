@@ -159,3 +159,5 @@ Deterministic, probabilistic, and non-probabilistic models offer unique strength
 ---
 
 If you’d like a more interactive experience, explore our [interactive Venn diagram](/assets/interactive_venn_ai_ml.html) to dive deeper into specific models and their use cases.
+
+- [Next: ]({{ '/7-apps-recap/' | relative_url }})
