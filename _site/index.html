@@ -147,6 +147,10 @@
         
       
     
+      
+        
+      
+    
 
     <!-- <a class="sidebar-nav-item" href="https://github.com/j-abed//archive/v1.1.0.zip">Download</a> -->
     <a class="sidebar-nav-item" href="https://github.com/j-abed/">GitHub Repos</a>
@@ -180,101 +184,139 @@
   <div class="post">
     <h1 class="post-title">
       <a href="http://localhost:4000/What-Happened-to-Alpha">
-        What Happened to Alpha?
+        Can We Predict the NBA Playoffs? A Hands-On Guide
       </a>
     </h1>
 
     <span class="post-date">09 May 2025</span>
 
-    <p><strong>The Rise and Fall of Outperformance — and What It Means for the Rest of Us</strong></p>
+    <p>What if you could simulate the NBA Playoffs 10,000 times before a single tip-off?</p>
 
-<p>When GameStop’s stock price shot up nearly 2,000% in early 2021, it wasn’t because the company had turned a corner. It was a rebellion.</p>
+<p>Every year, basketball fans debate who’s going to take home the title. But what if, instead of gut feelings or hot takes, you had a Python script and a little math on your side?</p>
 
-<p>A group of retail investors on Reddit — equipped with free trading platforms and a sentiment that Wall Street had rigged the game — banded together to squeeze short sellers. GameStop went from $20 to nearly $500 in a matter of days. For one wild week, it felt like regular people had cracked the code. That they had found the secret lever in the market and yanked it for all it was worth.</p>
-
-<p>Beneath the spectacle, a deeper unease stirred: the collective realization that markets no longer rewarded individual conviction. The old promise — that diligence, insight, or sheer determination could lead to outperformance — felt like it was fading. GameStop wasn’t just a trade. It was a jailbreak.</p>
-
-<p>In finance, that “edge” is called alpha — the return you generate above the market average. If the S&amp;P 500 goes up 8% in a year and your portfolio returns 11%, you’ve earned 3% alpha. It’s the extra. The part of your return that isn’t explained by simply owning the market.</p>
-
-<p>But over the last two decades, alpha has gotten harder to find — and harder still to access. It hasn’t vanished entirely, but it’s moved behind gates that most investors can’t get through. The ability to beat the market hasn’t disappeared, but it’s no longer evenly distributed — and that has real implications for risk, reward, and the concentration of wealth.</p>
-
-<h2 id="i-alpha-used-to-be-earned">I. Alpha Used to Be Earned</h2>
-
-<p>There was a time when alpha felt possible. Not easy, but real.</p>
-
-<p>Back in the ‘80s, ‘90s, and early 2000s, markets had more inefficiencies. Less data. Slower execution. Less competition. You could find undervalued stocks before they were on everyone’s radar. You could analyze fundamentals, uncover mispriced risks, or spot behavioral overreactions. You could win — by being thoughtful, fast, or just gutsy.</p>
-
-<p>Legendary investors like George Soros, Peter Lynch, and Warren Buffett didn’t just talk about beating the market — they did it. And for a long time, retail investors believed they could, too.</p>
-
-<p>That belief wasn’t delusional. Alpha lived in the friction — and there used to be a lot more friction to go around.</p>
-
-<h2 id="ii-then-the-friction-disappeared">II. Then the Friction Disappeared</h2>
-
-<p>After the 2008 financial crisis, something shifted. Not just in the economy, but in the architecture of the markets themselves.</p>
-
-<p>To prevent a full-scale collapse, the Federal Reserve and other central banks began injecting enormous amounts of liquidity into the financial system through a policy called quantitative easing (QE) — buying bonds to keep interest rates low and capital flowing.</p>
-
-<p>At the time, I was sitting in a small classroom of finance majors, listening to heated debates about whether this flood of money would cause inflation… or a gold bubble. Everyone sensed that something unprecedented was happening — but no one could quite predict how far-reaching it would be.</p>
-
-<p>Over the next decade, QE became a defining feature of the market — suppressing volatility, driving up asset prices, and muting the differences between winners and losers. When trillions of dollars are sloshing through the system, fundamentals matter less. Everything goes up — which sounds great, until you realize that “everything” includes the bad with the good.</p>
-
-<p>And when everything rises together, the opportunity to outperform — to generate alpha — starts to evaporate.</p>
-
-<h2 id="iii-alpha-became-institutional-and-the-friction-was-repriced">III. Alpha Became Institutional (and the Friction Was Repriced)</h2>
-
-<p>At the same time that macro forces were flattening returns, technology and regulation were raising the bar for anyone trying to find an edge.</p>
-
+<p>This guide walks through a simple, tweakable prediction model that uses:</p>
 <ul>
-  <li>In 2000, Regulation Fair Disclosure (Reg FD) made it illegal for companies to give select information to analysts, ending the era of “informational edge” for many.</li>
-  <li>In 2001, the move to decimal pricing compressed trading spreads — good for investors, bad for arbitrageurs.</li>
-  <li>High-frequency trading (HFT) firms began deploying servers inches from the exchange to shave microseconds off trade execution.</li>
-  <li>Quantitative hedge funds started hoarding alternative data — satellite images, credit card swipes, shipping records — to identify price signals before anyone else.</li>
+  <li><strong>Elo ratings</strong> to measure team strength,</li>
+  <li><strong>Monte Carlo simulation</strong> to run thousands of “what if” playoff scenarios,</li>
+  <li>And just enough Python to make you feel like the GM of a stats-savvy franchise.</li>
 </ul>
 
-<p>In short: alpha didn’t disappear. It just became harder to reach. More capital-intensive. More operationally complex. It migrated from individual judgment to institutional infrastructure.</p>
+<p>If you’re curious about how probability and data science apply to sports — and want to run your own playoff predictions — you’re in the right place.</p>
 
-<p>Kyla Scanlon recently described this broader phenomenon as the rise of a friction economy — a world where access is no longer defined by scarcity of information, but by the barriers built around processing it. It’s not about what you know; it’s about whether you have the tools, time, and capital to act on it before the next guy.</p>
+<h2 id="2-the-data-behind-the-madness">2. The Data Behind the Madness</h2>
 
-<p>And in finance, that friction has been monetized.
-Institutions have learned to own the bottlenecks — execution speed, data access, legal structure — and in doing so, they’ve made alpha something you pay for, not something you earn through cleverness alone.</p>
+<p>The first ingredient in any prediction model is a way to compare team strength. That’s where <strong>Elo ratings</strong> come in.</p>
 
-<p>Retail investors, by contrast, were handed low-cost ETFs and a steady stream of financial content. Great for passive accumulation. Terrible for active edge.</p>
+<p>Originally developed for chess rankings, Elo ratings have become a staple in sports analytics. They work like this:</p>
 
-<h2 id="iv-the-consequence-alpha-as-a-driver-of-inequality">IV. The Consequence: Alpha as a Driver of Inequality</h2>
+<ul>
+  <li>Every team starts with a base Elo (usually around 1500).</li>
+  <li>After each game, the winner takes Elo points from the loser.</li>
+  <li>The number of points transferred depends on how surprising the result was.</li>
+</ul>
 
-<p>We often talk about wealth inequality in terms of income or housing. But there’s another layer: inequality of return.</p>
+<p>A 100-point Elo edge gives about a <strong>64% chance to win</strong>. That’s the win probability we feed into our simulation. For mathematical clarity, the win probability can be calculated using the following formula:</p>
 
-<p>Today, much of the market’s remaining alpha is trapped inside private markets — in hedge funds, private equity, venture capital, private credit. These are not broadly accessible vehicles. They’re gated behind accreditation requirements, sky-high minimums, and complex fee structures.</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>P(A) = 1 / (1 + 10^((Elo_B - Elo_A) / 400))
+</code></pre></div></div>
 
-<p>If you’re not in that club, you’re left with the public markets — now dominated by passive flows, macro noise, and brutal efficiency.</p>
+<p>Where:</p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">P(A)</code> is the probability of Team A winning,</li>
+  <li><code class="language-plaintext highlighter-rouge">Elo_A</code> and <code class="language-plaintext highlighter-rouge">Elo_B</code> are the Elo ratings of Team A and Team B, respectively.</li>
+</ul>
 
-<p>And when institutions are earning 15–25% IRRs on private capital while retail investors average 7–8% in index funds, the return gap becomes a wealth gap. Over time, that compounds.</p>
+<p>This formula ensures that stronger teams (higher Elo) have a better chance of winning, while still allowing for upsets.
+A 100-point Elo edge gives about a <strong>64% chance to win</strong>. That’s the win probability we feed into our simulation.</p>
 
-<p>Not because retail investors did anything wrong — but because the structure of access changed.</p>
+<h2 id="3-monte-carlo-predicting-the-unpredictable">3. Monte Carlo: Predicting the Unpredictable</h2>
 
-<h2 id="v-so-where-is-alpha-now">V. So… Where Is Alpha Now?</h2>
+<p>Instead of predicting a single outcome, Monte Carlo simulation shows you what could happen across thousands of simulated playoffs. It’s like rolling a (biased) die for every game, thousands of times.</p>
 
-<p>It’s not gone. It’s just hiding in different places.</p>
+<p>Each series:</p>
+<ul>
+  <li>Simulates one game at a time based on Elo-derived win probability</li>
+  <li>Repeats until one team reaches 4 wins</li>
+  <li>Repeats the entire series simulation thousands of times to compute how often each team advances</li>
+</ul>
 
-<ol>
-  <li>Private Markets: Still the most consistent source of alpha, but access remains the domain of institutions and high-net-worth individuals.</li>
-  <li>Geographic and Market Inefficiencies: Some international markets — especially frontier and emerging — still have lower liquidity and informational transparency, which means opportunity. But risk is high and execution is hard.</li>
-  <li>Behavioral Alpha: If you can act rationally when others don’t, you might still outperform. That means buying when others panic. Selling when others chase. Holding when others churn. The edge is psychological, not informational.</li>
-  <li>Hyper-Specialization: Niche strategies, sub-industries, and misunderstood corners of the market still offer micro-alpha. But you need deep conviction and a lot of time.</li>
-</ol>
+<p>This gives us a <strong>probabilistic forecast</strong> — a map of likely outcomes.</p>
 
-<h2 id="vi-a-final-reckoning">VI. A Final Reckoning</h2>
+<h2 id="4-modeling-a-best-of-7-series">4. Modeling a Best-of-7 Series</h2>
 
-<p>The dream of alpha — that markets reward insight, effort, and independent thinking — hasn’t died. But it’s changed. It’s moved behind new paywalls, institutional walls, and attention walls.</p>
+<p>In Python:</p>
 
-<p>For most retail investors, that means adjusting expectations. The game isn’t rigged — but it is structured.
-And in that structure, access matters.</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">series_sim</span><span class="p">(</span><span class="n">team_a</span><span class="p">,</span> <span class="n">team_b</span><span class="p">,</span> <span class="n">home_court_team</span><span class="p">,</span> <span class="n">elo_dict</span><span class="p">,</span> <span class="n">n_sim</span><span class="o">=</span><span class="mi">10000</span><span class="p">):</span>
+    <span class="n">a_wins</span><span class="p">,</span> <span class="n">b_wins</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span>
+    <span class="k">while</span> <span class="n">a_wins</span> <span class="o">&lt;</span> <span class="mi">4</span> <span class="ow">and</span> <span class="n">b_wins</span> <span class="o">&lt;</span> <span class="mi">4</span><span class="p">:</span>
+        <span class="n">p_a</span> <span class="o">=</span> <span class="n">expected_score</span><span class="p">(</span><span class="n">elo_dict</span><span class="p">[</span><span class="n">team_a</span><span class="p">],</span> <span class="n">elo_dict</span><span class="p">[</span><span class="n">team_b</span><span class="p">],</span>
+                             <span class="n">hca</span><span class="o">=</span><span class="p">(</span><span class="n">HCA</span> <span class="k">if</span> <span class="n">home_court_team</span><span class="o">==</span><span class="n">team_a</span> <span class="k">else</span> <span class="o">-</span><span class="n">HCA</span><span class="p">))</span>
+        <span class="k">if</span> <span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="n">rand</span><span class="p">()</span> <span class="o">&lt;</span> <span class="n">p_a</span><span class="p">:</span>
+            <span class="n">a_wins</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">b_wins</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="k">return</span> <span class="n">team_a</span> <span class="k">if</span> <span class="n">a_wins</span> <span class="o">==</span> <span class="mi">4</span> <span class="k">else</span> <span class="n">team_b</span>
+</code></pre></div></div>
 
-<p>That’s what GameStop signaled. Not just a moment of rebellion, but a collective yearning for a market that still feels winnable. For a way to turn knowledge, instinct, or risk into more than average.</p>
+<p>This simulates one series. We run this thousands of times to get our results.</p>
 
-<p>That kind of market still exists — but fewer people get to play in it. And unless something shifts, alpha will keep drifting further from reach… leaving most of us with beta, and the quiet sense that the edge we were promised may not have been meant for us after all.</p>
+<h2 id="5-predicting-the-entire-bracket">5. Predicting the Entire Bracket</h2>
 
-<p>And maybe that’s why Warren Buffett’s recent retirement hits a little differently. It marks not just the end of an era in value investing — but the fading of a time when alpha was something one person with conviction, patience, and a good calculator could actually find.</p>
+<p>We simulate all first-round matchups, advance the winners, and repeat. For example:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">remaining_series</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s">'First Round East'</span><span class="p">:</span> <span class="p">(</span><span class="s">'BOS'</span><span class="p">,</span> <span class="s">'MIA'</span><span class="p">,</span> <span class="s">'BOS'</span><span class="p">),</span>
+    <span class="s">'First Round West'</span><span class="p">:</span> <span class="p">(</span><span class="s">'DEN'</span><span class="p">,</span> <span class="s">'NOP'</span><span class="p">,</span> <span class="s">'DEN'</span><span class="p">),</span>
+<span class="p">}</span>
+
+<span class="n">sims</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10000</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">matchup</span><span class="p">,</span> <span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">hc</span><span class="p">)</span> <span class="ow">in</span> <span class="n">remaining_series</span><span class="p">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="n">winner</span> <span class="o">=</span> <span class="n">series_sim</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">hc</span><span class="p">,</span> <span class="n">team_elos</span><span class="p">)</span>
+        <span class="n">sims</span><span class="p">[</span><span class="n">winner</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+</code></pre></div></div>
+
+<p>We can then calculate each team’s chance to reach the Finals or win the championship.</p>
+
+<h2 id="6-running-it-yourself">6. Running It Yourself</h2>
+
+<h3 id="option-1-locally">Option 1: Locally</h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git clone https://github.com/j-abed/nba_playoffs_prediction.git
+<span class="nb">cd </span>nba_playoffs_prediction
+python <span class="nt">-m</span> venv venv
+<span class="nb">source </span>venv/bin/activate  <span class="c"># or venv\Scripts\activate on Windows</span>
+pip <span class="nb">install</span> <span class="nt">-r</span> requirements.txt
+jupyter notebook
+</code></pre></div></div>
+
+<p>Then open the <code class="language-plaintext highlighter-rouge">nba_playoffs_prediction_template.ipynb</code> notebook.</p>
+
+<h3 id="option-2-in-the-cloud">Option 2: In the Cloud</h3>
+
+<p>Use Binder to run it without installing anything:</p>
+
+<p><a href="https://mybinder.org/v2/gh/j-abed/nba_playoffs_prediction/HEAD"><img src="https://mybinder.org/badge_logo.svg" alt="Launch Binder" /></a></p>
+
+<h2 id="7-tweaking-the-model">7. Tweaking the Model</h2>
+
+<p>Some fun ideas:</p>
+<ul>
+  <li>Update Elo after each round</li>
+  <li>Factor in injuries</li>
+  <li>Try single-elimination or best-of-5 formats</li>
+  <li>Tune home-court advantage</li>
+</ul>
+
+<h2 id="8-what-we-learned">8. What We Learned</h2>
+
+<p>You can’t predict the future. But you can explore it — and data can show you just how uncertain the “favorites” really are. Whether you’re modeling upset potential or estimating your team’s title odds, simulations give you a smart way to engage with the madness.</p>
+
+<h2 id="9-explore-the-code">9. Explore the Code</h2>
+
+<p>Check it out on GitHub:<br />
+👉 <a href="https://github.com/j-abed/nba_playoffs_prediction">github.com/j-abed/nba_playoffs_prediction</a></p>
+
 
   </div>
   
