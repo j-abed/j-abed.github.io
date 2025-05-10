@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Can We Predict the NBA Playoffs? A Hands-On Guide"
-date: 2025-05-10 06:00:00 +0000
+date: 2025-05-09 22:00:00 +0000
 categories: [nba data-science python]
 permalink: /NBA-Playoffs-Prediction
 ---
