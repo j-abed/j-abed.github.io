@@ -1,9 +1,9 @@
 ---
 layout: post
 title: "Can We Predict the NBA Playoffs? A Hands-On Guide"
-date: 2025-05-09 06:00:00 +0000
+date: 2025-05-10 06:00:00 +0000
 categories: [nba data-science python]
-permalink: /What-Happened-to-Alpha
+permalink: /NBA-Playoffs-Prediction
 ---
 
 What if you could simulate the NBA Playoffs 10,000 times before a single tip-off?
