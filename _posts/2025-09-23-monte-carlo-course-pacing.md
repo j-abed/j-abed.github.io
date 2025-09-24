@@ -1,14 +1,16 @@
 ---
 date: 2025-09-23
 description: A story-driven guide to using Monte Carlo simulation for
-  course and project planning---complete with a runnable example and
-  live data files.
+  course and project planning
 layout: post
 tags:
 - planning
 - simulation
 - monte-carlo
 - analytics
+- AI
+- data science
+- business intelligene
 title: "Peeking into Every Possible Future: A Narrative on Monte Carlo
   Simulation"
 ---
@@ -17,8 +19,8 @@ title: "Peeking into Every Possible Future: A Narrative on Monte Carlo
 
 Have you ever wondered what it would be like to peek into every possible
 future?\
-I certainly have, especially after countless times when a beautifully
-crafted plan unraveled within days of launch.
+I certainly have, especially when a beautifully
+crafted customer plan unraveled within just days of launch.
 
 Consider this scenario. Suppose you're planning a six‑week
 leadership academy or intensive university course. Your promise to students is firm: everything wraps on time so they can return to their normal schedules without disruption.
@@ -198,7 +200,7 @@ x-ray of risk.
 
 ------------------------------------------------------------------------
 
-## No-Code Path for Teams
+## No-Code Path for MSFT users/teams
 
 Prefer to stay in a business intelligence tool? Power BI can import the
 same CSVs. You can create a simple measure:
