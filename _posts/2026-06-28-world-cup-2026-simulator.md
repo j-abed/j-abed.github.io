@@ -279,7 +279,7 @@ Python owns the tournament logic. The frontend owns the experience. That archite
 
 I built this because the 2026 format is genuinely new territory, and the problems it creates deserve to be solved properly rather than papered over. The math inside a tournament simulator is actually fairly compact. The interesting part is everything surrounding it: the rules, the edge cases, the tiebreakers that fire in 1% of simulations but still matter, the 495 third-place combinations that nobody bothered to model before this year, and the assumptions that turn a 48-team tournament into a probability distribution.
 
-The World Cup only happens once.
+The World Cup only happens once every four years.
 
 The simulator plays it out ten thousand times.
 
