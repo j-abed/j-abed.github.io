@@ -17,15 +17,16 @@
 
 
 
-  <link rel="stylesheet" href="http://localhost:4001/public/css/poole.css">
-  <link rel="stylesheet" href="http://localhost:4001/public/css/syntax.css">
-  <link rel="stylesheet" href="http://localhost:4001/public/css/lanyon.css">
+  <link rel="stylesheet" href="http://localhost:4000/public/css/poole.css">
+  <link rel="stylesheet" href="http://localhost:4000/public/css/syntax.css">
+  <link rel="stylesheet" href="http://localhost:4000/public/css/lanyon.css">
+  <link rel="stylesheet" href="http://localhost:4000/public/css/custom.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Serif:400,400italic,700%7CPT+Sans:400">
 
-  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="http://localhost:4001/public/apple-touch-icon-precomposed.png">
-  <link rel="shortcut icon" href="http://localhost:4001/public/favicon.ico">
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="http://localhost:4000/public/apple-touch-icon-precomposed.png">
+  <link rel="shortcut icon" href="http://localhost:4000/public/favicon.ico">
 
-  <link rel="alternate" type="application/rss+xml" title="RSS" href="http://localhost:4001/atom.xml">
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="http://localhost:4000/atom.xml">
   
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   
@@ -40,29 +41,6 @@
     gtag('config', 'G-34SMXHK93B');
   </script>
   
-  
-  <style>
-    #bmc-wbtn {
-      display: flex;
-      justify-content: flex-end;
-      padding: 5px 25px;
-    }
-  </style>
-  <div id="bmc-wbtn">
-    <script type="text/javascript" 
-            src="https://cdnjs.buymeacoffee.com/1.0.0/button.prod.min.js" 
-            data-name="bmc-button" 
-            data-slug="jasonabed" 
-            data-color="#FF5F5F" 
-            data-emoji=""  
-            data-font="Cookie" 
-            data-font-size="12"   
-            data-text="Buy me a coffee" 
-            data-outline-color="#000000" 
-            data-font-color="#ffffff" 
-            data-coffee-color="#FFDD00">
-    </script>
-  </div>
 </head>
 
 
@@ -79,7 +57,7 @@
   </div>
 
   <nav class="sidebar-nav">
-    <a class="sidebar-nav-item active" href="http://localhost:4001/">Home</a>
+    <a class="sidebar-nav-item active" href="http://localhost:4000/">Home</a>
 
     
 
@@ -95,12 +73,16 @@
     
       
         
-          <a class="sidebar-nav-item" href="http://localhost:4001/about/">About Jason</a>
+          <a class="sidebar-nav-item" href="http://localhost:4000/about/">About Jason</a>
         
       
     
       
     
+      
+    
+      
+        
       
     
       
@@ -167,9 +149,26 @@
 
   <div class="sidebar-item">
     <p>
-      &copy; 2025. All rights reserved.
+      &copy; 2026. All rights reserved.
     </p>
   </div>
+
+  <div class="sidebar-item sidebar-bmc">
+    <script type="text/javascript"
+            src="https://cdnjs.buymeacoffee.com/1.0.0/button.prod.min.js"
+            data-name="bmc-button"
+            data-slug="jasonabed"
+            data-color="#FF5F5F"
+            data-emoji=""
+            data-font="Cookie"
+            data-font-size="12"
+            data-text="Buy me a coffee"
+            data-outline-color="#000000"
+            data-font-color="#ffffff"
+            data-coffee-color="#FFDD00">
+    </script>
+  </div>
+
 </div>
 
 
@@ -191,237 +190,288 @@
   
   <div class="post">
     <h1 class="post-title">
-      <a href="http://localhost:4001/2025/09/23/monte-carlo-course-pacing/">
-        Peeking into Every Possible Future: A Narrative on Monte Carlo Simulation
+      <a href="http://localhost:4000/world-cup-2026-simulator">
+        The 2026 World Cup Has 495 Hidden Brackets. Naturally, I Built a Simulator.
       </a>
     </h1>
 
-    <span class="post-date">23 Sep 2025</span>
+    <span class="post-date">28 Jun 2026</span>
 
-    <h2 id="peeking-into-every-possible-future">Peeking into Every Possible Future</h2>
+    <p>The 2026 World Cup is the first in history to field 48 teams. For most fans, that means more matches, more nations, more potential for upsets from smaller footballing countries. For a forecasting model, it means something more specific: a format so structurally novel that most existing simulators handle it incorrectly — and a genuinely interesting engineering problem worth solving from scratch.</p>
 
-<p>Have you ever wondered what it would be like to peek into every possible
-future?<br />
-I certainly have, especially when a beautifully
-crafted customer plan unraveled within just days of launch.</p>
+<p>When a sportsbook, analytics site, or forecasting model says a team has a 14% chance to win the World Cup, that number can feel more authoritative than it really is. It looks like a fact. It is not a fact. It is the output of a chain of assumptions: how strong each team is, how many goals they are expected to score, how often favorites lose, how tiebreakers are handled, and what kind of bracket path the tournament creates.</p>
 
-<p>Consider this scenario. Suppose you’re planning a six‑week
-leadership academy or intensive university course. Your promise to students is firm: everything wraps on time so they can return to their normal schedules without disruption.
-You map every session, assignment, and project with precision. Yet small
-uncertainties loom. A single lively debate might stretch a module by two
-days. A holiday could unexpectedly shrink a week of instruction. An
-instructor might face last-minute travel delays. Each of these alone
-seems minor, but together they threaten the entire calendar. This is
-where the ability to “peek into every possible future” would be
-invaluable.</p>
+<p>Most forecasting sites publish the number without explaining where it comes from. This is an attempt to open that up.</p>
 
-<p>It always starts out so well: calendars aligned, milestones locked in,
-tasks broken down into neat timelines.
-But reality has a way of throwing curveballs:</p>
+<p>The first version of the project seemed straightforward enough. Load the fixtures. Give each team a strength rating. Simulate the remaining matches. Build the group tables. Advance the right teams. Repeat the tournament 10,000 times and count how often each country wins.</p>
 
-<ul>
-  <li>Maybe a key reviewer calls in sick.</li>
-  <li>Maybe a lively discussion doubles the time on an early module.</li>
-  <li>Maybe an unexpected holiday cuts a week short.</li>
-</ul>
+<p>That is the basic idea behind Monte Carlo simulation. You do not try to predict the future once. You create thousands of plausible futures and ask what happens most often.</p>
 
-<p>Before long, you’re reacting instead of leading—sending “revised
-schedule” emails and hoping this version sticks.
-It’s frustrating, and it happens more often than most of us care to
-admit.</p>
+<p>Then I got to the third-place teams.</p>
 
-<p>Here’s a thought experiment I love to run with teams:\<br />
-<em>What if you could run the future a thousand times today, watch every
-possible timeline unfold, and choose dates based on that full view
-instead of a single guess?</em></p>
+<p>The 2026 format expanded from 8 groups and 32 teams to 12 groups and 48 teams — the largest field in World Cup history. The top two from each group advance automatically, giving you 24 guaranteed qualifiers. The remaining eight spots in the Round of 32 go to the best third-place finishers across all twelve groups. This third-place mechanic is entirely new; no previous World Cup worked this way, which meant no simulator I could find handled it completely correctly.</p>
 
-<p>Enter the <strong>Monte Carlo simulation</strong>—a
-technique that lets you stress-test your schedule before a single
-kickoff call or finalized syllabus.</p>
+<p>That part is already unusual. But it is still not the hard part.</p>
 
-<hr />
+<p>The hard part is that those eight third-place teams do not simply slide into the bracket wherever there is space. Depending on which eight groups produce qualifying third-place teams, those teams are assigned into specific knockout slots. There are 495 possible combinations.</p>
 
-<h2 id="from-the-casino-to-the-command-center">From the Casino to the Command Center</h2>
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Choose 8 qualifying third-place groups from 12 total groups
 
-<p>The term <em>Monte Carlo</em> comes from the famous gambling district in
-Monaco.
-In the 1940s, scientists working on complex physics problems faced an
-impossible task: calculating every microscopic interaction in systems
-full of randomness.
-Their solution? Treat the system like a giant game of chance. Instead of
-one calculation, they rolled the dice thousands of times, letting the
-data reveal the most likely outcomes.</p>
-
-<p>That same logic applies perfectly to planning any initiative where
-duration varies.
-Courses. Product launches. Enterprise change programs. Anything with
-people, tasks, and time.</p>
-
-<hr />
-
-<h2 id="why-averages-fail-us">Why Averages Fail Us</h2>
-
-<p>Most plans are built on averages. We say things like:</p>
-
-<blockquote>
-  <p>“Module A should take seven days.”<br />
-“Peer review averages three.”</p>
-</blockquote>
-
-<p>But an average is a thin slice of the truth. A single delay in Module A
-can ripple forward and knock every later date off course. <em>Padding the schedule with generic buffers helps, but it’s still guesswork.</em></p>
-
-<p>Monte Carlo simulations replace those single numbers with ranges and
-then models <strong>thousands of possible futures</strong>.
-Instead of asking, <em>“What date should we put on the calendar?”</em> you ask,
-<em>“How likely is it we’ll be done by June 10?”</em>
-That is a subtle but profound shift.</p>
-
-<hr />
-
-<h2 id="walking-through-an-example">Walking Through an Example</h2>
-
-<p>Building on the leadership academy scenario, let’s sketch out a Monte
-Carlo run.<br />
-You identify seven key activities: orientation, two core modules, two
-team projects, a guest lecture, and final presentations.</p>
-
-<p>For each, you capture three numbers: best case, most likely, and worst
-case: Orientation might run anywhere from one to three days. A major project
-might take five on a good run or nine if the team hits a snag.</p>
-
-<p>Next, you feed these ranges into a simple program—Python, Excel, or
-Power BI will do. The computer randomly selects a duration for each activity, one complete
-timeline at a time. Then it repeats the process <strong>20,000 times</strong>.</p>
-
-<p>What comes back isn’t a single end date. It’s a <strong>distribution</strong>. You might discover:</p>
-
-<ul>
-  <li>60 % chance of finishing within six weeks</li>
-  <li>90 % chance within seven</li>
-  <li>98 % chance within eight</li>
-</ul>
-
-<p>Suddenly, you have more than a date—you have odds you can explain
-and defend.</p>
-
-<p><img src="/assets/monte-carlo/total_timeline_ecdf.png" alt="ECDF of Total Timeline (days)" /></p>
-
-<hr />
-
-<h2 id="see-it-in-actionlive-files-included">See It in Action—Live Files Included</h2>
-
-<p>To make this tangible, I’ve published everything you need to experiment
-right now:</p>
-
-<ul>
-  <li>
-    <p><strong>Chart of results (PNG)</strong> – <a href="/assets/monte-carlo/total_timeline_ecdf.png">View or download</a></p>
-  </li>
-  <li><strong>Activities template (CSV)</strong> –
-  <a href="/assets/monte-carlo/course_activities_template.csv">Download</a></li>
-  <li><strong>Simulation totals (CSV)</strong> –
-  <a href="/assets/monte-carlo/monte_carlo_total_duration.csv">Download</a></li>
-</ul>
-
-<p>These files came from my own run of a seven-activity course plan.<br />
-The chart shows the <strong>ECDF</strong>—an elegant way to read “by what date will
-X % of simulations be complete?”</p>
-
-<p>If you code, drop the snippet below into a notebook and watch the math
-unfold:</p>
-
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span><span class="p">,</span> <span class="n">pandas</span> <span class="k">as</span> <span class="n">pd</span><span class="p">,</span> <span class="n">matplotlib</span><span class="p">.</span><span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
-
-
-<span class="c1"># Load the activity template from the local assets directory
-</span><span class="n">activities</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s">'../assets/monte-carlo/course_activities_template.csv'</span><span class="p">)</span>
-
-<span class="n">rng</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="n">default_rng</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
-<span class="n">draws</span> <span class="o">=</span> <span class="p">{</span><span class="n">row</span><span class="p">.</span><span class="n">activity</span><span class="p">:</span> <span class="n">rng</span><span class="p">.</span><span class="n">triangular</span><span class="p">(</span><span class="n">row</span><span class="p">.</span><span class="n">best</span><span class="p">,</span> <span class="n">row</span><span class="p">.</span><span class="n">likely</span><span class="p">,</span> <span class="n">row</span><span class="p">.</span><span class="n">worst</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">20_000</span><span class="p">)</span>
-         <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">activities</span><span class="p">.</span><span class="n">itertuples</span><span class="p">()}</span>
-<span class="n">samples_df</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">draws</span><span class="p">)</span>
-<span class="n">total_days</span> <span class="o">=</span> <span class="n">samples_df</span><span class="p">.</span><span class="nb">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-
-<span class="k">print</span><span class="p">(</span><span class="s">"Median (P50):"</span><span class="p">,</span> <span class="n">np</span><span class="p">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">total_days</span><span class="p">,</span> <span class="mi">50</span><span class="p">))</span>
-<span class="k">print</span><span class="p">(</span><span class="s">"80th percentile (P80):"</span><span class="p">,</span> <span class="n">np</span><span class="p">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">total_days</span><span class="p">,</span> <span class="mi">80</span><span class="p">))</span>
-<span class="k">print</span><span class="p">(</span><span class="s">"90th percentile (P90):"</span><span class="p">,</span> <span class="n">np</span><span class="p">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">total_days</span><span class="p">,</span> <span class="mi">90</span><span class="p">))</span>
-
-<span class="c1"># Probability of finishing in &lt;=7 weeks (49 days)
-</span><span class="k">print</span><span class="p">(</span><span class="s">"Probability &lt;= 49 days:"</span><span class="p">,</span> <span class="p">(</span><span class="n">total_days</span> <span class="o">&lt;=</span> <span class="mi">49</span><span class="p">).</span><span class="n">mean</span><span class="p">())</span>
-
-<span class="c1"># Quick ECDF plot
-</span><span class="n">xs</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">sort</span><span class="p">(</span><span class="n">total_days</span><span class="p">)</span>
-<span class="n">ys</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">xs</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">xs</span><span class="p">)</span>
-<span class="n">plt</span><span class="p">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xs</span><span class="p">,</span> <span class="n">ys</span><span class="p">)</span>
-<span class="n">plt</span><span class="p">.</span><span class="n">title</span><span class="p">(</span><span class="s">"ECDF of Total Timeline (days)"</span><span class="p">)</span>
-<span class="n">plt</span><span class="p">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">"Total days"</span><span class="p">);</span> <span class="n">plt</span><span class="p">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s">"Cumulative probability"</span><span class="p">)</span>
-<span class="n">plt</span><span class="p">.</span><span class="n">show</span><span class="p">()</span>
+C(12, 8) = 12! / (8! × 4!) = 495
 </code></pre></div></div>
 
-<p>(be sure to download the file and update your relative path)</p>
+<p>That one detail changed the whole project.</p>
+
+<p>A team’s odds are not just a function of how good it is. They are also a function of where it finishes, which other third-place teams survive, what bracket slot that creates, and which opponents become possible several rounds later. The format itself becomes part of the model.</p>
+
+<p>That was the moment the project stopped feeling like a simple standings calculator and started feeling like a real tournament simulator.</p>
+
+<p><img src="/assets/wc-predict/01-hero-dashboard.png" alt="The live dashboard — 10,000 Monte Carlo runs, refreshed every two hours" />
+<em>The live dashboard: 10,000 simulations per run, 95.5% projected confidence, 21 days to the final.</em></p>
 
 <hr />
 
-<h2 id="reading-the-curves-and-tables">Reading the Curves and Tables</h2>
+<h2 id="odds-are-less-magical-than-they-look">Odds Are Less Magical Than They Look</h2>
 
-<p>The ECDF curve gives you a fingertip feel for risk:<br />
-<em>Pick a date on the x-axis, read the y-axis to see the chance of
-finishing by then.</em></p>
+<p>Sports odds often feel like they come from a black box. A betting app gives one team a price. A forecast gives another team a probability. The number looks precise, so people treat it as if it is objectively true.</p>
 
-<p>Percentiles like P80 or P90 become natural commitments—dates you can
-share with leadership or customers knowing you’ve quantified the odds. Meanwhile, the sensitivity analysis in the CSV shows which steps drive
-the most schedule risk, pointing you toward where to add buffers or
-rethink your schedule’s design.</p>
+<p>But most of the time, a probability is just a compressed summary of many smaller modeling decisions.</p>
 
-<hr />
+<p>How strong is each team? How many goals should we expect in a match between these two teams? How much randomness should football have? How often should a weaker team still win? What happens if two teams finish level on points? What does a draw do to the group table? What kind of path does a team face if it finishes first instead of second?</p>
 
-<h2 id="beyond-education">Beyond Education</h2>
+<p>A model is a repeatable way to answer those questions over and over again. So when a simulator says a team has a 14% chance to win the World Cup, it does not mean the model knows what will happen. It means that, under that model’s assumptions, the team won about 14% of the simulated tournaments.</p>
 
-<p>Although I framed this with a course example, the logic holds anywhere
-schedules can slip:</p>
-
-<ul>
-  <li>Product launches with supply-chain volatility</li>
-  <li>Corporate onboarding that depends on busy managers</li>
-  <li>Marketing campaigns with interdependent creative assets</li>
-  <li>Construction and infrastructure projects with weather exposure</li>
-</ul>
-
-<p>If it has sequential tasks and uncertainty, Monte Carlo gives you an
-x-ray of risk.</p>
+<p>That distinction matters. The number is useful, but it is not prophecy. It is a structured argument about uncertainty — and in a tournament this size, with a format this new, the assumptions underneath that argument deserve more scrutiny than usual.</p>
 
 <hr />
 
-<h2 id="no-code-path-for-msft-usersteams">No-Code Path for MSFT users/teams</h2>
+<h2 id="simulating-matches-means-simulating-goals">Simulating Matches Means Simulating Goals</h2>
 
-<p>Prefer to stay in a business intelligence tool? Power BI can import the
-same CSVs. You can create a simple measure:</p>
+<p>The first practical problem was match simulation.</p>
 
-<pre><code class="language-dax">OnTime% := 
-  VAR tgt = SELECTEDVALUE(Targets[Days],49)
-  RETURN DIVIDE(
-    CALCULATE(COUNTROWS('Totals'),'Totals'[total_days]&lt;=tgt),
-    COUNTROWS('Totals')
-  )
-</code></pre>
+<p>It would have been easy to give each team a simple win probability: Team A has a 60% chance to win, Team B has a 25% chance, and the draw is 15%. That can work in some contexts, but it is not enough for a World Cup group stage because scorelines matter.</p>
 
-<p>Add a slider to adjust the target date and watch the on-time probability
-update in real time.</p>
+<p>A 1-0 win and a 4-0 win are not the same thing. Goal difference matters. Goals scored matter. Tiebreakers matter. If the model only knows who won, it cannot correctly build the group table.</p>
+
+<p>So the simulator generates goals.</p>
+
+<p>I used a Poisson goal model, which is a common starting point in football analytics because goals are discrete and relatively rare. The model estimates an expected number of goals for each team, then draws a scoreline from that distribution.</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>P(X = k) = (λ^k × e^-λ) / k!
+</code></pre></div></div>
+
+<p>Where <code class="language-plaintext highlighter-rouge">X</code> is goals scored, <code class="language-plaintext highlighter-rouge">k</code> is a specific count, and <code class="language-plaintext highlighter-rouge">λ</code> is the expected goals for that team in this match. If a team has an expected rate of 1.4, the model does not say “this team scores 1.4 goals.” It produces a probability distribution: 0 goals, 1 goal, 2 goals, 3 goals, and so on.</p>
+
+<p>In code, the core of that is small:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">home_goals</span> <span class="o">=</span> <span class="n">rng</span><span class="p">.</span><span class="n">poisson</span><span class="p">(</span><span class="n">home_expected_goals</span><span class="p">)</span>
+<span class="n">away_goals</span> <span class="o">=</span> <span class="n">rng</span><span class="p">.</span><span class="n">poisson</span><span class="p">(</span><span class="n">away_expected_goals</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="n">home_goals</span> <span class="o">&gt;</span> <span class="n">away_goals</span><span class="p">:</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="s">"home_win"</span>
+<span class="k">elif</span> <span class="n">away_goals</span> <span class="o">&gt;</span> <span class="n">home_goals</span><span class="p">:</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="s">"away_win"</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="s">"draw"</span>
+</code></pre></div></div>
+
+<p>The expected goals are derived from team strength ratings. In this version, the simulator uses an Elo-style post-match rating feed so team strength can update as tournament results come in. A team that dominates its group carries that signal into the knockout rounds. A team that scrapes through carries that signal too.</p>
+
+<p>This is not a perfect football model. It does not know about injuries, tactical matchups, fatigue, suspensions, travel, or whether a striker is suddenly in the form of his life. But it creates a reasonable foundation: stronger teams score more often, weaker teams still win sometimes, and every simulated match produces an actual scoreline that flows into the tournament. The model does not just need to know who won. It needs to know how the result changes everything else.</p>
 
 <hr />
 
-<h2 id="why-i-keep-coming-back-to-this">Why I Keep Coming Back to This</h2>
+<h2 id="the-rules-are-part-of-the-model">The Rules Are Part of the Model</h2>
 
-<p>Every time I build a new program or consult on a complex rollout, I
-remember that fragile feeling when a plan slips on Day 2. Monte Carlo doesn’t remove uncertainty—it <em>embraces</em> it, showing its
-contours so we can design with honesty and calm. <strong>Run the future a thousand times today. Then pick dates that will still make sense tomorrow.</strong></p>
+<p>Once the simulator could generate scorelines, the next problem was making sure the tournament interpreted them correctly.</p>
 
-<p>Any questions or comments please feel free to ask below.</p>
+<p>This is where a lot of casual predictors quietly go wrong.</p>
 
-<p><strong>If an AI agent to run these simulations for you would be helpful to your team or you team, please reach out to me or my colleauges; this is something we’re currently working on</strong></p>
+<p>A group table looks simple: sort by points, then goal difference, then goals scored. In many cases, that is enough. But when teams are tied, the model has to apply the correct tiebreaking sequence. Sometimes that means comparing the tied teams against the whole group. Sometimes it means isolating a mini-table among only the tied teams. Sometimes second and third are separated by a fallback nobody thinks about until it matters.</p>
+
+<p>That sounds like an edge case until you run 10,000 tournaments.</p>
+
+<p>Across twelve groups and thousands of simulations, ties happen constantly. Two teams tie on points. Three teams tie. Second and third are separated by goal difference. Third and fourth by goals scored. One small ranking mistake changes who qualifies, who gets eliminated, and who lands in which bracket slot.</p>
+
+<p><img src="/assets/wc-predict/04-group-standings.png" alt="All 12 group standings, final matchday complete" />
+<em>All 72 group-stage results in. Twelve groups, 48 teams, and dozens of tiebreaker scenarios that had to be handled exactly right.</em></p>
+
+<p>That is one of the hidden lessons of building a simulator: rules are model risk. If the tiebreaker logic is wrong, the odds are wrong — not always in a way that jumps out visually. The bracket might still look plausible. The champion leaderboard might still look reasonable. But underneath, teams may be walking through paths that should never have existed.</p>
+
+<p>So the backend owns the tournament rules. It calculates standings, applies the tiebreaker sequence, ranks third-place teams, maps the Round of 32, and exports the resulting tournament state. The frontend does not recalculate any of that. It renders the snapshot. That separation matters because a beautiful UI can still be structurally wrong.</p>
 
 <hr />
+
+<h2 id="the-bracket-is-not-just-a-display-layer">The Bracket Is Not Just a Display Layer</h2>
+
+<p>After the group-stage logic was working, I expected the knockout bracket to be easy.</p>
+
+<p>It was not.</p>
+
+<p>The third-place qualifiers create the signature problem of the 2026 format. Twelve groups produce twelve third-place teams. Eight advance. Ranking them is straightforward enough — compare their group records and take the best eight.</p>
+
+<p>But once you know which eight teams qualify, you still need to know where they go.</p>
+
+<p>That is where the 495 combinations come in. Choosing eight qualifying third-place groups from twelve possible groups creates 495 possible group combinations. Each combination maps to a specific set of Round of 32 assignments. If the qualifying third-place teams come from Groups A, B, C, D, E, F, G, and H, they slot in one way. If they come from Groups A, B, C, D, E, F, G, and I, they may slot in another.</p>
+
+<p>So the bracket is not just a display layer. It is part of the prediction model.</p>
+
+<p><img src="/assets/wc-predict/05-third-place.png" alt="Third-place ranking: the top 8 advance, but where they go depends on which 8" />
+<em>The third-place race. All 12 third-place teams ranked — the top 8 advance, but their bracket assignment depends on the specific group combination. DR Congo, Sweden, and Ghana leading the pack here.</em></p>
+
+<p>The lookup looks simple enough in code:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">qualifying_third_place_groups</span> <span class="o">=</span> <span class="p">[</span><span class="s">"A"</span><span class="p">,</span> <span class="s">"B"</span><span class="p">,</span> <span class="s">"C"</span><span class="p">,</span> <span class="s">"D"</span><span class="p">,</span> <span class="s">"E"</span><span class="p">,</span> <span class="s">"F"</span><span class="p">,</span> <span class="s">"G"</span><span class="p">,</span> <span class="s">"I"</span><span class="p">]</span>
+<span class="n">combination_key</span> <span class="o">=</span> <span class="s">""</span><span class="p">.</span><span class="n">join</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="n">qualifying_third_place_groups</span><span class="p">))</span>
+
+<span class="n">assignment</span> <span class="o">=</span> <span class="n">third_place_permutation_table</span><span class="p">[</span><span class="n">combination_key</span><span class="p">]</span>
+</code></pre></div></div>
+
+<p>But that lookup is doing a lot of work. It prevents the simulator from inventing bracket paths that cannot exist. It turns a set of qualifying groups into the correct official assignment pattern. It makes sure the Round of 32 is structurally valid before any knockout simulations begin.</p>
+
+<p>Without that step, a predictor can look right while being wrong. And a wrong bracket is not a cosmetic problem — it changes matchups, matchups change advancement probabilities, and advancement probabilities change champion odds. That was the most interesting technical problem in the project: the realization that the tournament structure itself had to be modeled as carefully as the teams.</p>
+
+<p><img src="/assets/wc-predict/03-bracket-most-likely.png" alt="The projected knockout bracket — most likely path through the Round of 32" />
+<em>The “most likely path” bracket: Germany and France both looking dangerous on their side of the draw, with France emerging as the modal finalist from this portion of the bracket.</em></p>
+
+<hr />
+
+<h2 id="one-simulation-is-a-story-ten-thousand-become-odds">One Simulation Is a Story. Ten Thousand Become Odds.</h2>
+
+<p>A single simulated World Cup is fun, but it is not very useful.</p>
+
+<p>In one run, Spain wins the tournament. In another, Argentina loses early. In another, Morocco makes a deep run. In another, the United States gets a favorable path. In another, a third-place team lands in a soft part of the bracket and suddenly has a real chance to reach the quarterfinals.</p>
+
+<p>Any one simulation is just a story. The odds come from counting the stories.</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>champion_probability(team) =
+    tournaments_won_by_team / total_simulated_tournaments
+</code></pre></div></div>
+
+<p>If Spain wins 1,240 out of 10,000 simulated tournaments, the model reports Spain at roughly 12.4% to win. In code:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">champion_counts</span> <span class="o">=</span> <span class="n">Counter</span><span class="p">()</span>
+
+<span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10_000</span><span class="p">):</span>
+    <span class="n">champion</span> <span class="o">=</span> <span class="n">simulate_tournament</span><span class="p">()</span>
+    <span class="n">champion_counts</span><span class="p">[</span><span class="n">champion</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+
+<span class="n">champion_probabilities</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="n">team</span><span class="p">:</span> <span class="n">wins</span> <span class="o">/</span> <span class="mi">10_000</span>
+    <span class="k">for</span> <span class="n">team</span><span class="p">,</span> <span class="n">wins</span> <span class="ow">in</span> <span class="n">champion_counts</span><span class="p">.</span><span class="n">items</span><span class="p">()</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>I used 10,000 simulations as the working number because it was large enough to make the results fairly stable but still fast enough to rerun frequently. That runtime mattered more than I expected. A model that takes too long to run becomes something you avoid touching. A model that runs quickly becomes something you can update after each match, inspect, question, and improve.</p>
+
+<p>That led to one of the more practical engineering decisions in the project. Early versions used pandas heavily, which made the code readable but too slow inside the simulation loop. Ranking one group table with pandas is fine. Ranking twelve groups across 10,000 simulated tournaments is something else entirely.</p>
+
+<p>The hot path moved to plain Python dictionaries and lists. Less elegant, but much faster. That is another underrated part of building forecasting tools: the model has to be correct, but it also has to be usable.</p>
+
+<hr />
+
+<h2 id="what-the-simulator-actually-shows">What the Simulator Actually Shows</h2>
+
+<p>The obvious output is the champion leaderboard.</p>
+
+<p>The strongest teams usually rise to the top, which is what you would expect. Argentina, France, Spain, England, Brazil, and the other elite programs should win more simulated tournaments than weaker teams. If they did not, something would probably be wrong with the model.</p>
+
+<p>But the more interesting output is in the middle of the table.</p>
+
+<p><img src="/assets/wc-predict/02-champion-odds.png" alt="Champion odds — Argentina leads, France close behind" />
+<em>Argentina tops the model at 20.7% with a 50.1% semifinal rate. France sits at 15.2%. The gap between title favorite and deep runner is smaller than sportsbook prices often suggest.</em></p>
+
+<p>That is where you see the difference between unlikely and impossible. A team may not be a favorite to win the World Cup, but it may still have a realistic path to the quarterfinals or semifinals. That path can come from team quality, but it can also come from tournament structure. Finish first instead of second and your opponent changes. Qualify as a third-place team and your assignment depends on the other third-place groups. Benefit from one upset elsewhere and a hard bracket can suddenly soften.</p>
+
+<p>Fans tend to think in binaries: contender or not, good draw or bad draw, easy group or hard group. A simulator shows the gradient.</p>
+
+<p>It also explains why odds move so much during a tournament. A result does not only affect the two teams on the field. It changes standings, tiebreakers, possible opponents, bracket slots, and the distribution of future outcomes. One match can move a team’s odds even if that team did not play. That is the part I find most interesting — the model is not just ranking teams. It is showing how the tournament creates and destroys opportunity in real time.</p>
+
+<hr />
+
+<h2 id="model-outputs-are-not-facts">Model Outputs Are Not Facts</h2>
+
+<p>The biggest lesson from building this is that odds are not magic and they are not certainty.</p>
+
+<p>They are structured arguments about uncertainty.</p>
+
+<p>A model starts with assumptions: team strength, expected goals, randomness, tournament rules, simulation volume, and data freshness. Change the assumptions and the probabilities move. Use a different rating source and champion odds shift. Calibrate expected goals differently and upset rates shift. Apply the wrong tiebreaker and bracket paths shift. Ignore the third-place assignment table and the knockout stage can become structurally invalid.</p>
+
+<p>That is why probabilities should be read as model outputs, not facts. “Team X has a 12% chance” really means “given this model’s inputs and assumptions, Team X won 12% of the simulated tournaments.” Useful. Not truth.</p>
+
+<p>It is also different from a sportsbook price. A sportsbook price reflects market behavior, bookmaker margin, liability management, and how bettors are positioning. This simulator is not trying to replicate that. It is trying to produce a clean model-side probability: if these teams are this strong, and goals behave roughly like this, and the tournament follows these rules, what happens across thousands of possible World Cups?</p>
+
+<p>Once you see odds that way, they become less mysterious and more debatable. You can challenge the inputs. You can improve the calibration. You can add injuries, suspensions, market prices, travel, or tactical information. But the basic machinery is understandable: estimate match outcomes, apply the rules, repeat many times, count the results.</p>
+
+<p>The mystery is not where the number comes from. The mystery is which assumptions are good enough.</p>
+
+<hr />
+
+<h2 id="what-the-model-gets-wrong">What the Model Gets Wrong</h2>
+
+<p>No model survives contact with a real tournament unchanged.</p>
+
+<p>The goal model has not been formally calibrated against decades of international results. The current rating-to-goal conversion is intentionally simple. A better version would fit historical matches and estimate how rating differences translate into expected goals, draw rates, and upset probabilities with more precision.</p>
+
+<p>Fair-play tiebreaking is a known gap. The code has a place for disciplinary data, but automatically sourcing and maintaining it is harder than it sounds. It probably will not decide who advances — until one day it does, and then it will matter completely.</p>
+
+<p>The model also cannot see everything a human analyst would care about. Injuries, fatigue, tactical matchups, squad rotation, suspensions, and form are mostly outside the rating number. One missing center back or one suspended striker can change a match more than any rating gap suggests.</p>
+
+<p>That is not a reason to avoid modeling. It is a reason to be honest about what the model is and is not saying. The uncertainty is not a failure of the math. It is built into the problem. Every extra assumption makes the model more realistic in one way and more fragile in another. Somewhere in that tradeoff is every forecasting product that has ever existed.</p>
+
+<hr />
+
+<h2 id="the-dashboard">The Dashboard</h2>
+
+<p>The dashboard is live at <strong><a href="https://wcpredict-2026.vercel.app">wcpredict-2026.vercel.app</a></strong>.</p>
+
+<p>It includes champion odds, the knockout bracket, group standings, third-place rankings, round-by-round advancement probabilities, team detail views, and a market comparison that puts the model’s probabilities next to current sportsbook prices.</p>
+
+<p><img src="/assets/wc-predict/07-qualification-odds.png" alt="Qualification odds — simulated probabilities of advancing out of the group stage" />
+<em>Qualification odds: the top teams locked in at 100%, but further down the list the bar charts tell a much more interesting story about who is actually safe and who is on the bubble.</em></p>
+
+<p>The backend exports a complete JSON snapshot for the frontend on every update cycle:</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"metadata"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"generated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2026-06-28T..."</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"ratings_source"</span><span class="p">:</span><span class="w"> </span><span class="s2">"post_match_elo_updates"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"simulations"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"group"</span><span class="p">:</span><span class="w"> </span><span class="mi">10000</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"tournament"</span><span class="p">:</span><span class="w"> </span><span class="mi">10000</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"round"</span><span class="p">:</span><span class="w"> </span><span class="mi">10000</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nl">"standings"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+  </span><span class="nl">"third_place"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+  </span><span class="nl">"projected_qualifiers"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+  </span><span class="nl">"bracket"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"round_of_32"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="nl">"round_of_16"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="nl">"quarterfinals"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="nl">"semifinals"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="nl">"final"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nl">"odds"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"qualification"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="nl">"round"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<p>Python owns the tournament logic. The frontend owns the experience. That architecture is intentional — the hard part is not drawing a bracket. The hard part is making sure the bracket is valid.</p>
+
+<p>I built this because the 2026 format is genuinely new territory, and the problems it creates deserve to be solved properly rather than papered over. The math inside a tournament simulator is actually fairly compact. The interesting part is everything surrounding it: the rules, the edge cases, the tiebreakers that fire in 1% of simulations but still matter, the 495 third-place combinations that nobody bothered to model before this year, and the assumptions that turn a 48-team tournament into a probability distribution.</p>
+
+<p>The World Cup only happens once.</p>
+
+<p>The simulator plays it out ten thousand times.</p>
+
+<p>Somewhere between those two things is the part that makes sports prediction worth thinking about.</p>
+
+<hr />
+
+<p><em>Code: <a href="https://github.com/j-abed/world-cup-predictor">github.com/j-abed/world-cup-predictor</a></em></p>
 
   </div>
   
@@ -429,7 +479,7 @@ contours so we can design with honesty and calm. <strong>Run the future a thousa
 
 <div class="pagination">
   
-    <a class="pagination-item older" href="http://localhost:4001/page2">Older</a>
+    <a class="pagination-item older" href="http://localhost:4000/page2">Older</a>
   
   
     <span class="pagination-item newer">Newer</span>
