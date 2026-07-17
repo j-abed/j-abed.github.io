@@ -122,6 +122,16 @@ hr {
   box-shadow: 0 6px 28px rgba(0, 0, 0, 0.18);
 }
 
+.post img[src*="/assets/oracle-dcf/"] {
+  width: 52%;
+}
+
+@media (max-width: 38em) {
+  .post img[src*="/assets/oracle-dcf/"] {
+    width: 100%;
+  }
+}
+
 /* Image captions: the <em> paragraph immediately after an image paragraph */
 p:has(> img) + p {
   text-align: center;
@@ -174,6 +184,50 @@ blockquote {
 
 blockquote p:last-child {
   margin-bottom: 0;
+}
+
+/* -------------------------
+   Article notes and formulas
+   ------------------------- */
+.article-note {
+  margin: 1.4rem 0 1.6rem;
+  padding: 1rem 1.15rem;
+  border-left: 3px solid #268bd2;
+  border-radius: 0 6px 6px 0;
+  background-color: #f7fbfe;
+  color: #4f5b63;
+  font-size: 0.88rem;
+}
+
+.article-note p {
+  margin-top: 0;
+  margin-bottom: 0.75rem;
+  line-height: 1.55;
+}
+
+.article-note p:last-child,
+.article-note ul:last-child,
+.article-note pre:last-child {
+  margin-bottom: 0;
+}
+
+.article-note ul {
+  margin: 0.3rem 0 0.85rem 1.2rem;
+  padding-left: 0;
+}
+
+.article-note li {
+  margin-bottom: 0.2rem;
+}
+
+.article-note pre {
+  margin: 0.75rem 0 0;
+  padding: 0.75rem 0.9rem;
+  border-left: 0;
+  border-radius: 5px;
+  background-color: #fff;
+  font-size: 0.72rem;
+  line-height: 1.45;
 }
 
 /* -------------------------
