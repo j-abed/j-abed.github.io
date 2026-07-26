@@ -163,7 +163,7 @@ Enterprise value = Σ [ FCF(t) ÷ (1 + WACC)^t ]  +  terminal value ÷ (1 + WACC
 Terminal value   = FCF in the first post-forecast year ÷ (WACC − g)
 ```
 
-where *g* is the assumed perpetual growth rate. Feed the base case — 8.5% WACC, 3.0% terminal growth, capital spending normalizing, margins holding — into that machine and it returns an enterprise value near **\$549 billion** and, after subtracting net debt and preferred stock, an equity value near **\$446 billion**. Divide by roughly 2.9 billion diluted shares and the implied value is about **\$153 per share**. Against a reference price of \$126.91, the base case implies roughly **21% upside**.
+where *g* is the assumed perpetual growth rate. Feed the base case — 8.5% WACC, 3.0% terminal growth, capital spending normalizing, margins holding — into that machine and it returns an enterprise value near **\$549 billion** and, after subtracting net debt and preferred stock, an equity value near **\$446 billion**. Divide by roughly 2.9 billion diluted shares and the implied value is about **\$153 per share**. Against a reference price of \$114.99, the base case implies roughly **33% upside**.
 
 That single number, though, is the least interesting thing the model produces — and it deserves to be interrogated with the very framework we just built.
 
@@ -177,9 +177,9 @@ Which is why the range matters far more than the point estimate.
 
 | Scenario | Key operating assumptions | Implied value per share |
 |---|---|---:|
-| Bear | Slower revenue, softer margins, heavier capital expenditures | **\$106** (−17%) |
-| Base | Guided growth, stable margins, capital expenditures normalizing | **\$153** (+21%) |
-| Bull | Faster growth, expanding margins, lower long-run capital expenditures | **\$198** (+56%) |
+| Bear | Slower revenue, softer margins, heavier capital expenditures | **\$106** (−8%) |
+| Base | Guided growth, stable margins, capital expenditures normalizing | **\$153** (+33%) |
+| Bull | Faster growth, expanding margins, lower long-run capital expenditures | **\$198** (+72%) |
 
 ![Oracle DCF bear, base, and bull scenario values per share](/assets/oracle-dcf/oracle-valuation-range.png)
 *The valuation range is driven by operating outcomes; all three scenarios use the same 8.5% discount rate.*
@@ -258,6 +258,6 @@ Everything else is prologue.
 - **FY2027 guidance and net-capital-expenditure commentary** (~\$90B revenue; ~\$70B net capital expenditures): [Oracle Q4 FY2026 earnings call transcript](https://www.fool.com/earnings/call-transcripts/2026/06/10/oracle-orcl-q4-2026-earnings-call-transcript/), June 10, 2026.
 - **OpenAI concentration:** Reuters, ["OpenAI, Oracle sign \$300 billion computing deal, WSJ reports"](https://ca.finance.yahoo.com/news/openai-oracle-sign-300-billion-182157622.html), September 10, 2025.
 - **Technology — off-box / isolated network virtualization:** Oracle, ["Oracle Cloud Infrastructure — Isolated Network Virtualization"](https://www.oracle.com/au/cloud/security/isolated-network-virtualization/) and ["Oracle Cloud Infrastructure Security Architecture"](https://www.oracle.com/middleeast-ar/a/ocom/docs/oracle-cloud-infrastructure-security-architecture.pdf).
-- **Valuation figures:** the author's [integrated three-statement model](/assets/oracle-dcf/Oracle_Integrated_Model.xlsx) and scenario DCF (base case: 8.5% WACC, 3.0% terminal growth, normalized tax), detailed in the [accompanying valuation memorandum](/assets/oracle-dcf/Oracle_Valuation_Memo.pdf). Reference share price \$126.91 as of July 16, 2026.
+- **Valuation figures:** the author's [integrated three-statement model](/assets/oracle-dcf/Oracle_Integrated_Model.xlsx) and scenario DCF (base case: 8.5% WACC, 3.0% terminal growth, normalized tax), detailed in the [accompanying valuation memorandum](/assets/oracle-dcf/Oracle_Valuation_Memo.pdf). Reference share price \$114.99 as of July 24, 2026.
 
 **Disclaimer.** *Personal views only; not those of Velocity Advisors or any other entity. For informational purposes—not investment, legal, or tax advice, or an offer or recommendation to transact in any security. The author is not a registered investment adviser and holds no direct ORCL position or derivatives, but may have indirect exposure through diversified funds. Estimates, models, and forward-looking statements are uncertain, may change without notice, and are not guarantees. Third-party information has not been independently verified. Do your own research and consult qualified advisers. © 2026 Jason Abed.*
