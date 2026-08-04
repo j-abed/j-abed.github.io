@@ -8,9 +8,13 @@ permalink: /oracle-ai-infrastructure-economics
 
 *Oracle is running the clearest public-market experiment we have on whether AI infrastructure can earn its cost of capital. The financial statements don't answer the question yet — but they tell us exactly what to watch, and they reveal what the market is already assuming.*
 
+*Originally published July 17, 2026; updated July 31, 2026 to reflect current market pricing.*
+
 ---
 
-In fiscal 2026, Oracle generated \$32.0 billion of operating cash flow — the most in its history. In the same year, it spent \$55.7 billion.
+In fiscal 2026, Oracle generated \$32.0 billion of operating cash flow — the most in its history.
+
+In the same year, it spent \$55.7 billion building things.
 
 The arithmetic is not subtle. Oracle's free cash flow — the money left after the bills of growth are paid — was **negative \$23.7 billion**. That figure is not an accounting curiosity or a rounding artifact. It is the financial signature of one of the boldest strategic pivots in modern corporate history.
 
@@ -163,7 +167,7 @@ Enterprise value = Σ [ FCF(t) ÷ (1 + WACC)^t ]  +  terminal value ÷ (1 + WACC
 Terminal value   = FCF in the first post-forecast year ÷ (WACC − g)
 ```
 
-where *g* is the assumed perpetual growth rate. Feed the base case — 8.5% WACC, 3.0% terminal growth, capital spending normalizing, margins holding — into that machine and it returns an enterprise value near **\$549 billion** and, after subtracting net debt and preferred stock, an equity value near **\$446 billion**. Divide by roughly 2.9 billion diluted shares and the implied value is about **\$153 per share**. Against a reference price of \$114.99, the base case implies roughly **33% upside**.
+where *g* is the assumed perpetual growth rate. Feed the base case — 8.5% WACC, 3.0% terminal growth, capital spending normalizing, margins holding — into that machine and it returns an enterprise value near **\$549 billion** and, after subtracting net debt and preferred stock, an equity value near **\$446 billion**. Divide by roughly 2.9 billion diluted shares and the implied value is about **\$153 per share**. Against a reference price of \$129.87 — the close on Friday, July 31, 2026 — the base case implies about **18% upside**. That price marks only a partial recovery: Oracle had tumbled from roughly \$248 in early June to a 52-week low near \$115 in late July before rebounding, and even after the bounce the bear case still sits about 19% below the market. The market, in other words, now sits between the bear and base cases — no longer pricing the downside in full, but far from crediting the bull.
 
 That single number, though, is the least interesting thing the model produces — and it deserves to be interrogated with the very framework we just built.
 
@@ -177,9 +181,9 @@ Which is why the range matters far more than the point estimate.
 
 | Scenario | Key operating assumptions | Implied value per share |
 |---|---|---:|
-| Bear | Slower revenue, softer margins, heavier capital expenditures | **\$106** (−8%) |
-| Base | Guided growth, stable margins, capital expenditures normalizing | **\$153** (+33%) |
-| Bull | Faster growth, expanding margins, lower long-run capital expenditures | **\$198** (+72%) |
+| Bear | Slower revenue, softer margins, heavier capital expenditures | **\$106** (−19%) |
+| Base | Guided growth, stable margins, capital expenditures normalizing | **\$153** (+18%) |
+| Bull | Faster growth, expanding margins, lower long-run capital expenditures | **\$198** (+52%) |
 
 ![Oracle DCF bear, base, and bull scenario values per share](/assets/oracle-dcf/oracle-valuation-range.png)
 *The valuation range is driven by operating outcomes; all three scenarios use the same 8.5% discount rate.*
@@ -212,7 +216,7 @@ This is not a hypothetical the market has ignored. Oracle has already told inves
 
 ## The OpenAI question
 
-No account of Oracle's bet is complete without naming the customer at its center. A reported \$300 billion, five-year OpenAI cloud agreement represents nearly half of Oracle's \$638 billion backlog, before considering any other OpenAI-linked commitments. OpenAI and the gigawatt-scale "Stargate" data-center initiative it anchors are both the attraction and the risk.
+No account of Oracle's bet is complete without naming the customer at its center. Analysts estimate that well over half of that \$638 billion backlog traces to a single relationship — OpenAI, and the gigawatt-scale "Stargate" data-center initiative it anchors. OpenAI is both the attraction and the risk.
 
 If OpenAI becomes one of the world's dominant computing platforms, having locked in a large share of its infrastructure demand could prove immensely valuable — the corporate equivalent of building the power plants for an industry whose eventual scale is hard to picture today. But Oracle's fortunes then depend on the continued commercial success, and continued financing access, of counterparties whose own economics are still being written.
 
@@ -256,8 +260,8 @@ Everything else is prologue.
 
 - **Financial results, RPO, hardware funding, and capital-raising plans:** Oracle Corporation, ["Oracle Announces Record Q4 and FY 2026 Results Driven by Cloud Infrastructure & Cloud Applications"](https://investor.oracle.com/investor-news/news-details/2026/Oracle-Announces-Record-Q4-and-FY-2026-Results-Driven-by-Cloud-Infrastructure--Cloud-Applications/), June 10, 2026. Reported \$638B RPO (+363% YoY, +\$85B sequentially), \$75B of prepaid/customer-supplied hardware, FY2026 free cash flow of −\$23.7B, and FY2027 plans to raise ~\$40B including a \$20B at-the-market equity issuance.
 - **FY2027 guidance and net-capital-expenditure commentary** (~\$90B revenue; ~\$70B net capital expenditures): [Oracle Q4 FY2026 earnings call transcript](https://www.fool.com/earnings/call-transcripts/2026/06/10/oracle-orcl-q4-2026-earnings-call-transcript/), June 10, 2026.
-- **OpenAI concentration:** Reuters, ["OpenAI, Oracle sign \$300 billion computing deal, WSJ reports"](https://ca.finance.yahoo.com/news/openai-oracle-sign-300-billion-182157622.html), September 10, 2025.
+- **OpenAI / Stargate concentration** (>50% of backlog): third-party analyst estimates following the Q4 FY2026 report.
 - **Technology — off-box / isolated network virtualization:** Oracle, ["Oracle Cloud Infrastructure — Isolated Network Virtualization"](https://www.oracle.com/au/cloud/security/isolated-network-virtualization/) and ["Oracle Cloud Infrastructure Security Architecture"](https://www.oracle.com/middleeast-ar/a/ocom/docs/oracle-cloud-infrastructure-security-architecture.pdf).
-- **Valuation figures:** the author's [integrated three-statement model](/assets/oracle-dcf/Oracle_Integrated_Model.xlsx) and scenario DCF (base case: 8.5% WACC, 3.0% terminal growth, normalized tax), detailed in the [accompanying valuation memorandum](/assets/oracle-dcf/Oracle_Valuation_Memo.pdf). Reference share price \$114.99 as of July 24, 2026.
+- **Valuation figures:** the author's [integrated three-statement model](/assets/oracle-dcf/Oracle_Integrated_Model.xlsx) and scenario DCF (base case: 8.5% WACC, 3.0% terminal growth, normalized tax), detailed in the [accompanying valuation memorandum](/assets/oracle-dcf/Oracle_Valuation_Memo.pdf). Reference share price \$129.87 as of the July 31, 2026 close.
 
-**Disclaimer.** *Personal views only; not those of Velocity Advisors or any other entity. For informational purposes—not investment, legal, or tax advice, or an offer or recommendation to transact in any security. The author is not a registered investment adviser and holds no direct ORCL position or derivatives, but may have indirect exposure through diversified funds. Estimates, models, and forward-looking statements are uncertain, may change without notice, and are not guarantees. Third-party information has not been independently verified. Do your own research and consult qualified advisers. © 2026 Jason Abed.*
+**Disclosures & disclaimer.** *Published by the author in a personal capacity; the views herein are solely the author's own and not those of Velocity Advisors or any other entity, and the author is not a registered investment adviser. This material is provided for informational and educational purposes only and does not constitute investment, legal, or tax advice or any recommendation, offer, or solicitation to buy or sell any security, including Oracle Corporation (ORCL); it disregards any reader's particular circumstances and creates no advisory or fiduciary relationship. As of the date hereof, the author holds no direct position in ORCL and no options or other derivatives thereon, though the author may hold incidental, indirect exposure through diversified exchange-traded or target-date retirement funds. All opinions, estimates, and projections herein are as of the publication date or the expressly noted update date, are subject to change without notice, and may not be updated further; valuation figures are model outputs whose assumptions may prove materially incorrect, and forward-looking statements are inherently uncertain and not guarantees of future results. Third-party information, including Oracle's public filings and earnings materials, is believed reliable but has not been independently verified and is not warranted as to accuracy or completeness. Nothing herein is a basis for any investment decision; readers should conduct their own research and consult their own financial, legal, and tax advisers. Modeled and hypothetical results are not indicative of future results. © 2026 Jason Abed. All rights reserved.*
