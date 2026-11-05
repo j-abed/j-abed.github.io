@@ -64,39 +64,36 @@ function scatter(name, rows, options) {
 }
 
 scatter('uniform-swing', house, {
-  title: 'A common shift across a very different map',
-  subtitle: '412 districts | Solid line: no change | Dashed line: observed median swing',
+  title: 'Most districts moved in the same direction',
+  subtitle: '412 districts | Dashed line: common 14.3-point Democratic shift',
   description: '2024 presidential margin against the preliminary 2026 House margin. The dashed line adds the observed 14.3-point Democratic swing. Hollow dots are uncalled races.',
   horizontalField: 'margin_pres2024', verticalField: 'margin_2026', horizontalFormat: margin, verticalFormat: margin,
   horizontalLabel: '2024 presidential margin', verticalLabel: '2026 House margin',
-  references: [{ intercept: 0, slope: 1, color: '#98a49c' }, { intercept: median, slope: 1, color: colors.fit, dash: '6 4' }],
+  references: [{ intercept: median, slope: 1, color: colors.fit, dash: '6 4' }],
   detail: row => `${row.district_id}: 2024 ${margin(number(row.margin_pres2024))}; 2026 ${margin(number(row.margin_2026))}; ${row.called === 'Y' ? 'called' : 'uncalled'}. Swing: ${number(row.swing_vs_pres2024).toFixed(1)} points toward Democrats.`
 });
 
 const estimates = [
-  ...data.forecasts.filter(row => row.chamber === 'House' && !row.source.includes('not final')).map(row => ({ label: row.source, value: number(row.projected_dem_seats), color: '#7d8881', detail: 'Published pre-election estimate' })),
   { label: 'Generic-ballot rule', value: number(data.uniform_swing.find(row => row.model.includes('generic-ballot')).dem_seats), color: colors.fit, detail: 'Pre-election inputs; implied swing +11.3 points' },
   { label: 'Observed-swing rule', value: number(summary('uniform_swing_seats')), color: colors.dem, detail: 'Hindsight fit; observed median swing +14.3 points' }
 ];
 const tally = data.tally.find(row => row.office === 'House');
 const calledPlusLeading = number(tally.dem_won) + number(tally.uncalled_dem_leading);
 assert.equal(calledPlusLeading, 259);
-let forecast = text(22, 32, 'Similar structure. Different national inputs.', 'class="heading"') + text(22, 58, 'Democratic House seats | Calls and leads are not a final outcome', 'class="detail"');
+let forecast = text(22, 32, 'One rule, two national inputs', 'class="heading"') + text(22, 58, 'Model-implied Democratic House seats | Same 2024 district baseline', 'class="detail"');
 const seatScale = d3.scaleLinear([210, 275], [302, 714]);
 for (const tick of [218, 230, 240, 250, 260, 270]) {
-  forecast += line(seatScale(tick), 82, seatScale(tick), 344);
-  forecast += text(seatScale(tick), 370, tick, 'text-anchor="middle" class="axis"');
+  forecast += line(seatScale(tick), 82, seatScale(tick), 232);
+  forecast += text(seatScale(tick), 258, tick, 'text-anchor="middle" class="axis"');
 }
-forecast += line(seatScale(calledPlusLeading), 82, seatScale(calledPlusLeading), 344, `style="stroke:${colors.ink};stroke-width:2" stroke-dasharray="5 4"`);
-forecast += text(714, 82, `259 D called + leading`, 'text-anchor="end" class="detail"');
 estimates.forEach((estimate, index) => {
-  const vertical = 119 + index * 65;
+  const vertical = 119 + index * 82;
   forecast += text(22, vertical, estimate.label, 'class="label"') + text(22, vertical + 20, estimate.detail, 'class="detail"');
   forecast += point(seatScale(estimate.value), vertical, estimate.color, `${estimate.label}: ${estimate.value} Democratic seats. ${estimate.detail}.`, 8);
   forecast += text(seatScale(estimate.value) + 16, vertical + 5, estimate.value, 'class="label"');
 });
-forecast += text(22, 405, '218 seats for a majority. Observed-swing fit is not a forecast.', 'class="detail"');
-save('seat-forecasts', svg('seat-forecasts', 'Pre-election seat estimates versus a hindsight fit', 'Silver Bulletin 240; DDHQ 241; generic-ballot rule 243; observed-swing rule 262. The preliminary snapshot has 259 Democratic seats called or leading. The seat axis begins at 210; this is a dot plot, not a bar chart.', 428, forecast));
+forecast += text(22, 298, '19-seat difference. Observed-swing fit is retrospective, not a forecast.', 'class="detail"');
+save('seat-forecasts', svg('seat-forecasts', '243 versus 262 Democratic seats from the same rule', 'Generic-ballot input: 243 Democratic seats. Observed-swing input: 262. These are model estimates, not official results. The 19-seat difference reflects only the national input. The seat axis begins at 210; 218 seats are needed for a majority.', 320, forecast));
 
 const historical = JSON.parse(fs.readFileSync(path.join(__dirname, 'historical-comparison.json'), 'utf8'));
 const signedSeats = value => value > 0 ? `+${value}` : value < 0 ? `\u2212${Math.abs(value)}` : '0';
@@ -107,53 +104,76 @@ for (const office of ['House', 'Senate']) {
 }
 assert.equal(historical.elections.length, 7);
 let historicalTable = '<table class="midterms-history-table"><caption>How Recent Midterms Compare</caption><thead><tr><th scope="col">Election</th><th scope="col">President</th><th scope="col">House seats</th><th scope="col">Senate seats</th></tr></thead><tbody>';
-for (const row of historical.elections) {
-  const qualification = row.provisional ? '<br><small>Called; provisional</small>' : '';
-  historicalTable += `<tr><th scope="row">${row.year}</th><td>${escape(row.president)}</td><td>${signedSeats(row.house)}${qualification}</td><td>${signedSeats(row.senate)}${qualification}</td></tr>`;
+const tableYears = [1994, 2006, 2010, 2018, 2026];
+const historicalRows = historical.elections.filter(row => tableYears.includes(row.year));
+assert.equal(historicalRows.length, 5);
+for (const row of historicalRows) {
+  const qualification = row.provisional ? ' net flips called<br><small>Preliminary</small>' : '';
+  const status = row.provisional ? '<br><small>Incomplete snapshot</small>' : '';
+  historicalTable += `<tr><th scope="row">${row.year}${status}</th><td>${escape(row.president)}</td><td>${signedSeats(row.house)}${qualification}</td><td>${signedSeats(row.senate)}${qualification}</td></tr>`;
 }
 historicalTable += '</tbody></table>\n';
 fs.writeFileSync(path.join(output, 'historical-table.html'), historicalTable);
 
-let historyChart = text(22, 32, 'How Midterm House Seat Losses Compare', 'class="heading"') + text(22, 63, "President's party / Seats, not vote swing", 'style="font-size:18px"');
+let historyChart = text(22, 32, 'How Midterm House Seat Losses Compare', 'class="heading"') + text(22, 58, "President's party / Seats, not vote swing", 'style="font-size:15px"');
 const historicalScale = d3.scaleLinear([-70, 15], [178, 566]);
 const historicalZero = historicalScale(0);
 historyChart += `<defs><pattern id="historical-provisional" width="8" height="8" patternUnits="userSpaceOnUse"><path d="M-2 2L2-2M0 8L8 0M6 10L10 6" style="stroke:${colors.fit};stroke-width:1.5;opacity:0.45"/></pattern></defs>`;
 for (const tick of [-60, -40, -20, 0, 10]) {
-  historyChart += line(historicalScale(tick), 88, historicalScale(tick), 492, tick === 0 ? `style="stroke:${colors.ink};stroke-width:2"` : '');
-  historyChart += text(historicalScale(tick), 510, signedSeats(tick), 'text-anchor="middle" style="font-size:20px"');
+  historyChart += line(historicalScale(tick), 80, historicalScale(tick), 403, tick === 0 ? `style="stroke:${colors.ink};stroke-width:2"` : '');
+  historyChart += text(historicalScale(tick), 428, signedSeats(tick), 'text-anchor="middle" style="font-size:16px"');
 }
 historical.elections.forEach((row, index) => {
-  const vertical = 112 + index * 58;
+  const vertical = 100 + index * 45;
   const position = historicalScale(row.house);
   const detail = `${row.year}, ${row.president}: president's party ${signedSeats(row.house)} House seats.${row.provisional ? ' Net called flips in the unverified November 4 snapshot, not a final result.' : ' Historical election net change, American Presidency Project.'}`;
-  historyChart += text(22, vertical, row.year, 'style="font-size:21px;font-weight:700"');
-  historyChart += text(22, vertical + 28, row.president, 'style="font-size:18px"');
-  historyChart += `<rect x="${Math.min(position, historicalZero)}" y="${vertical - 8}" width="${Math.abs(position - historicalZero)}" height="24" fill="${row.provisional ? 'url(#historical-provisional)' : '#7d8881'}" ${row.provisional ? `stroke="${colors.fit}" stroke-width="2"` : ''} data-detail="${escape(detail)}"><title>${escape(detail)}</title></rect>`;
-  historyChart += text(position + (row.house < 0 ? -9 : 9), vertical + 11, signedSeats(row.house), `text-anchor="${row.house < 0 ? 'end' : 'start'}" style="font-size:21px;fill:${row.provisional ? colors.fit : colors.ink}"`);
+  historyChart += text(22, vertical, row.year, 'style="font-size:17px;font-weight:700"');
+  historyChart += text(22, vertical + 20, row.president, 'style="font-size:14px"');
+  historyChart += `<rect x="${Math.min(position, historicalZero)}" y="${vertical - 8}" width="${Math.abs(position - historicalZero)}" height="20" fill="${row.provisional ? 'url(#historical-provisional)' : '#7d8881'}" ${row.provisional ? `stroke="${colors.fit}" stroke-width="2"` : ''} data-detail="${escape(detail)}"><title>${escape(detail)}</title></rect>`;
+  historyChart += text(position + (row.house < 0 ? -9 : 9), vertical + 7, signedSeats(row.house), `text-anchor="${row.house < 0 ? 'end' : 'start'}" style="font-size:18px;fill:${row.provisional ? colors.fit : colors.ink}"`);
 });
-historyChart += text(178, 550, 'Seats lost', 'style="font-size:20px"') + text(566, 550, 'Gained', 'text-anchor="end" style="font-size:20px"');
-save('historical-seats', svg('historical-seats', 'How Midterm House Seat Losses Compare', 'Net House seats for the sitting president\'s party: 1994 minus 54; 1998 plus 4; 2002 plus 8; 2006 minus 30; 2010 minus 63; 2018 minus 41. The outlined, hatched 2026 bar shows minus 35 net called flips in the unverified November 4 snapshot, not a final result or projection. These are seats, not vote swings.', 572, historyChart, 600).replace('class="midterms-chart"', 'class="midterms-chart midterms-history-chart"'));
+historyChart += text(178, 456, 'Seats lost', 'style="font-size:16px"') + text(566, 456, 'Gained', 'text-anchor="end" style="font-size:16px"');
+save('historical-seats', svg('historical-seats', 'How Midterm House Seat Losses Compare', 'Net House seats for the sitting president\'s party: 1994 minus 54; 1998 plus 4; 2002 plus 8; 2006 minus 30; 2010 minus 63; 2018 minus 41. The outlined, hatched 2026 bar shows minus 35 net called flips in the unverified November 4 snapshot, not a final result or projection. These are seats, not vote swings.', 472, historyChart, 600).replace('class="midterms-chart"', 'class="midterms-chart midterms-history-chart"'));
 
 const polls = data.state_races.filter(row => finite(row.margin_poll) && finite(row.poll_error) && finite(row.margin_2026) && !/PollCheck/.test(row.poll_avg_source || ''));
 assert.equal(polls.length, 34);
-scatter('polling-error', polls, {
-  title: 'The polling miss pointed toward Democrats', subtitle: '34 Senate and governor races | Line: perfect agreement | Mean signed error: D+5.3',
-  description: 'Final polling averages against preliminary state-race results. Positive errors mean polls understated Democrats. The supplied mean signed error is 5.3 points across 34 races.',
-  horizontalField: 'margin_poll', verticalField: 'margin_2026', horizontalFormat: margin, verticalFormat: margin,
-  horizontalLabel: 'Final polling-average margin', verticalLabel: '2026 result margin', references: [{ intercept: 0, slope: 1, color: colors.fit, dash: '6 4' }],
-  detail: row => `${row.race_id}: poll ${margin(number(row.margin_poll))}; result ${margin(number(row.margin_2026))}; signed error ${number(row.poll_error).toFixed(1)} points. ${row.called === 'Y' ? 'Called' : 'Uncalled'}.`
-});
+assert.equal(polls.filter(row => number(row.poll_error) > 0).length, 30);
+const errorDomain = [Math.floor(d3.min(polls, row => number(row.poll_error)) / 2) * 2, Math.ceil(d3.max(polls, row => number(row.poll_error)) / 2) * 2];
+const errorBands = d3.bin().value(row => number(row.poll_error)).domain(errorDomain).thresholds(d3.range(errorDomain[0] + 2, errorDomain[1], 2))(polls);
+assert.equal(errorBands.reduce((count, band) => count + band.length, 0), polls.length);
+const errorScale = d3.scaleLinear(errorDomain, [72, 714]);
+const errorBottom = Math.max(230, 110 + d3.max(errorBands, band => band.length) * 18);
+const meanError = number(data.poll_error.find(row => row.office === 'All').mean_signed_error);
+let errors = text(22, 32, 'Most polling errors understated Democrats', 'class="heading"') + text(22, 58, '34 Senate and governor races | 30 positive errors, 4 negative errors', 'class="detail"');
+for (const tick of d3.range(errorDomain[0], errorDomain[1] + 1, 2)) {
+  errors += line(errorScale(tick), 106, errorScale(tick), errorBottom, tick === 0 ? `style="stroke:${colors.ink};stroke-width:2"` : '');
+  errors += text(errorScale(tick), errorBottom + 26, `${tick > 0 ? '+' : ''}${tick}`, 'text-anchor="middle" class="axis"');
+}
+errors += line(errorScale(meanError), 106, errorScale(meanError), errorBottom, `style="stroke:${colors.fit};stroke-width:2" stroke-dasharray="5 4"`);
+errors += text(errorScale(meanError) + 10, 91, `Mean: +${meanError.toFixed(1)} points`, 'class="detail"');
+for (const band of errorBands) {
+  band.sort((first, second) => first.race_id.localeCompare(second.race_id));
+  band.forEach((row, index) => {
+    const error = number(row.poll_error);
+    const color = error > 0 ? colors.dem : colors.rep;
+    const detail = `${row.race_id}: signed polling error ${error.toFixed(1)} points; poll ${margin(number(row.margin_poll))}; result ${margin(number(row.margin_2026))}. ${row.called === 'Y' ? 'Called' : 'Uncalled'}.`;
+    errors += point(errorScale((band.x0 + band.x1) / 2), errorBottom - 8 - index * 18, row.called === 'Y' ? color : colors.paper, detail, 5, `stroke="${color}" stroke-width="1.5"`);
+  });
+}
+errors += text(714, errorBottom + 59, 'Result minus poll, Democratic margin points', 'text-anchor="end" class="label"');
+errors += text(22, errorBottom + 86, 'One dot per race, grouped in 2-point bands. Positive means Democrats outperformed.', 'class="detail"');
+save('polling-error', svg('polling-error', 'Distribution of state-race polling errors', '34 qualifying Senate and governor races: 30 positive errors and four negative errors. Dots are stacked in two-point error bands. Positive errors mean polls understated Democrats. The dashed line marks the supplied mean of 5.3 points; hollow dots are uncalled races.', errorBottom + 108, errors));
 
 let calibration = text(22, 32, 'Republican-favored categories shifted together', 'class="heading"') + text(22, 58, 'Filled dot: observed Democratic win rate | Hollow dot: conventional probability', 'class="detail"');
 const probability = d3.scaleLinear([0, 1], [230, 660]);
 const raters = [...new Set(data.calibration.filter(row => row.rater.endsWith('(House)')).map(row => row.rater))];
 assert.equal(raters.length, 4);
 raters.forEach((rater, raterIndex) => {
-  const start = 104 + raterIndex * 166;
+  const start = 92 + raterIndex * 128;
   calibration += text(22, start, rater, 'class="label" font-weight="700"');
   const buckets = data.calibration.filter(row => row.rater === rater && ['Lean R', 'Likely R', 'Solid R'].includes(row.rating)).sort((first, second) => ['Lean R', 'Likely R', 'Solid R'].indexOf(first.rating) - ['Lean R', 'Likely R', 'Solid R'].indexOf(second.rating));
   buckets.forEach((row, bucketIndex) => {
-    const vertical = start + 30 + bucketIndex * 36;
+    const vertical = start + 30 + bucketIndex * 28;
     const actual = number(row.dem_win_rate), implied = number(row.implied_p);
     calibration += text(22, vertical + 5, row.rating) + text(135, vertical + 5, `n=${row.called}`, 'class="detail"');
     calibration += line(probability(0), vertical, probability(1), vertical);
@@ -163,9 +183,9 @@ raters.forEach((rater, raterIndex) => {
     calibration += text(730, vertical + 5, `${Math.round(actual * 100)}%`, 'text-anchor="end"');
   });
 });
-for (const tick of [0, 0.25, 0.5, 0.75, 1]) calibration += text(probability(tick), 766, `${tick * 100}%`, 'text-anchor="middle" class="axis"');
-calibration += text(22, 803, 'Probabilities are analytical assumptions, not the raters\' published odds.', 'class="detail"');
-save('rating-calibration', svg('rating-calibration', 'Republican-favored House rating calibration', 'For each of four raters, observed Democratic win rates in Lean R, Likely R, and Solid R seats are compared with conventional category probabilities. Each row reports its called-race sample size.', 824, calibration));
+for (const tick of [0, 0.25, 0.5, 0.75, 1]) calibration += text(probability(tick), 608, `${tick * 100}%`, 'text-anchor="middle" class="axis"');
+calibration += text(22, 644, 'Probabilities are analytical assumptions, not the raters\' published odds.', 'class="detail"');
+save('rating-calibration', svg('rating-calibration', 'Republican-favored House rating calibration', 'For each of four raters, observed Democratic win rates in Lean R, Likely R, and Solid R seats are compared with conventional category probabilities. Each row reports its called-race sample size.', 664, calibration));
 
 const demographics = data.house_races.filter(row => row.demo_valid === 'Y' && finite(row.pct_white) && finite(row.swing_vs_pres2024));
 assert.equal(demographics.length, 253);

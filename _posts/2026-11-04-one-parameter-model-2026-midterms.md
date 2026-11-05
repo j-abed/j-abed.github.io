@@ -7,250 +7,165 @@ published: true
 categories: [data-science, elections, statistics, forecasting]
 tags: [midterms-2026, election-forecasting, uniform-swing, polling]
 permalink: /one-parameter-model-2026-midterms
-description: "An analysis of the 2026 midterms reveals why election forecasts underestimated the scale of Democratic gains, and what a simple model tells us about the limits of prediction."
-excerpt: "Democrats were expected to make gains. What surprised many forecasters was how far those gains would reach—and how much of the election could be explained by a single national shift."
+description: "A preliminary November 4 snapshot shows how national-swing assumptions change House seat estimates, and why retrospective fit is not a pre-election forecast."
+excerpt: "A preliminary results snapshot suggests that the national environment mattered more than local differences, and that estimating its size was the difficult part."
 image: /assets/midterms-2026/summary-linkedin.png
 image_alt: "A 14.3-point median Democratic swing; the same model implies 243 seats with pre-election inputs and 262 using observed results, a 19-seat difference. Its 95.7% classification accuracy is retrospective, not a forecast. Unverified November 4 snapshot."
 ---
 
 <link rel="stylesheet" href="{{ '/assets/midterms-2026/article.css' | relative_url }}">
 
-*Democrats were expected to make gains. What surprised many forecasters was how far those gains would reach—and how much of the election could be explained by a single national shift.*
+*A preliminary results snapshot suggests that the national environment mattered more than local differences, and that estimating its size was the difficult part.*
 
-> **Dated snapshot, not live results.** This article analyzes the supplied November 4, 2026 dataset. Its election totals and forecast attributions have not been independently corroborated. In particular, the cited DDHQ 84% probability remains unverified. No newer returns have been substituted into the analysis or figures.
+In districts Donald Trump had won by more than 30 percentage points two years earlier, voters moved toward Democrats by roughly 15 points. In districts that had voted comfortably Democratic in 2024, the shift was almost identical. Those places still had very different politics: many Republican strongholds remained Republican. Yet the supplied November 4 returns suggest that hundreds of congressional contests were moving with the same national current.
 
-The 2026 midterms produced an unusual electoral map. In districts Donald Trump had won by more than 30 percentage points two years earlier, voters moved toward Democrats by roughly 15 points. In districts that had voted comfortably Democratic in 2024, the shift was almost identical.
+That uniformity helps explain the breadth of the gains recorded in the dataset. Its House tally has Democrats winning 242 seats and leading in another 17, with 43 contests uncalled. The accompanying forecast table lists pre-election estimates near 240 Democratic seats. These are different kinds of numbers, and neither calls nor leads should be mistaken for a completed result. Nevertheless, their distance apart raises a useful question about what an election model needs to get right.
 
-The differences between those places had hardly disappeared. A Republican stronghold remained a Republican stronghold in many cases. But the direction and size of the movement were strikingly similar. Across much of the country, voters appeared to be responding to something larger than their individual congressional contests.
+<p class="midterms-editorial-note"><em>Editor's note: This analysis uses the preliminary November 4, 2026 snapshot. Source details and limitations appear below.</em></p>
 
-The election brought Democrats control of both houses of Congress, including Senate victories in states where Republicans had recently seemed secure. The outcome was not entirely unexpected. Most major forecasting models had anticipated a Democratic House majority, and several had also made Democrats favorites to capture the Senate. What many underestimated was the extent of the gains.
+To examine the discrepancy, I compared the House returns with the 2024 presidential vote, pre-election polls, and race ratings. I also tested a model with just one adjustable number: a common shift toward Democrats, applied to every district. Given the movement observed after voting, it described the supplied results remarkably well. With an estimate of that movement drawn from pre-election information, it produced a much smaller Democratic majority.
 
-Decision Desk HQ's final forecast, published on November 3, gave Democrats an 84% chance of winning the House, with a central estimate of 241 seats. By midday the following day, a preliminary results snapshot showed Democrats had already won 242 seats and were leading in another 17. The final number remained unsettled, but the direction of the discrepancy was becoming clear.
-
-Why had the movement been so much larger than many of the estimates suggested?
-
-To investigate, I examined the election results alongside the 2024 presidential vote, pre-election polling, and congressional race ratings. I also tested a deliberately simple model that treated the election largely as a uniform national shift in support between the parties.
-
-What emerged was an unexpectedly coherent picture of the Democratic gains, along with a useful illustration of the difficulties inherent in political forecasting.
+The difference matters because it locates the difficulty of prediction. Hundreds of local assessments can look reasonable while sharing the same mistaken assumption about the national environment. A simpler model can expose that dependence without demonstrating that it would have anticipated the outcome. The exercise is most useful as an explanation of the reported pattern, not as evidence that electoral uncertainty can be engineered away.
 
 <a href="{{ '/assets/midterms-2026/summary-blog.svg' | relative_url }}"><img class="midterms-summary" src="{{ '/assets/midterms-2026/summary-blog.svg' | relative_url }}" width="1200" height="700" alt="Summary of the unverified November 4 snapshot: 14.3-point median Democratic swing and 95.7% retrospective classification accuracy. Pre-election model inputs imply 243 Democratic seats; observed-swing inputs imply 262. Neither is an official result. State-race polling error is D+5.3."></a>
 
 ## A wave that reached almost everywhere
 
-American elections are often explained through the places that distinguish one cycle from another: suburban districts, rural counties, younger voters, college graduates, or particular demographic groups thought to be changing their political allegiances. These distinctions matter, but they can also obscure developments that are taking place across the electorate.
+Across 412 districts with comparable results, the median movement was 14.3 percentage points toward Democrats relative to the 2024 presidential election. This measures a change in the margin between the two major parties, not an increase of 14.3 points in the Democratic vote share. A district won by the Republican presidential candidate with 55% against 45%, for example, starts with a Republican margin of ten points. A 14-point movement would give its Democratic House candidate an advantage of about four points.
 
-The 2026 results suggest that the national environment was unusually important.
+The movement was similar across much of the partisan map. Districts Trump had carried by at least 30 points shifted by a median of 14.8 points; those that had favored the Democratic presidential candidate by 15 to 30 points shifted by 14.5. Local differences did not disappear, but a district's previous partisan leaning had surprisingly little relationship with the size of its subsequent swing. That makes a national explanation more plausible than a collection of unrelated local ones.
 
-In the November 4 snapshot, the median congressional district had moved approximately 14.3 percentage points toward Democrats compared with its vote in the 2024 presidential election. That figure measures the change in the margin between the two major parties. It is not the same as saying Democrats gained 14.3 percentage points of the total vote.
+Some of the safest Democratic districts moved less, and individual contests departed considerably from the general pattern. Turnout, candidates, spending, and district boundaries can all matter. Nor does a presidential-to-congressional comparison isolate a single change in public opinion: different candidates and electorates are involved. The median is a useful description of the supplied map, not a direct measurement of how any individual voter changed allegiance.
 
-Consider a district where the Republican presidential candidate won 55% of the two-party vote in 2024, against 45% for the Democrat. That represents a Republican margin of 10 points. A 14-point shift toward Democrats would turn that into a narrow Democratic advantage.
-
-The same arithmetic applied, at least approximately, across districts with very different political histories.
-
-In constituencies that had supported Trump by 30 points or more, the median shift was 14.8 points toward Democrats. In districts that had favored the Democratic presidential candidate by 15 to 30 points, it was 14.5 points. Even seats that had voted comfortably Republican experienced a substantial movement.
-
-There were exceptions. Some of the safest Democratic districts registered smaller shifts, and individual races varied considerably around the national pattern. Local candidates, turnout, campaign spending, and redistricting still mattered. But the relationship between a district's previous partisan leaning and the size of its subsequent swing was surprisingly weak.
-
-This is a significant finding. It suggests that much of the election can be understood as a common movement in the national political environment rather than an assortment of unrelated local developments.
-
-It also helps explain why Republicans lost seats across such different parts of the country. A party can withstand a modest national shift while retaining districts that are comfortably in its column. A movement of 14 or 15 points is another matter. Seats that ordinarily provide a considerable cushion suddenly become competitive.
-
-The Democratic gains were not confined to the House. In the supplied results, the party had flipped seven Senate seats, including contests in Iowa, Kansas, South Carolina, and Texas. Republican advantages that had seemed substantial only two years earlier proved insufficient against the changed political environment.
+Even with those qualifications, a shift of this size has obvious consequences for seats. A party can retain comfortable districts through a modest deterioration in national support. As that deterioration grows, more of its apparent cushion disappears at once. The important feature of the chart is therefore not that every dot follows a line exactly, but that one shared adjustment brings politically different districts much closer to their reported outcomes.
 
 <figure class="midterms-figure">
-<div class="midterms-chart-scroll" role="region" tabindex="0" aria-label="District swing figure; use left and right arrow keys to inspect data points">
+<div class="midterms-chart-scroll" role="region" tabindex="0" aria-label="District swing: each dot is a district; arrow keys inspect results">
 {% include midterms-2026/uniform-swing.svg %}
 </div>
-<figcaption><strong>Figure 1.</strong> Each dot is a district. The dashed line adds the observed median swing to the 2024 presidential margin; distance from that line is the local residual. Blue dots indicate Democratic leads or wins, red dots Republican leads or wins; hollow dots are uncalled. Source: companion dashboard, November 4 snapshot, 412 comparable districts.</figcaption>
+<figcaption><strong>Figure 1.</strong> Each dot is a district; the dashed line applies the same 14.3-point shift to each district's 2024 presidential margin. Blue and red indicate Democratic and Republican leads or wins; hollow dots are uncalled. Source: supplied November 4 snapshot, 412 comparable districts.</figcaption>
 </figure>
 
 ### A Wave With Historical Precedents
 
-Large midterm reversals have precedents. Clinton's party lost 54 House seats in 1994; Obama's lost 63 in 2010. Trump's first midterm brought a loss of 41 in 2018. All signs here refer to the sitting president's party.
+Large midterm reversals have precedents. The president's party lost 54 House seats in 1994, 30 in 2006, 63 in 2010, and 41 in 2018, using the American Presidency Project's series. House and Senate outcomes can diverge: Republicans gained two Senate seats in 2018 despite their House losses. Clinton's House gain in 1998 and George W. Bush's gains in both chambers in 2002 also warn against treating midterms as automatic defeats.
 
-The supplied November 4 snapshot records 37 Democratic House flips and two Republican flips: a net Republican loss of 35 among called races. That is smaller than the completed 2018 loss, but it is not a final comparison: 43 House contests remained uncalled. The Senate's seven Democratic flips similarly represent an unverified, provisional balance.
+The table's 2026 row is not a completed election result. It records 37 Democratic House flips minus two Republican flips, with 43 contests uncalled; the Senate balance is likewise provisional. Neither figure establishes a final historical ranking. Seat changes also differ from national popular-vote swings. Those compare successive House elections, whereas this article's 14.3-point figure is a median district-level change from presidential to House margins.
 
-Midterms are not invariably defeats for that party: Clinton gained House seats in 1998, while George W. Bush gained seats in both chambers in 2002. House losses accompanied Senate gains in 2018.
+In a [November 4 comparison](https://nymag.com/intelligencer/article/this-2026-midterm-wave-was-one-for-the-history-books.html), Intelligencer's Ed Kilgore reported approximate national House-vote margin shifts of 11.6 points toward Republicans in 1994, 10.6 toward Democrats in 2006, and 17.4 toward Republicans in 2010. His roughly 16-point Democratic estimate for 2026 is preliminary, not a certified result or this article's district median.
 
 <div class="article-table-scroll" role="region" tabindex="0" aria-label="How Recent Midterms Compare">
 {% include midterms-2026/historical-table.html %}
 </div>
 
-<figure class="midterms-figure">
-<div class="midterms-chart-scroll" role="region" tabindex="0" aria-label="Historical House seat comparison; 2026 is an incomplete, unverified snapshot">
-{% include midterms-2026/historical-seats.svg %}
-</div>
-<figcaption><strong>Historical comparison.</strong> Net House seats for the president's party; losses extend left of zero and gains right. The outlined, hatched 2026 bar is the supplied November 4 net balance of called flips, not a projection or final loss. Historical table and chart values follow the <a href="https://www.presidency.ucsb.edu/statistics/data/seats-congress-gainedlost-the-presidents-party-mid-term-elections">American Presidency Project's midterm series</a>, which cites <a href="https://history.house.gov/Institution/Party-Divisions/Party-Divisions/">House</a> and <a href="https://www.senate.gov/history/partydiv.htm">Senate</a> party records. Its counting convention can differ from other published net-change figures. The 2026 values come only from the <a href="{{ '/source_info/midterms-2026-dashboard.html' | relative_url }}">supplied dashboard</a>, not those historical sources.</figcaption>
-</figure>
-
-Nor should these seat totals be confused with this article's 14.3-point median district swing. That compares 2024 presidential margins with 2026 House margins, not successive national House votes. Historical context establishes the scale of the seat reversal; the next question is how much a single national shift can explain.
+<p class="midterms-source-note">Signs refer to the sitting president's party. Historical rows are completed election totals from the <a href="https://www.presidency.ucsb.edu/statistics/data/seats-congress-gainedlost-the-presidents-party-mid-term-elections">American Presidency Project</a>. For 2026, −35 means 35 net Democratic House flips called (37 Democratic minus two Republican), a Republican loss. Both 2026 entries are preliminary called-flip balances, not final seat changes.</p>
 
 ## What a single number can tell us
 
-To examine the pattern, I constructed a model with only one adjustable variable: the national swing toward Democrats.
+The model starts with each district's 2024 presidential margin and adds the same Democratic shift. If the adjusted margin favors Democrats, it classifies the seat as Democratic; otherwise, Republican. It makes no separate allowance for candidate quality, spending, incumbency, or local controversies. Its purpose is to test how far a common movement can take the explanation before those complications enter.
 
-For every congressional district, the model starts with the 2024 presidential margin and adds the same Democratic shift. If that adjustment produces a Democratic advantage, the model classifies the district as Democratic. Otherwise, it classifies it as Republican.
+Using the observed median swing, the rule correctly classified 375 of the 392 called House races, or 95.7%. Applied across the full map, it implied 262 Democratic seats, close to the snapshot's 259 called or leading. That fit deserves attention, but its meaning is limited: the crucial input was estimated from the same election the model is being asked to explain. The 14.3-point movement was unavailable before voting, and the called-race sample initially leaves out many close contests.
 
-There is no detailed assessment of individual candidates, campaign finances, demographic changes, or local political controversies. The calculation treats the national environment as the dominant force and leaves everything else out.
+To see the importance of that input, hold the formula fixed and supply an estimate based on pre-election polling. The accompanying analysis reports a final generic-ballot average of Democratic support ahead by 8.7 points. Against its reported Republican advantage of 2.6 points in the 2024 House vote, that gives an estimated movement of 11.3 points toward Democrats. Applying that adjustment produces 243 Democratic seats, nineteen fewer than the retrospective version.
 
-Using the 14.3-point median swing observed after the election, this simple rule correctly classified 95.7% of the 392 House races that had been called in the preliminary snapshot. Applied to the full House map, it implied 262 Democratic seats, remarkably close to the 259 seats Democrats had either won or were leading in at that point.
-
-That is an impressive fit for a model with so little information. But there is an important qualification: **it is an explanation of what happened, not evidence that the result could have been predicted with comparable accuracy.**
-
-The model uses the actual election results to determine its most important input. The 14.3-point shift was not known before voters went to the polls.
-
-To see how much that matters, consider what the same model would have produced using information available before Election Day.
-
-Final generic-ballot polling averages had Democrats ahead nationally by approximately 8.7 points. Compared with the Republican advantage of 2.6 points in the 2024 House popular vote, that suggested a Democratic shift of roughly 11.3 points.
-
-Substituting that estimate into the otherwise unchanged model produces 243 Democratic seats.
-
-The difference between the two versions is 19 seats. The formula is identical. The only change is the size of the national movement supplied to it.
-
-The smaller estimate was also close to the published pre-election projections from Decision Desk HQ and Silver Bulletin, at approximately 241 and 240 Democratic seats respectively.
+This calculation translates a national House polling indicator onto presidential district margins, a simplifying assumption rather than a fully specified forecasting method. Differences in turnout, congressional candidates, and the distribution of support can all affect that translation. Nevertheless, the comparison is revealing because the map and rule do not change between the two runs. A relatively modest difference in the assumed national movement changes the apparent fate of nineteen seats.
 
 <figure class="midterms-figure">
 <div class="midterms-chart-scroll" role="region" tabindex="0" aria-label="Seat-estimate comparison; use left and right arrow keys to inspect estimates">
 {% include midterms-2026/seat-forecasts.svg %}
 </div>
-<figcaption><strong>Figure 2.</strong> The generic-ballot rule produces an estimate close to the cited pre-election forecasts. The observed-swing rule fits the larger shift after results arrive. The dashed reference marks 259 Democratic seats called or leading, not a final result. The dashboard's non-final August estimate is omitted from this comparison.</figcaption>
+<figcaption><strong>Figure 2.</strong> The same rule implies 243 Democratic seats with pre-election inputs and 262 with the observed swing. These are model estimates, not official results. Source: supplied snapshot and its national-swing calculations.</figcaption>
 </figure>
 
-There is a temptation to conclude that the simple model somehow outperformed the more sophisticated forecasts. It did not. Once given the actual national shift, it described the result extremely well. Before the election, using the best available estimate of that shift, it produced a result much like those of the professional forecasters.
+Decision Desk HQ's [final November 3 announcement](https://x.com/DecisionDeskHQ/status/2117672806678741256) gave Democrats an 84% probability of winning the House and a 241-seat projection. The supplied table separately attributes 240 seats to Silver Bulletin; that exact estimate has not been independently corroborated here. DDHQ's proximity to 243 does not establish that it used this simple rule, or that the retrospective model beat its forecast. A fair comparison would require the published uncertainty ranges and the information available when each forecast was issued.
 
-Indeed, its retrospective accuracy is measured on called races, a sample that initially excludes some of the closest contests. That measure may deteriorate as the remaining races are decided.
+## The polls missed in the same direction
 
-The more revealing conclusion is that a great deal depended on correctly estimating the national political environment. A difference of only a few points in that assumption was sufficient to change the expected composition of Congress substantially.
+The state-level polling comparisons offer a second view of the discrepancy. In 30 of 34 Senate and gubernatorial contests with qualifying polling averages, Democrats performed better than the polls suggested. Their average advantage over the polling margin was 5.3 points. The miss appeared in both kinds of race: 5.9 points in Senate contests and 4.6 in governors' races. A set of errors leaning so consistently in one direction warrants more attention than a few isolated surprises.
 
-## The polls were wrong in a familiar way, but in an unfamiliar direction
+The distribution below makes that pattern visible without implying that every poll failed equally. Each dot represents a race, with positive values indicating that polls understated the Democratic margin. Several contests moved much farther than the average, while four went the other way. The mean is a summary of these comparisons, not a correction that should automatically be added to every future poll.
 
-Election polling has a complicated recent history. In 2016 and 2020, polling errors in important states tended to favor Republicans: Donald Trump's support was greater than many surveys suggested. The 2022 midterms were considerably more accurate overall, although individual races still produced surprises.
-
-The 2026 election presented a different pattern. In the available state-level comparisons, the polling errors generally favored Democrats.
-
-Across 34 Senate and gubernatorial races with qualifying pre-election polling averages, Democratic candidates exceeded those averages by 5.3 percentage points on average, measured in the margin between the two major parties. They outperformed their polling averages in 30 of the 34 contests.
-
-The pattern appeared in both Senate and gubernatorial races. Senate Democrats exceeded their polling averages by an average of 5.9 points, while Democratic gubernatorial candidates exceeded theirs by 4.6 points.
-
-These figures come from a preliminary, incomplete sample and should not be treated as a definitive measurement of polling performance across the entire election. More than half the state-level contests in the accompanying dataset lacked a qualifying polling average. Nor is the statewide polling error directly interchangeable with the roughly three-point difference between the pre-election national swing estimate and the observed median House swing. The two comparisons use different elections, samples, and baselines.
+Selection matters. More than half the state contests in the supplied dataset lack a qualifying average, and some results remained unsettled. These 34 races therefore do not constitute a complete national audit of polling. Their 5.3-point mean error is also not interchangeable with the difference between the 11.3-point national input and the 14.3-point median House swing. Those quantities describe different contests, samples, and baselines; combining them would create an appearance of precision the evidence does not support.
 
 <figure class="midterms-figure">
-<div class="midterms-chart-scroll" role="region" tabindex="0" aria-label="Polling-error figure; use left and right arrow keys to inspect races">
+<div class="midterms-chart-scroll" role="region" tabindex="0" aria-label="Distribution of polling errors; arrow keys inspect races">
 {% include midterms-2026/polling-error.svg %}
 </div>
-<figcaption><strong>Figure 3.</strong> Comparing final averages with the November 4 results snapshot makes the direction of the miss visible. Only the 34 races with an established polling average enter this comparison. Hollow dots indicate uncalled races. Source: companion dashboard.</figcaption>
+<figcaption><strong>Figure 3.</strong> Each dot is one state race, grouped in polling-error bands. Positive errors mean polls understated Democrats; hollow dots are uncalled races. Source: supplied November 4 snapshot, 34 qualifying Senate and governor contests.</figcaption>
 </figure>
 
-Nevertheless, the consistency of the direction is notable.
-
-Polling errors are not always random. When a survey underestimates one candidate in one state, it may be because of circumstances peculiar to that contest. But when surveys across many states underestimate the same party, some common influence becomes a more plausible explanation.
-
-There are several possibilities. Pollsters may have struggled to reach or correctly weight certain groups of voters. The composition of the electorate may have differed from expectations, particularly if turnout rose or fell unevenly between parties. Voters may also have changed their preferences late in the campaign, leaving polls with an outdated picture of the electorate.
-
-The available results do not establish which of these explanations is correct. That would require additional evidence about turnout, individual voting behavior, and the performance of different polling methods.
-
-What they do establish, provisionally, is that the errors tended to point in the same direction. That has consequences extending well beyond the accuracy of any one poll.
+What might produce shared errors? Pollsters could misjudge turnout, struggle to reach particular voters, or miss a late change in preferences. Different surveys may share similar assumptions or difficulties even when conducted separately. The returns alone cannot identify which explanation is right. They do suggest why treating local polling misses as independent accidents would be risky: a common error can affect many contests simultaneously, just as a common political movement can.
 
 ## When supposedly safe seats become competitive
 
-Political forecasters do considerably more than publish polling averages. They combine surveys with historical voting patterns, fundraising, candidate assessments, and other information to estimate the likelihood of each party winning.
+Race ratings illustrate the same vulnerability. In the supplied comparisons, Democrats won seven of nine called House contests rated Lean Republican by Cook Political Report and nine of ten in Sabato's Crystal Ball. Some Likely Republican seats also changed hands. Those outcomes suggest that a shared movement could unsettle assessments across otherwise different districts; they do not mean the labels were intended as guarantees.
 
-These assessments are often expressed through familiar categories: Solid Democratic, Likely Democratic, Lean Democratic, Toss-up, Lean Republican, Likely Republican, and Solid Republican.
+The samples are small, and a category such as Lean Republican has no universal numerical probability. The detailed calibration chart in the appendix uses an analyst-imposed probability mapping, not the raters' published odds. It is useful for examining the pattern, but cannot by itself establish that a forecasting organization was overconfident. Assessments of calibration require more than a handful of outcomes from a single unfinished election.
 
-Such labels serve a useful purpose. They distinguish contests that appear genuinely competitive from those where the outcome is much less uncertain.
+The same caution applies to seat forecasts. An estimate near 240 is not necessarily contradicted by a result above 260 if the forecast assigned a meaningful probability to that outcome. A model's central estimate and its distribution of possible outcomes answer different questions. The evidence here makes the national assumption worth scrutinizing; it does not supply the published distributions needed to judge whether each forecaster allowed enough uncertainty. That is a more demanding test than comparing two headline numbers.
 
-In 2026, the categories generally preserved that ordering. Districts rated strongly Democratic were more likely to elect Democrats than those rated strongly Republican. The forecasters had not lost their ability to distinguish favorable territory from unfavorable territory.
+## What demographics can tell us
 
-But some categories proved much less secure than their descriptions might have suggested.
+The common movement did not make every district alike. Densely urban districts had a median Democratic shift of 18.6 points, against 11.3 in predominantly rural ones. In 253 districts with unchanged boundaries and complete information, a regression using racial composition, education, urbanization, and income accounted for about 18% of the variation in swing. Adding previous presidential voting margins increased that figure to about 26%. These are reported associations within the snapshot, not a reconstruction of individual voting decisions.
 
-Among called House races rated Lean Republican, Democrats won seven of nine contests in Cook Political Report's ratings, nine of ten in Sabato's Crystal Ball, and eight of twelve in Decision Desk HQ's ratings. Even a number of contests rated Likely Republican ended in Democratic victories.
-
-These are relatively small samples, and the results remained incomplete. A Lean Republican rating also does not mean that a Republican victory is certain, or even that it carries any particular numerical probability unless the forecaster specifies one. Such ratings describe relative advantages, not guarantees.
-
-<figure class="midterms-figure">
-<div class="midterms-chart-scroll" role="region" tabindex="0" aria-label="House rating calibration; use left and right arrow keys to inspect category probabilities">
-{% include midterms-2026/rating-calibration.svg %}
-</div>
-<figcaption><strong>Figure 4.</strong> Filled dots show observed Democratic win rates in Republican-favored House categories; hollow dots show an analyst-imposed conventional probability mapping, not the raters' published probabilities. All four House raters are included, with called-race sample sizes alongside each row. Small buckets and unfinished counts limit single-cycle conclusions. Source: companion dashboard.</figcaption>
-</figure>
-
-Still, the extent to which Democratic candidates prevailed in Republican-favored categories suggests that the national shift affected many of the same contests simultaneously.
-
-This is one of the central difficulties of election forecasting. Congressional elections are decided district by district, but they are not independent events.
-
-A local scandal might damage one candidate without influencing neighboring districts. A change in the national political mood can affect hundreds of candidates at once. If the underlying estimate of that mood is too favorable to one party, many individual forecasts can move in the wrong direction together.
-
-Sophisticated models can account for this dependence by allowing the national environment itself to vary across simulations. The important question is whether they assign enough probability to unusually large changes.
-
-A forecast projecting 241 Democratic seats, for example, is not necessarily a poor forecast because the eventual result is substantially higher. A probabilistic model may regard 241 as its most likely outcome while still allowing a meaningful chance of 260 or more. Judging its performance properly requires examining that range of possibilities, rather than merely comparing a central estimate with the final result.
-
-The 2026 election offers a reason to examine those assumptions closely. It does not, by itself, establish that every forecaster was excessively confident. Some models anticipated a considerably stronger Democratic performance than others.
-
-## Who was responsible for the shift?
-
-The geographical breadth of the Democratic gains does not mean every group of voters behaved alike.
-
-The district-level data suggest some differences in where the movement was strongest. Densely urban districts experienced a median Democratic shift of approximately 18.6 points, compared with 11.3 points in predominantly rural districts.
-
-Areas with smaller non-Hispanic white populations also tended to register larger Democratic swings. Lower median household incomes and lower levels of college attainment were associated with somewhat larger shifts in the simpler statistical comparisons.
-
-Some of these relationships are counterintuitive given the political alignments of recent elections. They may reflect changes in turnout, persuasion among voters who supported Republicans in 2024, or some combination of the two.
-
-But there is a limit to what district-level data can reveal about individual behavior.
-
-A district with a large Hispanic population shifting toward Democrats does not necessarily mean Hispanic voters in that district changed their preferences by the same amount. The shift could reflect turnout among different groups, changes among other voters, or population and electoral differences that cannot be isolated from aggregate results.
-
-The statistical analysis reinforces that caution.
-
-Using 253 districts with unchanged boundaries and complete demographic information, a model incorporating racial composition, education, urbanization, and household income accounted for only about 18% of the variation in the size of the Democratic swing. Including the district's previous presidential voting margin increased that share to about 26%.
-
-<figure class="midterms-figure">
-<div class="midterms-chart-scroll" role="region" tabindex="0" aria-label="Demographic association figure; use left and right arrow keys to inspect districts">
-{% include midterms-2026/demographics.svg %}
-</div>
-<figcaption><strong>Figure 5.</strong> Higher non-Hispanic white population share is associated with a smaller Democratic swing. This is an aggregate association, not evidence about individual voters. Source: companion dashboard, 253 unchanged-line districts.</figcaption>
-</figure>
-
-Those figures suggest that demographic characteristics were relevant, but far from sufficient to explain why some districts moved more than others.
-
-Much of the election's movement was common to places with very different populations and political histories. That leaves room for demographic differences without making them the principal explanation for the national result.
-
-It also cautions against treating the election as evidence of a simple realignment among any single group of voters. Such claims require more direct evidence than these returns alone can supply.
+They cannot tell us whether particular groups switched parties, stayed home, or voted in greater numbers. A district with a large Hispanic population moving toward Democrats, for example, does not identify which residents changed their behavior. The regressions concern differences between districts, and their limited explanatory power does not establish a cause for the national movement. The detailed chart belongs in the appendix rather than serving as evidence for a sweeping claim of demographic realignment.
 
 ## The limits of prediction
 
-The 2026 midterms demonstrate both the value and the limitations of election forecasting.
+The useful lesson is about where forecasting effort belongs. If hundreds of contests depend heavily on one national assumption, refining local detail cannot compensate for getting that assumption wrong. Models need to represent plausible shared movements as well as district-specific uncertainty, and readers need to know how much of a seat estimate rests on each.
 
-The broad direction of the House contest was not especially mysterious. Democratic control was considered likely by most major models, and the polls anticipated substantial gains. The surprise lay in the size of the movement and the number of seats that consequently became competitive.
-
-The simple national-swing model helps make sense of that outcome. With the benefit of hindsight, a single adjustment to the 2024 electoral map describes the results remarkably well. The apparent complexity of hundreds of individual races is, to a considerable extent, reduced to one shared change in political conditions.
-
-Yet the exercise also shows why a model's ability to explain the past is different from its ability to anticipate the future.
-
-Knowing that a 14.3-point swing produces a close fit is useful. Knowing, before the election, that the swing will be 14.3 points is the difficult part. More elaborate models can incorporate additional information and represent uncertainty more carefully, but they cannot eliminate the difficulty of estimating political conditions that have not yet been observed.
-
-This is not an argument against sophisticated forecasting. A simple national-swing model leaves out too much to serve as a substitute for serious election analysis, and its impressive retrospective accuracy should not be mistaken for a competitive forecasting record.
-
-It does, however, provide a useful test of what the more elaborate methods are adding. If one national variable accounts for much of the result, forecasting that variable—and accurately representing uncertainty around it—deserves at least as much attention as the details of individual races.
-
-For 2026, many models anticipated the winning party. The more difficult task was determining the scale of its victory.
-
-That distinction may seem modest. In an election where a few percentage points of national movement can change the fate of dozens of congressional districts, it is anything but.
+The simple rule provides a benchmark for that work, not a replacement for it. It fits the supplied returns after the decisive input is known; it offers no independent proof that the input could have been predicted. A convincing forecasting record would require a rule fixed before voting, contemporaneous inputs, and evaluation across elections. Until then, the nineteen-seat difference is best understood as a measure of sensitivity: a small change in the national picture can have a large effect on the map.
 
 ## Data and sources
 
-The [companion dashboard](/source_info/midterms-2026-dashboard.html) contains the race-level data and reported estimates. The [extracted snapshot](/assets/midterms-2026/snapshot.json) and [visual generator](/assets/midterms-2026/build-visuals.cjs) reproduce the figures, not the unavailable upstream collection and estimation pipeline. [Download the LinkedIn infographic](/assets/midterms-2026/summary-linkedin.png).
+The [companion dashboard]({{ '/source_info/midterms-2026-dashboard.html' | relative_url }}) contains the race-level inputs. The [extracted snapshot]({{ '/assets/midterms-2026/snapshot.json' | relative_url }}) and [visual generator]({{ '/assets/midterms-2026/build-visuals.cjs' | relative_url }}) reproduce the charts, not the unavailable upstream collection or regression pipeline. All three main figures use that fixed snapshot. [LinkedIn infographic]({{ '/assets/midterms-2026/summary-linkedin.png' | relative_url }}).
 
-Source attributions supplied with the original analysis include Decision Desk HQ for results, ratings, and its November 3 forecast; Silver Bulletin for its October 29 forecast; RealClearPolling, Silver Bulletin, and Race to the WH for polling averages; Cook Political Report, Sabato's Crystal Ball, Inside Elections, and DDHQ for ratings; and The Downballot, ACS, Census, and FiveThirtyEight for district baselines and demographics. These attributions are not independently verified citations. The FEC publishes the [official 2024 presidential results](https://www.fec.gov/documents/5644/2024presgeresults.pdf) and explains that [states certify election results](https://www.fec.gov/introduction-campaign-finance/election-and-voting-information/); neither link corroborates the supplied 2026 totals.
+**Historical records checked:** the [American Presidency Project's midterm series](https://www.presidency.ucsb.edu/statistics/data/seats-congress-gainedlost-the-presidents-party-mid-term-elections) confirms the historical House and Senate seat changes, citing [House party divisions](https://history.house.gov/Institution/Party-Divisions/Party-Divisions/) and [Senate party divisions](https://www.senate.gov/history/partydiv.htm). Its convention is used consistently; independently caucusing members and changes during a Congress can produce differences from other published series. It does not corroborate the supplied 2026 row.
+
+**National vote comparison:** [Ed Kilgore's November 4 Intelligencer analysis](https://nymag.com/intelligencer/article/this-2026-midterm-wave-was-one-for-the-history-books.html) compares national House popular-vote movements with the preceding House elections. Its roughly 16-point 2026 swing uses a preliminary Democratic national lead of 13-14 points, also described by [G. Elliott Morris on November 4](https://www.gelliottmorris.com/p/democrats-win-us-house-senate-in). These are attributed estimates, not an independently recomputed national vote series. They do not replace the supplied district margins or establish a final historical ranking.
+
+**Forecast and results checks:** DDHQ's [dated final forecast announcement](https://x.com/DecisionDeskHQ/status/2117672806678741256), linking to its [2026 forecast](https://votes.decisiondeskhq.com/forecast/2026), confirms the 84% House-control probability and 241-seat projection. [The New York Times' November 4 reporting](https://www.nytimes.com/live/2026/11/04/us/midterm-election-results-democrats), using Associated Press race calls, corroborates Democratic control of both chambers and seven Democratic Senate flips. Its later House totals have not been substituted into this snapshot. Neither source independently validates every supplied race, polling average, rating, or regression output. The [Silver Bulletin forecast landing page](https://www.natesilver.net/p/nate-silver-2026-midterm-election-polls-model) confirms a November 3 final update, but not the exact 240-seat figure in its accessible text. The [FEC explains certification](https://www.fec.gov/introduction-campaign-finance/election-results-and-voting-information/); these preliminary calls and estimates are not certified totals.
 
 ---
 
 ### About the analysis
 
-This article draws on a preliminary November 4, 2026, election-results snapshot and an accompanying analysis of House, Senate, and gubernatorial contests. The district-level comparisons use two-party vote margins, with House results compared against the 2024 presidential vote on comparable district boundaries where available.
+The supplied snapshot combines state races read approximately 1-8am Eastern on November 4 with House counts read approximately noon-3pm. It has 435 House races, 392 called and 43 uncalled. The swing plot uses 412 comparable presidential-to-House margins. Classification accuracy uses recorded winners in all 392 called races, including 14 without a comparable House result margin; blank margins are not treated as zero. The rule classifies 375 correctly. Its 95.7% accuracy is retrospective, in-sample, and subject to called-race selection, not a pre-election forecasting score.
 
-The uniform-swing model was fitted retrospectively. Its reported 95.7% classification accuracy applies only to the 392 House races called at the time of the snapshot and is not a measure of pre-election predictive performance. Polling comparisons include only races with qualifying published averages. Demographic findings describe associations at the district level and should not be interpreted as evidence of individual voter behavior.
+Polling comparisons use only 34 state races with qualifying averages and numeric result margins, excluding PollCheck-source entries. Errors are result minus poll in Democratic two-party-margin points; a positive error means Democrats exceeded the poll. The displayed mean of 5.3 points is the supplied rounded summary. The demographic regressions and their 18% and 26% explanatory shares are reported outputs, not independently re-estimated here. District aggregates cannot identify individual persuasion or turnout.
 
-Election totals remain provisional. The underlying analytical data and some external source attributions have not been independently verified, and the estimates should be updated when more complete results are available.
+No newer returns or replacement forecast inputs have been substituted. Any later update must recalculate dependent model estimates, samples, error summaries, and figures together. The original source file is retained for audit, including historical estimates superseded by the verified seat-change table. The <a href="#technical-appendix">technical appendix</a> preserves the supporting charts outside the main reading flow.
+
+<details class="midterms-appendix" id="technical-appendix">
+<summary>Technical appendix</summary>
+
+<h3>Different meanings of swing</h3>
+<p>The main district statistic is the median of 2026 House Democratic two-party margins minus 2024 presidential Democratic two-party margins. A national House-to-House margin change would instead subtract the previous House election's national party margin from the current one. Both elections must use the same denominator, whether all votes or only Democratic and Republican votes. A change in two-party vote share is half the corresponding change in two-party margin. These definitions are not interchangeable with seat gains or with an unweighted median of districts.</p>
+
+<h3>Historical seat changes</h3>
+<figure class="midterms-figure">
+<div class="midterms-chart-scroll" role="region" tabindex="0" aria-label="Supplementary historical seat comparison; 2026 is incomplete">
+{% include midterms-2026/historical-seats.svg %}
+</div>
+<figcaption><strong>Appendix A.</strong> The earlier seven-election comparison is retained for reference. The hatched 2026 bar represents net called flips only, not a final result or a projection. Sources: American Presidency Project for historical elections; supplied snapshot for 2026.</figcaption>
+</figure>
+
+<h3>Race-rating calibration</h3>
+<figure class="midterms-figure">
+<div class="midterms-chart-scroll" role="region" tabindex="0" aria-label="Supplementary rating calibration; arrow keys inspect categories">
+{% include midterms-2026/rating-calibration.svg %}
+</div>
+<figcaption><strong>Appendix B.</strong> Filled dots are observed Democratic win rates among called races; hollow dots are analyst-imposed category probabilities, not raters' published odds. All four House raters and their small category samples are retained. Source: supplied snapshot.</figcaption>
+</figure>
+
+<h3>District demographics</h3>
+<figure class="midterms-figure">
+<div class="midterms-chart-scroll" role="region" tabindex="0" aria-label="Supplementary demographic association; arrow keys inspect districts">
+{% include midterms-2026/demographics.svg %}
+</div>
+<figcaption><strong>Appendix C.</strong> Non-Hispanic white population share and Democratic district swing are negatively associated in these 253 unchanged-boundary districts. This plot does not identify individual voter behavior or establish causation. Source: supplied snapshot.</figcaption>
+</figure>
+
+</details>
 
 <script src="{{ '/assets/midterms-2026/article.js' | relative_url }}" defer></script>

@@ -9,6 +9,10 @@ preview = ARGV.fetch(0, '/tmp/j-abed-midterms-preview')
 document = Nokogiri::HTML(File.read(File.join(preview, 'one-parameter-model-2026-midterms.html')))
 article = document.at_css('.post')
 raise 'Expected the full article with six native figures' unless article && article.css('.midterms-figure svg').length == 6
+appendix = article.at_css('#technical-appendix')
+raise 'Expected three supplementary charts in the appendix' unless appendix && appendix.css('.midterms-figure svg').length == 3
+raise 'Expected three main charts' unless article.css('.midterms-figure').reject { |figure| figure.ancestors.include?(appendix) }.length == 3
+raise 'Expected five historical table rows' unless article.css('.midterms-history-table tbody tr').length == 5
 
 archive = File.join(__dir__, 'midterms-2026-blog-package.zip')
 Dir.mktmpdir('midterms-package-') do |temporary|
@@ -67,7 +71,11 @@ Dir.mktmpdir('midterms-package-') do |temporary|
     if File.extname(include_path) == '.html'
       File.read(File.join(root, '_includes', include_path))
     else
-      "<img src=\"_includes/#{include_path}\" alt=\"Chart described in the caption below\">"
+      chart = Nokogiri::XML(File.read(File.join(root, '_includes', include_path)))
+      image = Nokogiri::XML::Node.new('img', document)
+      image['src'] = "_includes/#{include_path}"
+      image['alt'] = chart.at_xpath('//*[local-name()="title"]').text
+      image.to_html
     end
   end
   markdown = markdown.gsub('](/', '](')
@@ -76,8 +84,9 @@ Dir.mktmpdir('midterms-package-') do |temporary|
     2026 MIDTERMS BLOG + INFOGRAPHIC PACKAGE
 
     Open blog-post.html in a browser for the full article. Its styling,
-    six native charts, historical table, opening infographic, and chart interactions are
-    embedded, so no Jekyll installation or internet connection is required.
+    three main charts, three collapsible appendix charts, historical table, and
+    chart interactions are embedded, so no Jekyll installation or internet
+    connection is required.
     Supporting links work when the ZIP is fully extracted.
 
     blog-post.md: portable Markdown article with relative image links.
@@ -92,8 +101,17 @@ Dir.mktmpdir('midterms-package-') do |temporary|
     To regenerate the graphics, run from this folder:
       node assets/midterms-2026/build-visuals.cjs
 
-    STATUS: Article enabled for publication. Counts are preliminary and external sources
-    are unverified. Retrospective classification accuracy is not a claim
+    STATUS: Publication-ready analysis of a fixed preliminary November 4 snapshot.
+    DDHQ's dated announcement confirms its 84% House probability and 241-seat
+    projection. Independent reporting corroborates control of both chambers;
+    it does not verify every supplied input. See the article's source notes.
+    The attributed Silver Bulletin 240-seat estimate remains uncorroborated.
+    Regression outputs have not been independently re-estimated.
+    The Markdown setting published: true enables Jekyll build inclusion only;
+    it does not certify verification or trigger deployment. GitHub Pages publishes
+    commits pushed to the repository's main branch.
+    Historical seat comparisons have been checked separately.
+    Retrospective classification accuracy is not a claim
     of pre-election forecasting performance. LinkedIn copy remains subject
     to factual review; packaging does not post anything to LinkedIn.
   TEXT

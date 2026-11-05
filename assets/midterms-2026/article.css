@@ -13,7 +13,13 @@
   display: block;
   width: 100%;
   min-width: 600px;
+  max-width: 760px;
   height: auto;
+  margin-inline: auto;
+}
+
+.midterms-history-chart {
+  max-width: 600px;
 }
 
 .midterms-chart [data-detail] {
@@ -40,6 +46,28 @@
 
 .midterms-history-table small {
   font-size: 0.7rem;
+}
+
+.midterms-editorial-note,
+.midterms-source-note {
+  color: #59645d;
+  font: 0.8rem/1.55 "PT Sans", sans-serif;
+}
+
+.midterms-appendix {
+  margin-top: 2rem;
+  border-top: 1px solid #e1e7e2;
+}
+
+.midterms-appendix summary {
+  padding: 0.8rem 0;
+  cursor: pointer;
+  font: 1rem/1.5 "PT Sans", sans-serif;
+}
+
+.midterms-appendix summary:focus-visible {
+  outline: 2px solid #13766c;
+  outline-offset: 4px;
 }
 
 .midterms-figure figcaption {
@@ -72,6 +100,7 @@
 .post img.midterms-summary {
   width: 100%;
   max-width: 760px;
+  height: auto;
   border-radius: 0;
   box-shadow: none;
 }
