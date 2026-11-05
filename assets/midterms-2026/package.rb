@@ -101,19 +101,22 @@ Dir.mktmpdir('midterms-package-') do |temporary|
     To regenerate the graphics, run from this folder:
       node assets/midterms-2026/build-visuals.cjs
 
-    STATUS: Publication-ready analysis of a fixed preliminary November 4 snapshot.
+    STATUS: Article published at:
+    https://j-abed.github.io/one-parameter-model-2026-midterms
+    This package analyzes a fixed, preliminary, partially unverified November 4
+    dataset, not certified totals. Historical seat-change citations are checked.
     DDHQ's dated announcement confirms its 84% House probability and 241-seat
     projection. Independent reporting corroborates control of both chambers;
-    it does not verify every supplied input. See the article's source notes.
+    these citations do not fully verify the supplied race-level dataset,
+    polling averages, or ratings. See the article's source notes.
     The attributed Silver Bulletin 240-seat estimate remains uncorroborated.
     Regression outputs have not been independently re-estimated.
     The Markdown setting published: true enables Jekyll build inclusion only;
     it does not certify verification or trigger deployment. GitHub Pages publishes
     commits pushed to the repository's main branch.
-    Historical seat comparisons have been checked separately.
     Retrospective classification accuracy is not a claim
-    of pre-election forecasting performance. LinkedIn copy remains subject
-    to factual review; packaging does not post anything to LinkedIn.
+    of pre-election forecasting performance. LinkedIn copy is a draft and has
+    not been posted; packaging does not post anything to LinkedIn.
   TEXT
   raise 'ZIP creation failed' unless system('zip', '-q', '-r', File.join(temporary, 'package.zip'), name, chdir: temporary)
   FileUtils.mv(File.join(temporary, 'package.zip'), archive)

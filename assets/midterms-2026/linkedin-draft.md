@@ -1,6 +1,8 @@
 # LinkedIn Post Draft
 
-Status: Article enabled for publication. Hold the LinkedIn post for factual review: election totals, source citations, and forecast vintages remain externally unverified. No LinkedIn posting is automated.
+Status: Article published at the URL below. This LinkedIn copy is a draft and has not been posted; no LinkedIn posting is automated.
+
+Verification: Historical seat changes and DDHQ's dated November 3 forecast announcement (84% Democratic House-control probability; 241-seat projection) have been checked. Independent reporting corroborates control of both chambers. These external citations do not fully verify the supplied November 4 race-level dataset, polling averages, or ratings. The regression outputs have not been independently re-estimated, and the attributed Silver Bulletin 240-seat estimate remains uncorroborated. The infographic describes that fixed, preliminary, partially unverified dataset, not certified totals.
 
 ## Post
 
@@ -12,7 +14,7 @@ One simple model makes the distinction clear: pre-election inputs imply 243 Demo
 
 Using the observed swing, the rule correctly classifies 95.7% of the 392 called House races. That is a retrospective, in-sample fit, not a pre-election forecasting record.
 
-The challenge wasn't just predicting who would win. It was estimating the size of the shift. The infographic summarizes this preliminary analysis; election totals and external source attributions remain unverified.
+The challenge wasn't just predicting who would win. It was estimating the size of the shift. The infographic summarizes a preliminary, partially unverified dataset; verified external citations do not constitute a complete audit of its race-level inputs.
 
 Full analysis: https://j-abed.github.io/one-parameter-model-2026-midterms
 
