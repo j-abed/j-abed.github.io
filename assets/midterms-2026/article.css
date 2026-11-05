@@ -1,0 +1,70 @@
+.midterms-figure {
+  margin: 2rem 0;
+  position: relative;
+}
+
+.midterms-chart-scroll {
+  max-width: 100%;
+  overflow-x: auto;
+  scrollbar-width: thin;
+}
+
+.midterms-chart {
+  display: block;
+  width: 100%;
+  min-width: 600px;
+  height: auto;
+}
+
+.midterms-chart [data-detail] {
+  cursor: crosshair;
+}
+
+.midterms-chart-scroll:focus-visible {
+  outline: 2px solid #13766c;
+  outline-offset: 4px;
+}
+
+.midterms-figure figcaption {
+  margin-top: 0.75rem;
+  color: #59645d;
+  font-family: "PT Sans", sans-serif;
+  font-size: 0.8rem;
+  line-height: 1.55;
+}
+
+.midterms-detail {
+  position: absolute;
+  z-index: 2;
+  left: 0;
+  bottom: 0;
+  width: min(100%, 28rem);
+  box-sizing: border-box;
+  padding: 0.65rem 0.8rem;
+  background: #222825;
+  color: #fff;
+  border-radius: 4px;
+  font: 0.8rem/1.5 "PT Sans", sans-serif;
+  pointer-events: none;
+}
+
+.midterms-detail[hidden] {
+  display: none;
+}
+
+.post img.midterms-summary {
+  width: 100%;
+  max-width: 760px;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+@media print {
+  .midterms-chart {
+    min-width: 0;
+  }
+
+  .midterms-detail {
+    display: none;
+  }
+}
