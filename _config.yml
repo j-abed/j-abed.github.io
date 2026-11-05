@@ -16,6 +16,15 @@ author:
 plugins:
   - jekyll-paginate
 
+exclude:
+  - test
+  - scripts
+  - README.md
+  - vendor
+
+substack:
+  static_images: {}
+
 # Custom vars
 version:             1.1.0
 google_analytics_id: G-34SMXHK93B

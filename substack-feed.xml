@@ -1,0 +1,37 @@
+---
+layout: null
+permalink: /substack-feed.xml
+---
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:export="https://j-abed.github.io/substack-export">
+  <channel>
+    <title>{{ site.title | append: ' - Selected Articles' | xml_escape }}</title>
+    <link>{{ '/' | absolute_url | xml_escape }}</link>
+    <description>{{ site.description | xml_escape }}</description>
+    <language>en</language>
+    <atom:link href="{{ '/substack-feed.xml' | absolute_url | xml_escape }}" rel="self" type="application/rss+xml" />
+    <export:status>disabled</export:status>
+    {% if site.substack_export_enabled %}
+    {% assign build_time = site.time | date: '%s' | plus: 0 %}
+    {% for post in site.posts %}
+      {% assign published_time = post.date | date: '%s' | plus: 0 %}
+      {% if post.substack == true and post.published != false and post.draft != true and published_time <= build_time %}
+        {% unless post.path contains '_drafts/' %}
+    <item>
+      <title>{{ post.title | xml_escape }}</title>
+      <link>{{ post.url | absolute_url | xml_escape }}</link>
+      <guid isPermaLink="true">{{ post.url | absolute_url | xml_escape }}</guid>
+      <pubDate>{{ post.date | date_to_rfc822 }}</pubDate>
+      <dc:creator>{{ site.author.name | xml_escape }}</dc:creator>
+      <description>{{ post.description | default: post.excerpt | strip_html | normalize_whitespace | xml_escape }}</description>
+      <content:encoded>{{ post.content | xml_escape }}</content:encoded>
+      {% if site.substack.static_images[post.url] %}
+      <export:static-image>{{ site.substack.static_images[post.url] | absolute_url | xml_escape }}</export:static-image>
+      {% endif %}
+    </item>
+        {% endunless %}
+      {% endif %}
+    {% endfor %}
+    {% endif %}
+  </channel>
+</rss>

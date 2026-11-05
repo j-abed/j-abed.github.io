@@ -1,0 +1,51 @@
+name: Build and Deploy Pages
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: pages-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.3'
+          bundler-cache: true
+      - name: Install SVG renderer and fonts
+        run: sudo apt-get update && sudo apt-get install -y librsvg2-bin fonts-dejavu-core fonts-liberation
+      - name: Run export regression tests
+        run: bundle exec ruby test/substack_export_test.rb
+      - name: Build site and selective RSS
+        run: bundle exec ruby scripts/build-substack.rb _site
+      - name: Validate export
+        run: bundle exec ruby scripts/validate-substack.rb _site
+      - uses: actions/upload-pages-artifact@v4
+        with:
+          path: _site
+
+  deploy:
+    if: github.event_name != 'pull_request'
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/configure-pages@v5
+      - name: Deploy GitHub Pages only
+        id: deployment
+        uses: actions/deploy-pages@v4

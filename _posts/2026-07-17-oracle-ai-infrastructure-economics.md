@@ -2,6 +2,7 @@
 layout: post
 title: "Oracle and the Economics of the AI Infrastructure Boom"
 date: 2026-07-17 10:00:00 -0400
+substack: true
 categories: [finance, ai, infrastructure, valuation, dcf, financial-modeling]
 permalink: /oracle-ai-infrastructure-economics
 ---

@@ -4,6 +4,7 @@ title: "What the Forecasts Missed About the 2026 Midterms"
 date: 2026-11-04 16:00:00 -0500
 last_modified_at: 2026-11-05
 published: true
+substack: true
 categories: [data-science, elections, statistics, forecasting]
 tags: [midterms-2026, election-forecasting, uniform-swing, polling]
 permalink: /one-parameter-model-2026-midterms
