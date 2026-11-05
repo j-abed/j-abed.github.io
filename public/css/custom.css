@@ -74,6 +74,16 @@ html {
   line-height: 1.75;
 }
 
+.article-table-scroll {
+  max-width: 100%;
+  overflow-x: auto;
+  margin-bottom: 1rem;
+}
+
+.article-table-scroll table {
+  margin-bottom: 0;
+}
+
 /* -------------------------
    Headings inside posts
    ------------------------- */

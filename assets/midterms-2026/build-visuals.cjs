@@ -98,6 +98,42 @@ estimates.forEach((estimate, index) => {
 forecast += text(22, 405, '218 seats for a majority. Observed-swing fit is not a forecast.', 'class="detail"');
 save('seat-forecasts', svg('seat-forecasts', 'Pre-election seat estimates versus a hindsight fit', 'Silver Bulletin 240; DDHQ 241; generic-ballot rule 243; observed-swing rule 262. The preliminary snapshot has 259 Democratic seats called or leading. The seat axis begins at 210; this is a dot plot, not a bar chart.', 428, forecast));
 
+const historical = JSON.parse(fs.readFileSync(path.join(__dirname, 'historical-comparison.json'), 'utf8'));
+const signedSeats = value => value > 0 ? `+${value}` : value < 0 ? `\u2212${Math.abs(value)}` : '0';
+const currentHistory = historical.elections.find(row => row.year === 2026);
+for (const office of ['House', 'Senate']) {
+  const calls = data.tally.find(row => row.office === office);
+  assert.equal(currentHistory[office.toLowerCase()], number(calls.rep_flips) - number(calls.dem_flips));
+}
+assert.equal(historical.elections.length, 7);
+let historicalTable = '<table class="midterms-history-table"><caption>How Recent Midterms Compare</caption><thead><tr><th scope="col">Election</th><th scope="col">President</th><th scope="col">House seats</th><th scope="col">Senate seats</th></tr></thead><tbody>';
+for (const row of historical.elections) {
+  const qualification = row.provisional ? '<br><small>Called; provisional</small>' : '';
+  historicalTable += `<tr><th scope="row">${row.year}</th><td>${escape(row.president)}</td><td>${signedSeats(row.house)}${qualification}</td><td>${signedSeats(row.senate)}${qualification}</td></tr>`;
+}
+historicalTable += '</tbody></table>\n';
+fs.writeFileSync(path.join(output, 'historical-table.html'), historicalTable);
+
+let historyChart = text(22, 32, 'How Midterm House Seat Losses Compare', 'class="heading"') + text(22, 63, "President's party / Seats, not vote swing", 'style="font-size:18px"');
+const historicalScale = d3.scaleLinear([-70, 15], [178, 566]);
+const historicalZero = historicalScale(0);
+historyChart += `<defs><pattern id="historical-provisional" width="8" height="8" patternUnits="userSpaceOnUse"><path d="M-2 2L2-2M0 8L8 0M6 10L10 6" style="stroke:${colors.fit};stroke-width:1.5;opacity:0.45"/></pattern></defs>`;
+for (const tick of [-60, -40, -20, 0, 10]) {
+  historyChart += line(historicalScale(tick), 88, historicalScale(tick), 492, tick === 0 ? `style="stroke:${colors.ink};stroke-width:2"` : '');
+  historyChart += text(historicalScale(tick), 510, signedSeats(tick), 'text-anchor="middle" style="font-size:20px"');
+}
+historical.elections.forEach((row, index) => {
+  const vertical = 112 + index * 58;
+  const position = historicalScale(row.house);
+  const detail = `${row.year}, ${row.president}: president's party ${signedSeats(row.house)} House seats.${row.provisional ? ' Net called flips in the unverified November 4 snapshot, not a final result.' : ' Historical election net change, American Presidency Project.'}`;
+  historyChart += text(22, vertical, row.year, 'style="font-size:21px;font-weight:700"');
+  historyChart += text(22, vertical + 28, row.president, 'style="font-size:18px"');
+  historyChart += `<rect x="${Math.min(position, historicalZero)}" y="${vertical - 8}" width="${Math.abs(position - historicalZero)}" height="24" fill="${row.provisional ? 'url(#historical-provisional)' : '#7d8881'}" ${row.provisional ? `stroke="${colors.fit}" stroke-width="2"` : ''} data-detail="${escape(detail)}"><title>${escape(detail)}</title></rect>`;
+  historyChart += text(position + (row.house < 0 ? -9 : 9), vertical + 11, signedSeats(row.house), `text-anchor="${row.house < 0 ? 'end' : 'start'}" style="font-size:21px;fill:${row.provisional ? colors.fit : colors.ink}"`);
+});
+historyChart += text(178, 550, 'Seats lost', 'style="font-size:20px"') + text(566, 550, 'Gained', 'text-anchor="end" style="font-size:20px"');
+save('historical-seats', svg('historical-seats', 'How Midterm House Seat Losses Compare', 'Net House seats for the sitting president\'s party: 1994 minus 54; 1998 plus 4; 2002 plus 8; 2006 minus 30; 2010 minus 63; 2018 minus 41. The outlined, hatched 2026 bar shows minus 35 net called flips in the unverified November 4 snapshot, not a final result or projection. These are seats, not vote swings.', 572, historyChart, 600).replace('class="midterms-chart"', 'class="midterms-chart midterms-history-chart"'));
+
 const polls = data.state_races.filter(row => finite(row.margin_poll) && finite(row.poll_error) && finite(row.margin_2026) && !/PollCheck/.test(row.poll_avg_source || ''));
 assert.equal(polls.length, 34);
 scatter('polling-error', polls, {
@@ -220,4 +256,4 @@ landscape += graphicText(1136, 673, 'Jason Abed', 23, 'text-anchor="end"');
 landscape += '</svg>\n';
 fs.writeFileSync(path.join(__dirname, 'summary-blog.svg'), landscape);
 fs.writeFileSync(path.join(__dirname, 'snapshot.json'), JSON.stringify({ source: 'source_info/midterms-2026-dashboard.html', snapshot: summary('snapshot'), externallyVerified: false, data }, null, 2) + '\n');
-console.log(`Built five native SVG figures and portrait/landscape infographics from ${house.length} districts, ${polls.length} polled races, and ${demographics.length} demographic profiles.`);
+console.log(`Built six native SVG figures, the historical table, and portrait/landscape infographics from ${house.length} districts, ${polls.length} polled races, and ${demographics.length} demographic profiles.`);

@@ -57,14 +57,33 @@ It also helps explain why Republicans lost seats across such different parts of 
 
 The Democratic gains were not confined to the House. In the supplied results, the party had flipped seven Senate seats, including contests in Iowa, Kansas, South Carolina, and Texas. Republican advantages that had seemed substantial only two years earlier proved insufficient against the changed political environment.
 
-The breadth of the movement invites a straightforward question: if the change was so widespread, could a very simple model have anticipated it?
-
 <figure class="midterms-figure">
 <div class="midterms-chart-scroll" role="region" tabindex="0" aria-label="District swing figure; use left and right arrow keys to inspect data points">
 {% include midterms-2026/uniform-swing.svg %}
 </div>
 <figcaption><strong>Figure 1.</strong> Each dot is a district. The dashed line adds the observed median swing to the 2024 presidential margin; distance from that line is the local residual. Blue dots indicate Democratic leads or wins, red dots Republican leads or wins; hollow dots are uncalled. Source: companion dashboard, November 4 snapshot, 412 comparable districts.</figcaption>
 </figure>
+
+### A Wave With Historical Precedents
+
+Large midterm reversals have precedents. Clinton's party lost 54 House seats in 1994; Obama's lost 63 in 2010. Trump's first midterm brought a loss of 41 in 2018. All signs here refer to the sitting president's party.
+
+The supplied November 4 snapshot records 37 Democratic House flips and two Republican flips: a net Republican loss of 35 among called races. That is smaller than the completed 2018 loss, but it is not a final comparison: 43 House contests remained uncalled. The Senate's seven Democratic flips similarly represent an unverified, provisional balance.
+
+Midterms are not invariably defeats for that party: Clinton gained House seats in 1998, while George W. Bush gained seats in both chambers in 2002. House losses accompanied Senate gains in 2018.
+
+<div class="article-table-scroll" role="region" tabindex="0" aria-label="How Recent Midterms Compare">
+{% include midterms-2026/historical-table.html %}
+</div>
+
+<figure class="midterms-figure">
+<div class="midterms-chart-scroll" role="region" tabindex="0" aria-label="Historical House seat comparison; 2026 is an incomplete, unverified snapshot">
+{% include midterms-2026/historical-seats.svg %}
+</div>
+<figcaption><strong>Historical comparison.</strong> Net House seats for the president's party; losses extend left of zero and gains right. The outlined, hatched 2026 bar is the supplied November 4 net balance of called flips, not a projection or final loss. Historical table and chart values follow the <a href="https://www.presidency.ucsb.edu/statistics/data/seats-congress-gainedlost-the-presidents-party-mid-term-elections">American Presidency Project's midterm series</a>, which cites <a href="https://history.house.gov/Institution/Party-Divisions/Party-Divisions/">House</a> and <a href="https://www.senate.gov/history/partydiv.htm">Senate</a> party records. Its counting convention can differ from other published net-change figures. The 2026 values come only from the <a href="{{ '/source_info/midterms-2026-dashboard.html' | relative_url }}">supplied dashboard</a>, not those historical sources.</figcaption>
+</figure>
+
+Nor should these seat totals be confused with this article's 14.3-point median district swing. That compares 2024 presidential margins with 2026 House margins, not successive national House votes. Historical context establishes the scale of the seat reversal; the next question is how much a single national shift can explain.
 
 ## What a single number can tell us
 

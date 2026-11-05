@@ -8,7 +8,7 @@ root = File.expand_path('../..', __dir__)
 preview = ARGV.fetch(0, '/tmp/j-abed-midterms-preview')
 document = Nokogiri::HTML(File.read(File.join(preview, 'one-parameter-model-2026-midterms.html')))
 article = document.at_css('.post')
-raise 'Expected the full article with five native figures' unless article && article.css('.midterms-figure svg').length == 5
+raise 'Expected the full article with six native figures' unless article && article.css('.midterms-figure svg').length == 6
 
 archive = File.join(__dir__, 'midterms-2026-blog-package.zip')
 Dir.mktmpdir('midterms-package-') do |temporary|
@@ -19,7 +19,7 @@ Dir.mktmpdir('midterms-package-') do |temporary|
     destination = File.join(folder, relative)
     FileUtils.mkdir_p(destination)
     Dir.glob(File.join(root, relative, '*')).each do |source|
-      next unless File.file?(source) && %w[.css .js .cjs .json .svg .png .md].include?(File.extname(source))
+      next unless File.file?(source) && %w[.css .js .cjs .json .svg .png .md .html].include?(File.extname(source))
       FileUtils.cp(source, destination)
     end
   end
@@ -62,14 +62,21 @@ Dir.mktmpdir('midterms-package-') do |temporary|
   markdown = File.read(File.join(root, '_posts/2026-11-04-one-parameter-model-2026-midterms.md'))
   markdown = markdown.gsub(/<link\b[^>]*>\s*|<script\b[^>]*>[\s\S]*?<\/script>\s*/, '')
   markdown = markdown.gsub(/\{\{\s*'([^']+)'\s*\|\s*relative_url\s*\}\}/) { Regexp.last_match(1).delete_prefix('/') }
-  markdown = markdown.gsub(/\{%\s*include\s+([^\s]+)\s*%\}/) { "<img src=\"_includes/#{Regexp.last_match(1)}\" alt=\"Chart described in the caption below\">" }
+  markdown = markdown.gsub(/\{%\s*include\s+([^\s]+)\s*%\}/) do
+    include_path = Regexp.last_match(1)
+    if File.extname(include_path) == '.html'
+      File.read(File.join(root, '_includes', include_path))
+    else
+      "<img src=\"_includes/#{include_path}\" alt=\"Chart described in the caption below\">"
+    end
+  end
   markdown = markdown.gsub('](/', '](')
   File.write(File.join(folder, 'blog-post.md'), markdown)
   File.write(File.join(folder, 'README.txt'), <<~TEXT)
     2026 MIDTERMS BLOG + INFOGRAPHIC PACKAGE
 
     Open blog-post.html in a browser for the full article. Its styling,
-    five native charts, opening infographic, and chart interactions are
+    six native charts, historical table, opening infographic, and chart interactions are
     embedded, so no Jekyll installation or internet connection is required.
     Supporting links work when the ZIP is fully extracted.
 
@@ -80,7 +87,7 @@ Dir.mktmpdir('midterms-package-') do |temporary|
     assets/midterms-2026/linkedin-draft.md: LinkedIn copy and image alt text.
     source_info/midterms-2026-dashboard.html: interactive companion dashboard.
     assets/midterms-2026/snapshot.json: the extracted data snapshot.
-    _includes/midterms-2026/: the five individual SVG figures.
+    _includes/midterms-2026/: the six individual SVG figures and historical table.
 
     To regenerate the graphics, run from this folder:
       node assets/midterms-2026/build-visuals.cjs

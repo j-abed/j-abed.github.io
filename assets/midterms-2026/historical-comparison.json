@@ -1,0 +1,20 @@
+{
+  "metric": "Net seats gained or lost by the sitting president's party",
+  "historicalConvention": "American Presidency Project midterm election net changes; not a subtraction of arbitrary session-end party totals",
+  "sources": [
+    "https://www.presidency.ucsb.edu/statistics/data/seats-congress-gainedlost-the-presidents-party-mid-term-elections",
+    "https://history.house.gov/Institution/Party-Divisions/Party-Divisions/",
+    "https://www.senate.gov/history/partydiv.htm"
+  ],
+  "snapshotSource": "source_info/midterms-2026-dashboard.html",
+  "snapshotNote": "2026 values are the net balance of called flips in the supplied November 4 snapshot, not final losses or a projection. External election claims remain unverified.",
+  "elections": [
+    { "year": 1994, "president": "Bill Clinton", "party": "D", "house": -54, "senate": -8, "provisional": false },
+    { "year": 1998, "president": "Bill Clinton", "party": "D", "house": 4, "senate": 0, "provisional": false },
+    { "year": 2002, "president": "George W. Bush", "party": "R", "house": 8, "senate": 2, "provisional": false },
+    { "year": 2006, "president": "George W. Bush", "party": "R", "house": -30, "senate": -6, "provisional": false },
+    { "year": 2010, "president": "Barack Obama", "party": "D", "house": -63, "senate": -6, "provisional": false },
+    { "year": 2018, "president": "Donald Trump", "party": "R", "house": -41, "senate": 2, "provisional": false },
+    { "year": 2026, "president": "Donald Trump", "party": "R", "house": -35, "senate": -7, "provisional": true }
+  ]
+}
